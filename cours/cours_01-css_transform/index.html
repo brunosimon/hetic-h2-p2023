@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cours 01 - CSS Transform</title>
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <!-- Code steps start -->
+        <link rel="stylesheet" href="../src/code-steps/prism-tomorrow.css">
+        <link rel="stylesheet" href="../src/code-steps/style.css">
+        <!-- Code steps end -->
+
+        <style>
+            div.container{
+                width:100%;
+                height:200px;
+                transform-style:preserve-3d;
+                animation:animation 3s ease 0s infinite;
+                perspective-origin:50% 50%;
+                transform-style:preserve-3d;
+                perspective:800px;
+            }
+            div.container.no-perspective{
+                perspective:none;
+            }
+            div.transform{
+                width:200px;
+                height:200px;
+                margin:50px auto 0 auto;
+                background:#ff9000;
+                animation:animation 3s ease 0s infinite;
+                backface-visibility: visible;
+                transform-style:preserve-3d;
+            }
+            div.origin-0{
+                transform-origin: 0 0;
+            }
+            div.origin-50{
+                transform-origin: 50% 50%;
+            }
+            div.origin-100{
+                transform-origin: 100% 100%;
+            }
+            div.rotate-x-90{
+                transform: rotateX(90deg);
+            }
+            div.animated-scale{
+                animation-name:scale;
+            }
+            @keyframes scale {
+                0%   {transform: scale(1);}
+                50%  {transform: scale(3,0.5);}
+                100% {transform: scale(1);}
+            }
+            div.animated-scale-x{
+                animation-name:scalex;
+            }
+            @keyframes scalex {
+                0%   {transform: scaleX(1);}
+                50%  {transform: scaleX(3);}
+                100% {transform: scaleX(1);}
+            }
+            div.animated-scale-y{
+                animation-name:scaley;
+            }
+            @keyframes scaley {
+                0%   {transform: scaleY(1);}
+                50%  {transform: scaleY(1.3);}
+                100% {transform: scaleY(1);}
+            }
+            div.animated-scale-z{
+                animation-name:scalez;
+            }
+            @keyframes scalez {
+                0%   {transform: scaleZ(1);}
+                50%  {transform: scaleZ(2);}
+                100% {transform: scaleZ(1);}
+            }
+            div.animated-scale-3d{
+                animation-name:scale3d;
+            }
+            @keyframes scale3d {
+                0%   {transform: scale3d(1,1,1);}
+                50%  {transform: scale3d(2,1.7,1.5);}
+                100% {transform: scale3d(1,1,1);}
+            }
+            div.animated-translate{
+                animation-name:translate;
+            }
+            @keyframes translate {
+                0%   {transform: translate(0,0);}
+                50%  {transform: translate(200px,50px);}
+                100% {transform: translate(0,0);}
+            }
+            div.animated-translate-x{
+                animation-name:translatex;
+            }
+            @keyframes translatex {
+                0%   {transform: translateX(0);}
+                50%  {transform: translateX(200px);}
+                100% {transform: translateX(0);}
+            }
+            div.animated-translate-y{
+                animation-name:translatey;
+            }
+            @keyframes translatey {
+                0%   {transform: translateY(0);}
+                50%  {transform: translateY(100px);}
+                100% {transform: translateY(0);}
+            }
+            div.animated-translate-z{
+                animation-name:translatez;
+            }
+            @keyframes translatez {
+                0%   {transform: translateZ(0);}
+                50%  {transform: translateZ(100px);}
+                100% {transform: translateZ(0);}
+            }
+            div.animated-rotate{
+                animation-name:rotate;
+            }
+            @keyframes rotate {
+                0%   {transform: rotate(0)}
+                50%  {transform: rotate(70deg)}
+                100% {transform: rotate(0)}
+            }
+            div.animated-combination-1{
+                animation-name:combination-1;
+            }
+            @keyframes combination-1 {
+                0%   {transform: rotate(0) translateX(0)}
+                50%  {transform: rotate(90deg) translateX(100px)}
+                100% {transform: rotate(0) translateX(0)}
+            }
+            div.animated-combination-2{
+                animation-name:combination-2;
+            }
+            @keyframes combination-2 {
+                0%   {transform: translateX(0) rotate(0)}
+                50%  {transform: translateX(100px) rotate(90deg)}
+                100% {transform: translateX(0) rotate(0)}
+            }
+            div.animated-rotate-x{
+                animation-name:rotatex;
+            }
+            @keyframes rotatex {
+                0%   {transform: rotateX(0)}
+                50%  {transform: rotateX(250deg)}
+                100% {transform: rotateX(0)}
+            }
+            div.animated-rotate-y{
+                animation-name:rotatey;
+            }
+            @keyframes rotatey {
+                0%   {transform: rotateY(0)}
+                50%  {transform: rotateY(250deg)}
+                100% {transform: rotateY(0)}
+            }
+            div.animated-rotate-z{
+                animation-name:rotatez;
+            }
+            @keyframes rotatez {
+                0%   {transform: rotateZ(0)}
+                50%  {transform: rotateZ(70deg)}
+                100% {transform: rotateZ(0)}
+            }
+            div.animated-skew{
+                animation-name:skew;
+            }
+            @keyframes skew {
+                0%   {transform: skew(0, 0)}
+                50%  {transform: skew(-50deg, 10deg)}
+                100% {transform: skew(0, 0)}
+            }
+            div.animated-skew-x{
+                animation-name:skewx;
+            }
+            @keyframes skewx {
+                0%   {transform: skewX(0)}
+                50%  {transform: skewX(-50deg)}
+                100% {transform: skewX(0)}
+            }
+            div.animated-skew-y{
+                animation-name:skewy;
+            }
+            @keyframes skewy {
+                0%   {transform: skewY(0)}
+                50%  {transform: skewY(10deg)}
+                100% {transform: skewY(0)}
+            }
+            div.animated-perspective{
+                animation-name:perspective;
+            }
+            @keyframes perspective {
+                0%   {transform: perspective(200px);}
+                50%  {transform: perspective(800px);}
+                100% {transform: perspective(200px);}
+            }
+            div.animated-matrix{
+                animation-name:matrix;
+            }
+            @keyframes matrix {
+                0%   {transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                50%  {transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                100% {transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+            }
+            /*.smile {
+                position:relative;
+                -webkit-animation:smile 2s linear infinite;
+                -moz-animation:smile 2s linear infinite;
+                animation:smile 2s linear infinite;
+            }
+            @-webkit-keyframes smile {
+                0% {-webkit-transform: rotate(0deg);}
+                100% {-webkit-transform: rotate(360deg);}
+            }
+            @-moz-keyframes smile {
+                0% {-moz-transform: rotate(0deg);}
+                100% {-moz-transform: rotate(360deg);}
+            }
+            @keyframes smile {
+                0% {transform: rotate(0deg);}
+                100% {transform: rotate(360deg);}
+            }*/
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2023</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 01</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2023">https://github.com/brunosimon/hetic-p2023</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2023/">http://bruno-simon.com/hetic/p2023/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Transformations CSS</h1>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Propriété <span class="highlight">transform</span></li>
+                        <li>Arrivée avec le CSS3</li>
+                        <li>Compatible avec tous les navigateurs récents</li>
+                        <li>Permet de faire divers transformations sur l'élément sélectionné tel qu'un déplacement, une rotation, un redimensionnement, etc.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Les exemples qui suivent sont animés dans un but de comparaison</p>
+                    <p><span class="highlight">La transformation n'est pas une animation !</span></p>
+                </section>
+
+                <section>
+                    <h2>Transformations de base</h2>
+                </section>
+                
+                <section>
+                    <h2>Scale</h2>
+                    <p>scale(x, y) où <span class="highlight">x</span> et <span class="highlight">y</span> sont des multiplicateurs</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: scale(3, 0.5);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-scale"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>ScaleX</h2>
+                    <p>scaleX(x) où <span class="highlight">x</span> est un multiplicateur</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: scaleX(3);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-scale-x"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>ScaleY</h2>
+                    <p>scaleX(y) où <span class="highlight">y</span> est un multiplicateur</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: scaleY(0.5);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-scale-y"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Translate</h2>
+                    <p>translate(x, y) où <span class="highlight">x</span> et <span class="highlight">y</span> sont des distances<br>(px, %, em, ...)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: translate(200px, 50px);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-translate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>TranslateX</h2>
+                    <p>translateX(x) où <span class="highlight">x</span> est une distance (px, %, em, ...)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: translateX(200px);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-translate-x"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>TranslateY</h2>
+                    <p>translateY(y) où <span class="highlight">y</span> est une distance (px, %, em, ...)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: translateY(50px);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-translate-y"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Rotate</h2>
+                    <p>rotate(a) où <span class="highlight">a</span> est un angle (deg, rad)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: rotate(70deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Skew</h2>
+                    <p>skew(x, y) où <span class="highlight">x</span> et <span class="highlight">y</span> sont des angles (deg, rad)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: skew(-50deg, 10deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-skew"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>SkewX</h2>
+                    <p>skewX(x) où <span class="highlight">x</span> est un angle (deg, rad)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: skewX(-50deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-skew-x"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>SkewY</h2>
+                    <p>skewY(y) où <span class="highlight">y</span> est un angle (deg, rad)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: skewY(10deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-skew-y"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Centre de la transformation</h2>
+                    <p>Il est possible de changer le centre de la transformation à l'aide de transform-origin</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform-origin: 0 0;
+    transform: rotate(-70deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform origin-0 animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Centre de la transformation</h2>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform-origin: 50% 50%;
+    transform: rotate(-70deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform origin-50 animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Centre de la transformation</h2>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform-origin: 100% 100%;
+    transform: rotate(-70deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform origin-100 animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Combiner des transformations</h2>
+                    <div class="fragment">
+                        <p>Il suffit de les séparer par des espaces</p>
+                        <div class="code-steps" data-type="css" data-trim>
+                            <pre contenteditable><code>
+.element
+{
+    transform: rotate(90deg) translateX(100px);
+}
+                            </code></pre>
+                        </div>
+                        <div class="container">
+                            <div class="transform animated-combination-1"></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Combiner des transformations</h2>
+                    <p>L'ordre des transformations importe</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: translateX(100px) rotate(90deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-combination-2"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Compatibilité</h2>
+                </section>
+
+                <section>
+                    <p>Étapes à suivre vis-à-vis de la compatibilité</p>
+                    <img src="src/img/compatibility-schema.png" alt="" class="no-style">
+                </section>
+
+                <section>
+                    <p>Connaître la compatibilité</p>
+                    <p class="fragment"><a href="http://caniuse.com/" target="_blank">CanIUse</a></p>
+                </section>
+
+                <section>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=transforms2d">http://caniuse.com/#feat=transforms2d</a></p>
+                    <p class="ciu_embed" data-feature="transforms2d" data-periods="future_1,current,past_1,past_2,past_3,past_4">
+                        <a href="http://caniuse.com/#feat=transforms2d">CanIUse</a>
+                    </p>
+                </section>
+
+                <section>
+                    <p>Version préfixée pour une meilleure compatibilité</p>
+                    <div
+                        class="code-steps"
+                        data-type="css"
+                        data-trim
+                        data-steps="
+                            *:;
+                            l3:Webkit (Chrome et Safari);
+                            l4:Mozilla (Firefox);
+                            l5:Microsoft (Internet Explorer);
+                            l6:Opera;
+                            l7:Tous les navigateurs supportant officiellement la feature
+                        "
+                    >
+                        <pre contenteditable><code>
+.element
+{
+     -webkit-transform: rotate(-70deg);
+        -moz-transform: rotate(-70deg);
+         -ms-transform: rotate(-70deg);
+          -o-transform: rotate(-70deg);
+             transform: rotate(-70deg);
+}
+                        </code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Transformations 3D</h2>
+                    <p class="fragment smile">:)</p>
+                </section>
+
+                <section>
+                    <h2>rotateY</h2>
+                    <p>rotateY(y) où <span class="highlight">y</span> est un angle (deg, rad)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: rotateY(250deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container no-perspective">
+                        <div class="transform animated-rotate-y"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Par défaut, la rotation va sembler plate, sans perspective.</p>
+                    <p>Pour lui rajouter de la perspective, il faut mettre l'élément dans un container et, en CSS, modifier sa propriété <span class="hl">perspective</span>.</p>
+                    <div
+                        class="code-steps"
+                        data-type="css"
+                        data-trim
+                        data-steps="
+                           *:;
+                           l1-l4:La perspective doit être mise sur le parent;
+                           l5-l8:Elle s'appliquera sur tous les enfants directs
+                        "
+                    >
+                        <pre contenteditable><code>
+.container
+{
+    perspective: 800px;
+}
+.element
+{
+    transform: rotateY(250deg);
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>rotateX</h2>
+                    <p>rotateX(x) où <span class="highlight">x</span> est un angle (deg, rad)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: rotateX(250deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-rotate-x"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>translateZ</h2>
+                    <p>translateZ(z) où <span class="highlight">z</span> est une distance (px, %, em, ...)</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: translateZ(100px);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-translate-z"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>scaleZ</h2>
+                    <p>scaleZ(z) où <span class="highlight">z</span> est un multiplicateur</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: scaleZ(2);
+}
+                        </code></pre>
+                    </div>
+                    <p class="fragment">Pas de différence ? C'est normal</p>
+                    <div class="container">
+                        <div class="transform animated-scale-z"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>scale3d</h2>
+                    <p>scale3d(x, y, z) où <span class="highlight">x</span>, <span class="highlight">y</span> et <span class="highlight">z</span> sont des multiplicateurs</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: scale3d(2, 1.7, 1.5);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container">
+                        <div class="transform animated-scale-3d"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Backface</h2>
+                    <p>Par défaut, l'arrière d'un élément est visible (sauf sur certains vieux navigateurs)<br/>La propriété <span class="hl">backface-visibility</span> permet de contrôler cette visibilité</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element-1
+{
+    backface-visibility: hidden;
+}
+.element-2
+{
+    backface-visibility: visible;
+}
+                        </code></pre>
+                    </div>
+                    <div class="container animated-perspective">
+                        <div style="display:inline-block;-webkit-backface-visibility: hidden;-moz-backface-visibility: hidden;backface-visibility: hidden;" class="transform animated-rotate-y"></div>
+                        <div style="display:inline-block;" class="transform animated-rotate-y"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Perspective</h2>
+                    <p>Il est possible de changer la perspective de l'élément directement.</p>
+                    <p>A éviter pour une perspective homogène entre les différents éléments.</p>
+                    <p>La perspective doit être avant la transformation.</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: perspective(800px) rotateX(70deg);
+}
+                        </code></pre>
+                    </div>
+                    <div class="container animated-perspective">
+                        <div class="transform rotate-x-90"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Perspective</h2>
+                    <p>Il est possible de propager la perspective de manière à obtenir un espace 3D homogène avec une perspective commune avec <span class="hl">transform-style: preserve-3d</span></p>
+                    <p>Cette modification doit être appliquée sur le parent dont les enfants doivent partager le même espace 3D</p>
+                    <div class="code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform-style: preserve-3d;
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Matrices</h2>
+                    <p>Il est possible d'appliquer des matrices de transformation.</p>
+                    <p class="fragment"><a target="_blank" href="http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/">En savoir plus</a> pour les matheux et les curieux.</p>
+                    <div class="fragment code-steps" data-type="css" data-trim>
+                        <pre contenteditable><code>
+.element
+{
+    transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);
+}
+                        </code></pre>
+                    </div>
+                    <div class="fragment container animated-matrix">
+                        <div class="transform" style="-webkit-transform: matrix(1, -0.2, 0, 1, 0, 0);"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Compatibilité</h2>
+                </section>
+
+                <section>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=transforms3d">http://caniuse.com/#feat=transforms3d</a></p>
+                    <p class="ciu_embed" data-feature="transforms3d" data-periods="future_1,current,past_1,past_2,past_3,past_4">
+                        <a href="http://caniuse.com/#feat=transforms3d">CanIUse</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Démonstrations</h2>
+                    <ul>
+                        <li><a target="blank" href="http://2012.beercamp.nclud.com/">2012.beercamp.nclud.com/</a></li>
+                        <li><a target="_blank" href="http://www.eleqtriq.com/wp-content/static/demos/2010/rotation/index.html">www.eleqtriq.com/...</a></li>
+                        <li><a target="_blank" href="http://www.keithclark.co.uk/labs/css3-fps-new/">www.keithclark.co.uk/labs/css3-fps-new/</a></li>
+                        <li><a target="_blank" href="https://codepen.io/rgg/pen/QbRyOq">codepen.io/rgg/pen/QbRyOq</a></li>
+                        <li><a target="_blank" href="https://codepen.io/diegopardo/full/GqEho/">codepen.io/diegopardo/full/GqEho/</a></li>
+                        <li><a target="_blank" href="https://codepen.io/rgg/pen/waEYye">codepen.io/rgg/pen/waEYye</a></li>
+                        <li><a target="_blank" href="https://codepen.io/davidkpiano/pen/aqNZxX">codepen.io/davidkpiano/pen/aqNZxX</a></li>
+                        <li><a target="_blank" href="https://codepen.io/bodiche/full/EKmwC/">codepen.io/bodiche/full/EKmwC/</a></li>
+                        <li><a target="_blank" href="https://codepen.io/bodiche/full/EPdRBR/">codepen.io/bodiche/full/EPdRBR/</a></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <script src="../src/caniuse-embed.min.js"></script>
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+
+        <!-- Code steps start -->
+        <script src="../src/code-steps/prism.js" data-manual></script>
+        <!-- Code steps end -->
+
+        <script type="module" src="../src/custom/script-module.js"></script>
+    </body>
+</html>

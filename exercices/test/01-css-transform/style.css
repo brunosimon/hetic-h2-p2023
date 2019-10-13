@@ -1,0 +1,59 @@
+.container
+{
+    height: 200px;
+    background: #dddddd;
+    margin: 20px;
+    padding: 20px;
+    perspective: 800px;
+}
+
+.element
+{
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    background: orange;
+}
+
+.element-1
+{
+    transform: scale(3, 0.5);
+}
+
+.element-2
+{
+    transform: translate(-200px, 50px)
+}
+
+.element-3
+{
+    transform: rotate(45deg);
+    overflow: hidden;
+}
+
+.element-3 .inner
+{
+    transform: rotate(-45deg);
+}
+
+.element-4
+{
+    transform: skew(-50deg, 10deg);
+}
+
+.element-5
+{
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.element-6
+{
+    transform: rotate(45deg) translateX(100px);
+}
+
+.element-7
+{
+    transform: rotateY(250deg);
+}

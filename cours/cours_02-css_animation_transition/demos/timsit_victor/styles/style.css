@@ -1,0 +1,727 @@
+body
+{
+    margin: 0 auto;
+    background-color: #000000;
+    overflow: hidden;
+}
+
+/*****************************************
+*****************CONTAINER****************
+*****************************************/
+
+.background 
+{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.backgroundImg
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url("../images/staryNight.png");
+    background-repeat: repeat;
+    background-size: 50%;
+    animation-name: backgroundScale;
+    animation-duration: 60s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+}
+
+.blackBox /*element to hide stars during speed jump*/
+{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: #000000;
+    top:0;
+    opacity: 0;
+    z-index: 1;
+}
+
+.AnimateElementsContainer /*This element contains the two stars cubes*/
+{
+    width: 800px;
+    height: 400px;
+    position: relative;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    perspective: 500px;
+    top: 50%;
+    opacity: 1; 
+    text-align: center;
+    z-index: 3;
+    transition: transform 10s ease;
+}
+
+.AnimateElementsContainer .items /*he's the first animate stars cube*/
+{
+    height: 5px;
+    width: 5px;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    animation-name: highSpeed;
+    animation-duration: 16s;
+    animation-timing-function: linear;
+    animation-fill-mode: backwards;
+    animation-iteration-count: infinite;
+}
+
+.AnimateElementsContainer .itemsTwo /*he's the second animate stars cube*/
+{
+    height: 5px;
+    width: 5px;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    animation-name: highSpeedTwo;
+    animation-duration: 16s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-delay: 6s; /*this one have delay because he starts during disappear of first cube to infinite travel effect*/
+}
+
+.AnimateElementsContainer .items .item /*each face of first cube*/
+{
+    width: 800px;
+    height: 800px;
+    background-image: url("../images/staryNight.png");
+    background-size: 120%;
+    background-repeat: repeat;
+    position: absolute;
+    top: -400px;
+    left: -400px;   
+    animation-name: fade;
+    animation-duration: 16s;
+    animation-iteration-count: infinite;
+    animation-delay: 6s;
+    animation-fill-mode: backwards;
+}
+
+.AnimateElementsContainer .itemsTwo .item /*each face of second cube*/
+{
+    width: 800px;
+    height: 800px;
+    background-image: url("../images/staryNight.png");
+    background-size: 120%;
+    background-repeat: repeat;
+    position: absolute;
+    top: -400px;
+    left: -400px;   
+    animation-name: fadeTwo;
+    animation-duration: 16s;
+    animation-delay: 6s;
+    animation-fill-mode: backwards;
+    animation-iteration-count: infinite;
+}
+
+.container .txt
+{
+    text-align: center;
+    position: absolute;
+    margin-top: 50vh;
+    margin-left: 50vw;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.container .txt p /*each text of project*/
+{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-size: 22px;
+}
+
+.container .txtLaunch
+{
+    z-index: 10;
+    cursor: pointer;
+}
+
+.container .txtLaunch p
+{
+    transition: 0.5s;
+    transition-timing-function: ease;
+}
+
+.container .txtLaunch p:last-child
+{
+    font-size: 15px;
+    margin-top: -15px;
+}
+
+.container .txtLaunch:hover p
+{
+    transform: scale(1.05);
+    transition: 0.5s;
+    transition-timing-function: ease;
+}
+
+.container .txtAfterLaunch
+{
+    perspective: 800px; /*perspective on because countdown is with a perspective effect*/
+    z-index: 9;
+}
+
+.container .txtAfterLaunch p
+{
+    margin: 0;
+    font-size: 45px;
+    perspective: 800px;
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
+}
+
+.container .txtAfterLaunch .one, .txtAfterLaunch .two
+{
+    position: absolute;
+}
+
+.container .txt.txtNavigation{
+    opacity: 0;
+    z-index: 9;
+    cursor: default;
+}
+
+/*each item are faces of first and second cube*/
+
+.item-1
+{
+    transform: rotateY(90deg) translateZ(400px);
+}
+
+.item-2
+{
+    transform: rotateY(90deg) translateZ(-400px);
+}
+
+.item-3
+{
+    transform: rotateX(90deg) translateZ(400px);
+}
+
+.item-4
+{
+    transform: rotateX(90deg) translateZ(-400px);
+}
+
+.item-5
+{
+    transform: translateZ(-400px);
+}
+
+/*each style proprety of planets*/ 
+
+.planet
+{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+    opacity: 0;
+    margin: 0 auto;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+    transition: opacity 0.2s ease 10.9s;
+}
+
+.planet img
+{
+    width: 100%;
+    height: 100%;
+}
+
+.sun
+{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    will-change: transform;
+    margin: 0 auto;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease 10.9s;
+}
+
+.sun img
+{
+    width: 100%;
+    height: 100%;
+    animation-name: planetRotate;
+    animation-duration: 360s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: reverse;
+    
+}
+
+.planet.hexoPlanet img
+{
+    animation-name: planetRotate;
+    animation-duration: 240s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.planetTwo
+{
+    position: absolute;
+    z-index: 2;
+    width: 600px;
+    height: 600px;
+    opacity: 0;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+    transition: opacity 0.2s ease 10.9s;
+
+}
+
+.planetTwo img
+{
+    width: 100%;
+    height: 100%;
+}
+
+.planetTwo.hexoPlanetTwo img
+{
+    animation-name: planetRotate;
+    animation-duration: 240s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.planetThree
+{
+    position: absolute;
+    z-index: 2;
+    width: 550px;
+    height: 550px;
+    opacity: 0;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+    transition: opacity 0.2s ease 10.9s;
+}
+
+.planetThree img
+{
+    width: 100%;
+    height: 100%;
+}
+
+.planetThree.hexoPlanetThree img
+{
+    animation-name: planetRotate;
+    animation-duration: 280s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/*****************************************
+*******ACTIVE ELEMENT FOR ANIMATION*******
+*****************************************/
+
+/*each of after click animated elements are animated by adding 'active' class*/ 
+
+.blackBox.active
+{
+    opacity: 1;
+    animation-name: blackBoxOpacity;
+    animation-duration: 12s;
+    animation-fill-mode: forwards;
+}
+
+.AnimateElementsContainer.active
+{
+    animation-name: speedRise;
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+    animation-timing-function: cubic-bezier(0.98,-0.01, 0.93, 0.96);
+    opacity: 1;
+}
+
+.txtLaunch.active
+{
+    opacity: 0;
+    animation-name: txtLaunchOpacity;
+    animation-duration: 13s;
+    animation-fill-mode: forwards;
+    pointer-events: none;
+}
+
+.txt.txtNavigation.active
+{
+    animation-name: txtNavigationOpacity;
+    animation-duration: 3s;
+    animation-delay: 4s;
+}
+
+.one.active
+{
+    animation-name: numbersOpacity;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+}
+
+.two.active
+{
+    animation-name: numbersOpacity;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+}
+
+.three.active
+{
+    animation-name: numbersOpacity;
+    animation-duration: 1s;
+    animation-delay: 2.5s;
+}
+
+.sun.activeAfter
+{
+    animation-name: sunAfter;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-in;
+}
+
+.planet.activeAfter
+{
+    animation-name: planetAfter;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-in;
+}
+
+.planet.active 
+{
+    animation-name: planetOpacity; 
+    animation-timing-function: ease;
+    animation-duration: 0.2s; 
+    animation-delay: 10.9s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+
+.planetTwo.activeAfter
+{
+    animation-name: planetTwoAfter;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-in;
+}
+
+.planetTwo.active 
+{
+    animation-name: planetTwoOpacity; 
+    animation-timing-function: ease;
+    animation-duration: 0.2s; 
+    animation-delay: 10.9s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+
+.planetThree.active 
+{
+    animation-name: planetThreeOpacity; 
+    animation-timing-function: ease;
+    animation-duration: 0.2s; 
+    animation-delay: 10.9s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+
+.planetThree.activeAfter
+{
+    animation-name: planetThreeAfter;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-in;
+}
+
+.sun.active
+{
+    animation-name: sunOpacity;
+    animation-timing-function: ease;
+    animation-duration: 0.2s;
+    animation-delay: 10.9s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+
+/*all of navigation elements*/
+
+.navigationLeft
+{
+    position: absolute;
+    width: 30vw;
+    height: 100vh;
+    z-index: 12;
+}
+
+.navigationRight
+{
+    position: absolute;
+    width: 30vw;
+    height: 100vh;
+    right: 0;
+    z-index: 12;
+}
+
+.navigationTop
+{
+    position: absolute;
+    width: 100vw;
+    height: 30vh;
+    top: 0;
+    z-index: 12;  
+}
+
+.navigationBottom
+{
+    position: absolute;
+    width: 100vw;
+    height: 30vh;
+    bottom: 0;
+    z-index: 12;  
+}
+
+.navigationTopLeft
+{
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    left:0;
+    top:0;
+    z-index: 12; 
+}
+
+.navigationTopRight
+{
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    right:0;
+    top:0;
+    z-index: 12; 
+}
+
+.navigationBottomLeft
+{
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    left:0;
+    bottom:0;
+    z-index: 12; 
+}
+
+.navigationBottomRight
+{
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    right:0;
+    bottom:0;
+    z-index: 12; 
+}
+
+.navigationRight:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-50%) translateX(20%);
+}
+
+.navigationLeft:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-50%) translateX(-20%);
+}
+
+.navigationTop:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-70%);
+}
+
+.navigationBottom:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-30%);
+}
+
+.navigationTopLeft:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-70%) translateX(-20%);
+}
+
+.navigationTopRight:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-70%) translateX(20%);
+}
+
+.navigationBottomLeft:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-30%) translateX(-20%);
+}
+
+.navigationBottomRight:hover ~ .AnimateElementsContainer
+{
+    transform: translateY(-30%) translateX(20%);
+}
+
+/*****************************************
+*****************KEYFRAMES****************
+*****************************************/
+
+@keyframes highSpeed /*highSpeed is speed of first background cube*/
+{
+    0%  {transform: translateZ(-200px);}
+    60% {transform: translateZ(400px);}
+    100%{transform: translateZ(400px);}
+}
+
+@keyframes highSpeedTwo /*highSpeedTwo is speed of second background cube*/
+{
+    0%  {transform: translateZ(-200px);}
+    80% {transform: translateZ(400px);}
+    100%{transform: translateZ(400px);}
+}
+
+@keyframes fade /*fade is fade of first background cube*/
+{
+    0%  {opacity: 1;}
+    30% {opacity: 0;}
+    65% {opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@keyframes fadeTwo /*fadeTwo is fade of second background cube*/
+{
+    0%  {opacity: 0;}
+    55% {opacity: 1;}
+    40% {opacity: 1;}
+    100%{opacity: 0;}
+}
+
+@keyframes speedRise /*speedRise decrease perspective after animation launch to simulated an increase speed effect*/ 
+{
+    0%  {perspective: 500px;}
+    25% {perspective: 3px;}
+    99% {perspective: 1px;}
+    100%{perspective: 500px;} /*increase of perspective at the end is for the deceleration speed effect*/
+}
+
+@keyframes backgroundScale /*backgroundScale is a very slowly scale, just for dynamism and most realistic scene*/
+{
+    0%  {transform: scale(1);}
+    100%{transform: scale(1.3);}
+}
+
+@keyframes blackBoxOpacity /*blackBoxOpacity display a black box to hide stars during the jump*/
+{
+    0%  {opacity: 0;}
+    40% {opacity: 1;}
+    89% {opacity: 1;}
+    100%{opacity: 0;}
+}
+
+@keyframes numbersOpacity /*numberOpacity is to animate the countdown*/
+{
+    0%  {opacity: 1; transform: translateZ(600px);}
+    100%{opacity: 0; transform: translateZ(0px);} 
+}
+
+@keyframes txtLaunchOpacity /*txtLaunchOpacity is to disappear the begin text after click and display after animation*/
+{
+    0%  {opacity: 1;}
+    5%  {opacity: 0;}
+    95% {opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@keyframes txtNavigationOpacity /*txtNavigation is to reveal navigation text*/
+{
+    0%  {opacity: 0;}
+    20% {opacity: 1;}
+    80% {opacity: 1;}
+    100%{opacity: 0;}
+}
+
+/*All of reveal and disappear of planets animations*/
+/*platOpacity$ reveal planets*/
+/*planetAfter$ disappear planets*/
+
+@keyframes planetOpacity
+{
+    0%  {transform: translateX(-50%) translateY(-50%) scale(0);}
+    100%{transform: translateX(450px) translateY(30px) scale(1);}
+}
+
+@keyframes sunOpacity
+{
+    0%  {transform: translateX(-50%) translateY(-50%) scale(0);}
+    100%{transform: translateX(-650px) translateY(-400px) scale(1);}
+}
+
+@keyframes planetTwoOpacity
+{
+    0%  {transform: translateX(-50%) translateY(-50%) scale(0);}
+    100%{transform: translateX(100px) translateY(-110px) scale(1);}
+}
+
+@keyframes planetThreeOpacity
+{
+    0%  {transform: translateX(-50%) translateY(-50%) scale(0);}
+    100%{transform: translateX(-700px) translateY(-110px) scale(1);}
+}
+
+@keyframes planetRotate
+{
+    0%  {transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
+
+@keyframes planetAfter
+{
+    0%  {opacity: 1; transform: translateX(450px) translateY(30px) scale(1);}
+    35% {opacity: 1; transform: translateX(450px) translateY(30px) scale(1);}
+    98% {opacity: 1; transform: translateX(550px) translateY(60px) scale(1.2);}
+    100%{opacity: 0; transform: translateX(1350px) translateY(100px) scale(5);}
+}
+
+@keyframes sunAfter
+{
+    0%  {opacity: 1; transform: translateX(-650px) translateY(-400px) scale(1);}
+    35% {opacity: 1; transform: translateX(-650px) translateY(-400px) scale(1);}
+    98% {opacity: 1; transform: translateX(-750px) translateY(-400px) scale(1.2);}
+    100%{opacity: 0; transform: translateX(-2550px) translateY(-450px) scale(5);}
+}
+
+@keyframes planetTwoAfter
+{
+    0%  {opacity: 1; transform: translateX(100px) translateY(-110px) scale(1);}
+    35% {opacity: 1; transform: translateX(100px) translateY(-110px) scale(1);}
+    98% {opacity: 1; transform: translateX(200px) translateY(-60px) scale(1.2);}
+    100%{opacity: 0; transform: translateX(1350px) translateY(200px) scale(5);}
+}
+
+@keyframes planetThreeAfter
+{
+    0% {opacity: 1; transform: translateX(-700px) translateY(-110px) scale(1);}
+    35%  {opacity: 1; transform: translateX(-700px) translateY(-110px) scale(1);}
+    98% {opacity: 1; transform: translateX(-800px) translateY(-60px) scale(1.2);}
+    100%{opacity: 0; transform: translateX(-2350px) translateY(200px) scale(5);}
+}

@@ -8,6 +8,7 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
     - [ ] Transformations
     - [ ] Animations/Transitions
     - [ ] Optimisation des sélecteurs
+    - [ ] Variables
 - [ ] JS
     - [ ] Exercices
         - [ ] Menu toggle
@@ -17,8 +18,9 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
         - [ ] Drumkit
         - [ ] Scroll parallax
         - [ ] Mouse parallax
+        - [ ] Bouton 3D
         - [ ] Carousel
-        - [ ] Gallerie
+        - [ ] Galerie
         - [ ] Async navigation
     - [ ] Techniques
         - [ ] `script` tag

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="assets/css/style.min.css">
+	<title>TGV</title>
+</head>
+<body>
+	<header>
+		<h1><span>Admirez</span> le TGV inoui sous toutes ses coutures !</h1>
+	</header>
+	<section class="view">
+		<!-- Mouse controls in CSS, may be better in JS -->
+		<div class="action-move-left"></div>
+		<div class="action-move-right"></div>
+		<div class="dynamic-elements"> <!-- This is affected by CSS 3D transforms -->
+			<!-- YOU MAY WRAP: HTML of the train, repetitions can easily be replaced by PHP functions -->
+			<div class="train">
+				<section class="couch-0 engine">
+					<div class="face-1-e">
+						<div class="top-light back"></div>
+						<div class="window"></div>
+						<div class="bottom-lights back">
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+					<div class="face-2-e"></div>
+					<div class="face-ns-1 returned">
+						<div class="roof-top engine"></div>
+						<div class="upper-floor engine"></div>
+						<div class="lower-floor engine"></div>
+						<div class="under-floor engine"></div>
+						<div class="shadow engine returned"></div>
+						<img class="inoui returned" src="assets/img/logo.png" alt="">
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top engine"></div>
+						<div class="upper-floor engine"></div>
+						<div class="lower-floor engine"></div>
+						<div class="under-floor engine"></div>
+						<img class="inoui" src="assets/img/logo.png" alt="">
+					</div>
+				</section>
+				<section class="couch-1">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-2">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-3">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-4">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-5">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor bar">
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="class bar">BAR</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor bar">
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="class">BAR</div>
+						</div>
+						<div class="under-floor"></div>
+					</div>
+				</section>
+				<section class="couch-6">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								1
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								1
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-7">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								1
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								1
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-8">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-9">
+					<div class="face-ns-1">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+						<div class="shadow"></div>
+					</div>
+					<div class="face-ns-2">
+						<div class="roof-top"></div>
+						<div class="upper-floor">
+							<div class="grid small"></div>
+							<div class="window small"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window small"></div>
+						</div>
+						<div class="lower-floor">
+							<div class="grid"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="window"></div>
+							<div class="class">
+								<div class="display">
+									TGV 8427
+									<div class="sliding-text">Bordeaux St Jean</div>
+								</div>
+								2
+							</div>
+						</div>
+						<div class="under-floor"></div>
+						<div class="behind-door"></div>
+						<div class="door">
+							<div class="door-window"></div>
+						</div>
+					</div>
+				</section>
+				<section class="couch-10 engine">
+					<div class="face-1-e returned">
+						<div class="top-light front"></div>
+						<div class="window"></div>
+						<div class="bottom-lights front">
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+					<div class="face-2-e returned"></div>
+					<div class="face-ns-1">
+						<div class="roof-top engine"></div>
+						<div class="upper-floor engine"></div>
+						<div class="lower-floor engine"></div>
+						<div class="under-floor engine"></div>
+						<div class="shadow engine"></div>
+						<img class="inoui" src="assets/img/logo.png" alt="">
+					</div>
+					<div class="face-ns-2 returned">
+						<div class="roof-top engine"></div>
+						<div class="upper-floor engine"></div>
+						<div class="lower-floor engine"></div>
+						<div class="under-floor engine"></div>
+						<img class="inoui returned" src="assets/img/logo.png" alt="">
+					</div>
+					<div class="pantograph">
+						<div class="upper-part"></div>
+						<div class="lower-part"></div>
+					</div>
+				</section>
+			</div>
+			<!-- END train -->
+			<div class="decor">
+				<!-- Catenary carriers, repetitions can easily be replaced by PHP functions -->
+				<div class="catenary-carriers">
+					<div class="catenary-carrier-1"></div>
+					<div class="catenary-carrier-2"></div>
+					<div class="catenary-carrier-3"></div>
+					<div class="catenary-carrier-4"></div>
+					<div class="catenary-carrier-5"></div>
+					<div class="catenary-carrier-6"></div>
+					<div class="catenary-carrier-7"></div>
+					<div class="catenary-carrier-8"></div>
+					<div class="catenary-carrier-9"></div>
+					<div class="catenary-carrier-10"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="launch">
+		<button>Direction Bordeaux en 2h04 !</button>
+	</div>
+	<!-- Hidden popup -->
+	<div class="buy">
+		<h1>Partez pour Bordeaux</h1>
+		<h2>À partir de 22€ AS*</h2>
+		<a target="_blank" href="https://www.voyages-sncf.com/" title="Oui SNCF">Je pars !</a>
+	</div>
+	<div class="background">
+		<div class="sky"></div>
+		<div class="ground"></div>
+	</div>
+	<footer>
+		<img class="sncf" src="assets/img/sncf.png" alt="Logo sncf">
+		<div class="equalizer">
+			<div class="bar-1"></div>
+			<div class="bar-2"></div>
+			<div class="bar-3"></div>
+			<div class="bar-4"></div>
+			<div class="bar-5"></div>
+		</div>
+	</footer>
+	<audio src="assets/audio/audio.mp3" loop></audio>
+	<script src="assets/js/main.min.js"></script>
+</body>
+</html>

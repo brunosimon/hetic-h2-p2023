@@ -1,0 +1,30 @@
+.cube-3d
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    --size: 400px;
+    perspective: 800px;
+}
+
+.cube-3d *
+{
+    transform-style: preserve-3d;
+}
+
+.cube-3d .face
+{
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    top: calc(var(--size) / -2);
+    left: calc(var(--size) / -2);
+    opacity: 0.5;
+}
+
+.cube-3d .face.face-y-pos { background: #ff0000; transform: rotateX(90deg) translateZ(calc(var(--size) / 2)); }
+.cube-3d .face.face-y-neg { background: #00ff00; transform: rotateX(-90deg) translateZ(calc(var(--size) / 2)); }
+.cube-3d .face.face-x-pos { background: #0000ff; transform: rotateY(90deg) translateZ(calc(var(--size) / 2)); }
+.cube-3d .face.face-x-neg { background: #ffff00; transform: rotateY(-90deg) translateZ(calc(var(--size) / 2)); }
+.cube-3d .face.face-z-pos { background: #ff00ff; transform: rotateY(0deg) translateZ(calc(var(--size) / 2)); }
+.cube-3d .face.face-z-neg { background: #00ffff; transform: rotateY(180deg) translateZ(calc(var(--size) / 2)) }
