@@ -1,0 +1,142 @@
+/* Base */
+.code-steps
+{
+    overflow: auto;
+    position: relative;
+    font-size: 0;
+
+    --controls-background: rgba(0, 0, 0, 0.3);
+    --controls-padding: 10px;
+    --descriptions-height: 0px;
+    --arrow-width: 40px;
+    --font-size: 16px;
+}
+
+.code-steps pre[class*="language-"]
+{
+    margin: 0;
+    display: inline-block;
+    min-width: 100%;
+    box-sizing: border-box;
+    font-size: var(--font-size);
+    padding-bottom: calc(var(--descriptions-height) + var(--controls-padding) * 2)
+}
+
+/* Letters */
+.code-steps .cs-letter
+{
+    opacity: 0.3;
+    transition: opacity 0.1s;
+    will-change: opacity;
+}
+
+.code-steps .cs-letter.cs-is-active
+{
+    opacity: 1;
+}
+
+/* Descriptions */
+.code-steps .cs-descriptions
+{
+    position: absolute;
+    bottom: var(--controls-padding);
+    left: calc(var(--arrow-width) + var(--controls-padding) * 2);
+    right: calc(var(--arrow-width) + var(--controls-padding) * 2);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.code-steps .cs-descriptions .cs-description
+{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--descriptions-height);
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    will-change: opacity;
+}
+
+.code-steps .cs-descriptions .cs-description.cs-is-active
+{
+    pointer-events: auto;
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+
+.code-steps .cs-descriptions .cs-description .cs-inner
+{
+    padding: 10px 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: var(--controls-background);
+    color: #ffffff;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: var(--font-size);
+}
+
+.code-steps .cs-descriptions .cs-description:not(:last-child) .cs-inner
+{
+    cursor: pointer;
+}
+
+/* Arrows */
+.code-steps .cs-arrow
+{
+    display: flex;
+    position: absolute;
+    bottom: var(--controls-padding);
+    width: var(--arrow-width);
+    height: var(--descriptions-height);
+    align-items: center;
+    justify-content: center;
+    background: var(--controls-background);
+    font-size: var(--font-size);
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    will-change: opacity;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.code-steps .cs-arrow svg
+{
+    position: relative;
+    left: 1px;
+    width: 12px;
+    height: 12px;
+}
+.code-steps .cs-arrow svg *
+{
+    fill: #ffffff;
+}
+
+.code-steps .cs-arrow.cs-is-active
+{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.code-steps .cs-arrow.cs-previous
+{
+    transform: rotate(180deg);
+    left: var(--controls-padding);
+}
+
+.code-steps .cs-arrow.cs-next
+{
+    right: var(--controls-padding);
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code steps</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-tomorrow.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-tomorrow.min.css"> -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body style="padding: 10vmin;">
+    <div
+        class="code-steps"
+        data-type="javascript"
+        data-trim
+        data-steps="
+            *:Welcome to the Code Steps demo;
+            l1-l3:Retrieve elements from the DOM;
+            l5-l6,l10:Execute a fonction every 50ms;
+            l7:Calculate video time progress (between 0 and 1);
+            l9:Update DOM element
+        "
+    >
+        <pre contenteditable><code>
+const player = document.querySelector('.player')
+const video = player.querySelector('video')
+const bar = player.querySelector('.bar')
+
+window.setInterval(() =>
+{
+	const progress = video.currentTime / video.duration
+
+    bar.style.transform = `scaleX(${progress})`
+}, 50)
+        </code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.js" data-manual></script>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
