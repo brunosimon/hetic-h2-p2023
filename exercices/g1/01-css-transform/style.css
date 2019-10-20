@@ -1,0 +1,98 @@
+.container
+{
+    position: relative;
+    height: 200px;
+    background: #cccccc;
+    margin: 20px;
+    padding: 20px;
+    perspective: 800px;
+}
+
+.container *
+{
+    transform-style: preserve-3d;
+}
+
+.element
+{
+    position: absolute;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 200px;
+    background: orange;
+}
+
+.container:hover .element-1
+{
+    transform: scaleY(0.5);
+}
+
+.container:hover .element-2
+{
+    transform: translateY(50px);
+}
+
+.container:hover .element-3
+{
+    transform: rotate(45deg);
+}
+
+.container:hover .element-4
+{
+    transform: skewY(-45deg);
+}
+
+.container:hover .element-5
+{
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.container:hover .element-6
+{
+    -webkit-transform: rotate(45deg) translateX(200px);
+       -moz-transform: rotate(45deg) translateX(200px);
+        -ms-transform: rotate(45deg) translateX(200px);
+         -o-transform: rotate(45deg) translateX(200px);
+            transform: rotate(45deg) translateX(200px);
+}
+
+.container:hover .element-7
+{
+    transform: rotateX(45deg);
+}
+
+.container:hover .element-8
+{
+    transform: translateZ(200px);
+}
+
+.container:hover .element-9
+{
+    transform: rotateY(110deg);
+    backface-visibility: hidden;
+}
+
+.container:hover .element-10
+{
+    transform: perspective(200px) rotateX(80deg);
+}
+
+.element-11 .smaller
+{
+    width: 100px;
+    height: 100px;
+    background: red;
+    transform: translateZ(50px);
+}
+
+.container:hover .element-11
+{
+    transform: rotateX(70deg);
+}
+
+.container:hover .element-12
+{
+    transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);
+}

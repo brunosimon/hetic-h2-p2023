@@ -9,7 +9,7 @@
     --controls-padding: 10px;
     --descriptions-height: 0px;
     --arrow-width: 40px;
-    --font-size: 16px;
+    --font-size: 18px;
 }
 
 .code-steps pre[class*="language-"]
@@ -20,6 +20,11 @@
     box-sizing: border-box;
     font-size: var(--font-size);
     padding-bottom: calc(var(--descriptions-height) + var(--controls-padding) * 2)
+}
+
+.code-steps code[class*="language-"]
+{
+    line-height: 1.35em;
 }
 
 /* Letters */

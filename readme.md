@@ -5,10 +5,10 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 # PROGRAMME
 
 - [ ] CSS
-    - [ ] Transformations
+    - [x] Transformations
     - [ ] Animations/Transitions
     - [ ] Optimisation des sélecteurs
-    - [ ] Variables
+    - [x] Variables
 - [ ] JS
     - [ ] Exercices
         - [ ] Menu toggle

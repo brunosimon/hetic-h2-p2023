@@ -1,0 +1,83 @@
+.container
+{
+    position: relative;
+    height: 200px;
+    margin: 20px;
+    padding: 20px;
+    background: #cccccc;
+    perspective: 800px;
+}
+
+.container *
+{
+    transform-style: preserve-3d;
+}
+
+.element
+{
+    position: absolute;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 200px;
+    background: orange;
+}
+
+.container:hover .element-1
+{
+    transform: scaleX(3);
+}
+
+.container:hover .element-2
+{
+    transform: translateX(200%);
+}
+
+.container:hover .element-3
+{
+    transform: rotate(45deg);
+}
+
+.container:hover .element-3 .inner
+{
+    transform: rotate(-45deg);
+    height: 100%;
+}
+
+.container:hover .element-4
+{
+    transform: skew(0, 45deg);
+}
+
+.container:hover .element-5
+{
+    transform: rotate(45deg);
+    transform-origin: 200% 50%;
+}
+
+.container:hover .element-6
+{
+    -webkit-transform: rotate(45deg) translate(200px, 0);
+       -moz-transform: rotate(45deg) translate(200px, 0);
+        -ms-transform: rotate(45deg) translate(200px, 0);
+         -o-transform: rotate(45deg) translate(200px, 0);
+            transform: rotate(45deg) translate(200px, 0);
+}
+
+.container:hover .element-7
+{
+    transform: rotateY(70deg);
+}
+
+.element-8 .smaller
+{
+    width: 50%;
+    height: 50%;
+    background: #ff0000;
+    transform: translateZ(40px);
+}
+
+.container:hover .element-8
+{
+    transform: rotateX(70deg);
+}

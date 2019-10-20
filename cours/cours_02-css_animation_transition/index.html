@@ -66,98 +66,38 @@
                 transition: left 1s cubic-bezier(1,0,0,1);
             }
             .example-5 .transition-container span {
-                -webkit-animation: monanimation-1 3s;
-                -moz-animation: monanimation-1 3s;
-                -o-animation: monanimation-1 3s;
                 animation: monanimation-1 3s;
             }
-            @-webkit-keyframes monanimation-1 {
-                0%   {left: 0px;}
-                50%  {left: 800px;}
-                70%  {left: 250px;}
-                100% {left: 500px;}
-            }
-            @-moz-keyframes monanimation-1 {
-                0%   {left: 0px;}
-                50%  {left: 800px;}
-                70%  {left: 250px;}
-                100% {left: 500px;}
-            }
-            @-o-keyframes monanimation-1 {
-                0%   {left: 0px;}
-                50%  {left: 800px;}
-                70%  {left: 250px;}
-                100% {left: 500px;}
-            }
             @keyframes monanimation-1 {
-                0%   {left: 0px;}
-                50%  {left: 800px;}
-                70%  {left: 250px;}
-                100% {left: 500px;}
+                0%   { left: 0px; }
+                50%  { left: 800px; }
+                70%  { left: 250px; }
+                100% { left: 500px; }
             }
             .example-6 .transition-container span {
-                -webkit-animation: monanimation-2 3s;
-                -moz-animation: monanimation-2 3s;
-                -o-animation: monanimation-2 3s;
                 animation: monanimation-2 3s;
             }
-            @-webkit-keyframes monanimation-2 {
-                0%   {left: 0px;width: 100px;}
-                50%  {left: 800px;width: 50px;background: green;}
-                70%  {left: 700px;width: 300px;background: red;}
-                100% {left: 0px;width: 50px;}
-            }
-            @-moz-keyframes monanimation-2 {
-                0%   {left: 0px;width: 100px;}
-                50%  {left: 800px;width: 50px;background: green;}
-                70%  {left: 700px;width: 300px;background: red;}
-                100% {left: 0px;width: 50px;}
-            }
-            @-o-keyframes monanimation-2 {
-                0%   {left: 0px;width: 100px;}
-                50%  {left: 800px;width: 50px;background: green;}
-                70%  {left: 700px;width: 300px;background: red;}
-                100% {left: 0px;width: 50px;}
-            }
             @keyframes monanimation-2 {
-                0%   {left: 0px;width: 100px;}
-                50%  {left: 800px;width: 50px;background: green;}
-                70%  {left: 700px;width: 300px;background: red;}
-                100% {left: 0px;width: 50px;}
+                0%   { left: 0px; width: 100px; }
+                50%  { left: 800px; width: 50px; background: green; }
+                70%  { left: 250px; width: 300px; background: red; }
+                100% { left: 500px; width: 50px; }
             }
             .example-7 .transition-container span {
-                -webkit-animation: monanimation-1 3s ease 0s 2;
-                -moz-animation: monanimation-1 3s ease 0s 2;
-                -o-animation: monanimation-1 3s ease 0s 2;
                 animation: monanimation-1 3s ease 0s 2;
             }
             .example-8 .transition-container span {
-                -webkit-animation: monanimation-1 3s ease 0s 2 reverse;
-                -moz-animation: monanimation-1 3s ease 0s 2 reverse;
-                -o-animation: monanimation-1 3s ease 0s 2 reverse;
                 animation: monanimation-1 3s ease 0s 2 reverse;
             }
             .example-9 .transition-container span {
-                -webkit-animation: monanimation-1 3s ease 0s infinite alternate;
-                -moz-animation: monanimation-1 3s ease 0s infinite alternate;
-                -o-animation: monanimation-1 3s ease 0s infinite alternate;
                 animation: monanimation-1 3s ease 0s infinite alternate;
             }
             .example-10 .transition-container span {
-                -webkit-animation: monanimation-1 3s ease 0s infinite;
-                -moz-animation: monanimation-1 3s ease 0s infinite;
-                -o-animation: monanimation-1 3s ease 0s infinite;
                 animation: monanimation-1 3s ease 0s infinite;
-                -webkit-animation-play-state :  paused;
-                -moz-animation-play-state :  paused;
-                -o-animation-play-state :  paused;
-                animation-play-state :  paused;
+                animation-play-state:  paused;
             }
             .example-10 .transition-container:hover span {
-                -webkit-animation-play-state :  running;
-                -moz-animation-play-state :  running;
-                -o-animation-play-state :  running;
-                animation-play-state :  running;
+                animation-play-state: running;
             }
             .example-11 .transition-container span {
                 transition: transform 1s;
@@ -229,7 +169,7 @@
                         </li>
                         <li>
                             <span class="u">transition-delay</span>
-                            <span class="fragment"><br />Délais avant le départ (s/ms)<br>Défaut : 0s</span>
+                            <span class="fragment"><br />Délai avant le départ (s/ms)<br>Défaut : 0s</span>
                         </li>
                     </ul>
                 </section>
@@ -240,7 +180,17 @@
 
                 <section class="example-1">
                     <h2>Exemple</h2>
-                    <div class="code-steps" data-type="css" data-trim>
+                    <div
+                        class="code-steps"
+                        data-type="css"
+                        data-trim
+                        data-steps="
+                           *:;
+                           l1-l9:On indique qu'il y a une transition sur la propriété 'left';
+                           l8:Version shorthand;
+                           l10-l13:On change la propriété 'left' au hover
+                        "
+                    >
                         <pre contenteditable><code>
 .transition
 {
@@ -248,14 +198,12 @@
     transition-duration: 1s;
     transition-timing-function: ease;
     transition-delay: 0s;
-}
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
-.transition
-{
+    
     transition: left 1s ease 0s;
+}
+.transition:hover
+{
+    left: 100%;
 }
                         </code></pre>
                     </div>
@@ -263,7 +211,17 @@
                 </section>
 
                 <section class="example-2">
-                    <div class="code-steps" data-type="css" data-trim>
+                    <div
+                        class="code-steps"
+                        data-type="css"
+                        data-trim
+                        data-steps="
+                           *:;
+                           l1-l9:On indique qu'il y a une transition sur toutes les propriétés;
+                           l8:Version shorthand;
+                           l10-l15:On change ces propriétés au hover
+                        "
+                    >
                         <pre contenteditable><code>
 .transition
 {
@@ -271,14 +229,14 @@
     transition-duration: 2s;
     transition-timing-function: ease-out;
     transition-delay: 1s;
-}
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
-.transition
-{
+    
     transition: all 2s ease-out 1s;
+}
+.transition:hover
+{
+    left: 100%;
+    width: 200px;
+    background: red;
 }
                         </code></pre>
                     </div>
@@ -294,7 +252,7 @@
                         <li class="fragment">top, right, bottom, left</li>
                         <li class="fragment">transformations (css3)</li>
                         <li class="fragment">gradients (css3)</li>
-                        <li class="fragment">Liste complète officielle : <a target="_blank" href="http://www.w3.org/TR/css3-transitions/#properties-from-css-">https://www.w3.org/TR/css3-transitions/#properties-from-css-</a></li>
+                        <li class="fragment"><a target="_blank" href="http://www.w3.org/TR/css3-transitions/#properties-from-css-">Documentation officielle</a></li>
                     </ul>
                 </section>
 
@@ -417,25 +375,26 @@
                 </section>
 
                 <section class="example-5">
-                    <div class="code-steps" data-type="css" data-trim>
+                    <div
+                        class="code-steps"
+                        data-type="css"
+                        data-trim
+                        data-steps="
+                            *:;
+                            l1-l7: On indique qu'il y a une animation de 3s nommée 'my-super-animtion';
+                            l6: Version shorthand;
+                            l9-l15: On créé les keyframes avec comme nom 'my-super-animtion'
+                        "
+                    >
                         <pre contenteditable><code>
 .animation
 {
     animation-name: my-super-animation;
     animation-duration: 3s;
-}
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
-.animation
-{
+
     animation: my-super-animation 3s;
 }
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
+
 @keyframes my-super-animation
 {
     0%   { left: 0px; }
@@ -450,31 +409,32 @@
                 </section>
 
                 <section class="example-6">
-                    <div class="code-steps" data-type="css" data-trim>
+                    <div
+                        class="code-steps"
+                        data-type="css"
+                        data-trim
+                        data-steps="
+                            *:;
+                            l1-l7: On indique qu'il y a une animation de 3s nommée 'my-super-animtion';
+                            l6: Version shorthand;
+                            l9-l15: On créé les keyframes avec comme nom 'my-super-animtion'
+                        "
+                    >
                         <pre contenteditable><code>
 .animation
 {
     animation-name: my-super-animation;
     animation-duration: 3s;
-}
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
-.animation
-{
+
     animation: my-super-animation 3s;
 }
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
+
 @keyframes my-super-animation
 {
     0%   { left: 0px; width: 100px; }
     50%  { left: 800px; width: 50px; background: green; }
-    70%  { left: 700px; width: 300px; background: red; }
-    100% { left: 0px; width: 50px; }
+    70%  { left: 250px; width: 300px; background: red; }
+    100% { left: 500px; width: 50px; }
 }
                         </code></pre>
                     </div>
@@ -486,7 +446,7 @@
                     <ul>
                         <li>
                             <span class="u">animation-timing-function</span>
-                            <span class="fragment"><br />Type de transition (ease, linear, ease-in, ease-out, ease-in-out, personnalisée)<br />(similaire aux transitions)</span>
+                            <span class="fragment"><br />Type de transition (ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier)<br />(similaire aux transitions)</span>
                         </li>
                         <li>
                             <span class="u">animation-delay</span>
@@ -526,10 +486,7 @@
     animation-duration: 3s;
     animation-iteration-count: 2;
 }
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
+
 @keyframes my-super-animation
 {
     0%   { left: 0px; }
@@ -553,10 +510,7 @@
     animation-direction: reverse; 
     /* normal / reverse / alternate / alternate-reverse */
 }
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
+
 @keyframes my-super-animation
 {
     0%   { left: 0px; }
@@ -580,10 +534,7 @@
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
+
 @keyframes my-super-animation {
     0%   { left:0px; }
     50%  { left:800px; }
@@ -616,10 +567,6 @@
 {
     animation-play-state: running;
 }
-                        </code></pre>
-                    </div>
-                    <div class="code-steps" data-type="css" data-trim>
-                        <pre contenteditable><code>
 @keyframes my-super-animation
 {
     0%   { left:0px; }
@@ -748,8 +695,9 @@
                 <section>
                     <p>Un autre bon outil de monitoring du dev tools est l'onglet <span class="u">Performance</span> (un peu plus difficile à utiliser)</p>
                     <ul>
-                        <li>Clique droit n'importe où suivi de <span class="hl">Inspecter</span></li>
-                        <li>Ouvrir l'onglet <span class="hl">Timeline</span></li>
+                        <li>Clique droit n'importe</li>
+                        <li>Choisir <span class="hl">Inspecter</span></li>
+                        <li>Ouvrir l'onglet <span class="hl">Performance</span></li>
                     </ul>
                 </section>
 
@@ -826,6 +774,15 @@
                         <li><a href="demos/stik_gabriel/index.html" target="_blank">Stik Gabriel</a></li>
                         <li><a href="demos/timsit_victor/index.html" target="_blank">Timsit Victor</a></li>
                         <li><a href="demos/villain_baptiste/index.html" target="_blank">Villain Baptiste</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><a href="demos/monnier_charles/index.html" target="_blank">Monnier Charles</a></li>
+                        <li><a href="demos/lacroix_thomas/index.html" target="_blank">Lacroix Thomas</a></li>
+                        <li><a href="demos/manceau_francois_xavier/index.html" target="_blank">Manceau François-Xavier</a></li>
+                        <li><a href="demos/lehot_lucas/index.html" target="_blank">Lehot Lucas</a></li>
                     </ul>
                 </section>
             </div>

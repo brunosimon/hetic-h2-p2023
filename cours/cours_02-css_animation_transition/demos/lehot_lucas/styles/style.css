@@ -1,0 +1,1164 @@
+body
+{
+  background: #555555;
+  overflow: hidden;
+  perspective: 2000px;
+  margin: 0;
+  padding: 0;
+}
+
+body *{
+  transform-style: preserve-3d;
+}
+
+.zAxis
+{
+  transform-origin: 50% 300px;
+  transition: all 0.5s ease-out;
+}
+
+.xAxis
+{
+  transform-origin: 50% 300px;
+  transition: all 0.5s ease-out;
+}
+
+.interface
+{
+  position: relative;
+  top : 0px;
+  animation-name: movement;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(.43,.04,.65,.99);
+  transform-origin: 50% 300px;
+  transform: scale(1.5, 1.5) translateY(100px);
+  will-change: transform;
+}
+
+.container
+{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  overflow: visible;
+}
+
+.zqsd
+{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  transition: 2s all ease;
+}
+
+.zqsd h1
+{
+  color: #ffffff;
+  font-size: 50px;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 50px;
+}
+.zqsd p
+{
+  color: #ffffff;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 50px;
+}
+.zqsd img
+{
+  box-shadow: #ffcb6a 5px 5px;
+}
+
+/*----------------------------------------------------------------------------*/
+/*   ---   BACKGROUND   ---   */
+/*----------------------------------------------------------------------------*/
+
+.cameraXAxis
+{
+  position: absolute;
+  transform-origin: center;
+  transition: all 0.2s ease;
+}
+
+.cameraYAxis
+{
+  position: absolute;
+  transform-origin: 1250px 1250px;
+  transition: all 0.2s ease;
+}
+
+.background .face
+{
+  position: absolute;
+  width: 2500px;
+  height: 2500px;
+  background-image: url(../images/background.jpg);
+  background-size: 100%;
+  transform-origin: center;
+}
+
+.background .face1 {transform: translateZ(-1250px);}
+.background .face2 {transform: translateZ(1250px);}
+.background .face3 {transform: rotateY(90deg) translateZ(1250px);}
+.background .face4 {transform: rotateY(-90deg) translateZ(1250px);}
+.background .face5 {transform: rotateX(90deg) translateZ(1250px);}
+.background .face6 {transform: rotateX(-90deg) translateZ(1250px);}
+
+
+/*----------------------------------------------------------------------------*/
+/*   ---   LAYER 1 : AIMING RETICLE   ---   */
+/*----------------------------------------------------------------------------*/
+
+.layer-1
+{
+ transform: translateZ(100px);
+ position: absolute;
+ top: calc(50% + 300px);
+}
+
+.layer-1 .dot-1
+{
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.layer-1 .circle-1
+{
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+  border: 5px solid #ffffff;
+}
+
+.layer-1 .dash-1 , .dash-2
+{
+  width: 20px;
+  height: 4px;
+  background: #ffffff;
+}
+
+.layer-1 .dash-1
+{
+  position: absolute;
+  left : calc(50% - 60px);
+}
+
+.layer-1 .dash-2
+{
+  position: absolute;
+  left : calc(50% + 40px);
+}
+
+/*----------------------------------------------------------------------------*/
+/*   ---   LAYER 2 : SHIP INFORMATIONS  ---   */
+/*----------------------------------------------------------------------------*/
+
+.layer-2
+{
+  transform: translateZ(0px);
+  position: absolute;
+  top: calc(50% + 300px);
+}
+
+/*ammos*/
+
+.layer-2 .ammos
+{
+  position: absolute;
+  left : calc(50% - 5px);
+  top : calc(50% - 5px);
+}
+
+.layer-2 .ammos .item
+{
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffcb6a;
+}
+
+.layer-2 .ammos .dot-1 {transform: rotate(0deg  ) translateX(100px); background: #ffffff ; width: 10px; height: 10px;}
+.layer-2 .ammos .dot-2 {transform: rotate(30deg ) translateX(100px);}
+.layer-2 .ammos .dot-3 {transform: rotate(60deg ) translateX(100px);}
+.layer-2 .ammos .dot-4 {transform: rotate(90deg ) translateX(100px); background: #ffffff ; width: 10px; height: 10px;}
+.layer-2 .ammos .dot-5 {transform: rotate(120deg) translateX(100px);}
+.layer-2 .ammos .dot-6 {transform: rotate(150deg) translateX(100px);}
+.layer-2 .ammos .dot-7 {transform: rotate(180deg) translateX(100px); background: #ffffff ; width: 10px; height: 10px;}
+.layer-2 .ammos .dot-8 {transform: rotate(210deg) translateX(100px);}
+.layer-2 .ammos .dot-9 {transform: rotate(240deg) translateX(100px);}
+.layer-2 .ammos .dot-10{transform: rotate(270deg) translateX(100px); background: #ffffff ; width: 10px; height: 10px;}
+.layer-2 .ammos .dot-11{transform: rotate(300deg) translateX(100px);}
+.layer-2 .ammos .dot-12{transform: rotate(330deg) translateX(100px);}
+
+/*reticle*/
+
+.layer-2 .reticle
+{
+  position: absolute;
+}
+
+.layer-2 .reticle .item
+{
+  position: absolute;
+}
+
+.layer-2 .reticle .top
+{
+  width: 40px;
+  height: 40px;
+  border-top: 4px solid #ffcb6a;
+  border-radius: 50% / 10% 100% 100% 0;
+  top: calc(50% - 40px);
+  left: calc(50% - 45px);
+}
+
+.layer-2 .reticle .circle
+{
+  width: 40px;
+  height: 40px;
+  border-left: 4px solid #ffcb6a;
+  border-radius: 50% / 30% 0% 0% 30%;
+  top: calc(50% - 20px);
+  left: calc(50% - 30px);
+}
+
+.layer-2 .reticle .bot-1
+{
+  width: 4px;
+  height: 20px;
+  background-color: #ffcb6a;
+  top: calc(50% + 20px);
+  left: calc(50% - 10px);
+  border-radius: 0 0 50% 50%;
+}
+
+.layer-2 .reticle .bot-2
+{
+  width: 30px;
+  height: 20px;
+  border-bottom: 3px solid #ffcb6a;
+  border-radius: 50% / 0% 50% 100% 30%;
+  top: calc(50% + 35px);
+  left: calc(50% - 30px);
+}
+
+.layer-2 .reticle .right
+{
+  transform: rotateY(180deg);
+}
+
+/*compass*/
+
+.layer-2 .compass .arrow
+{
+  position: absolute;
+  top: calc(50% - 170px);
+  left: calc(50% - 10px);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #ffcb6a;
+}
+.layer-2 .compass .dashes
+{
+  position: absolute;
+  left: calc(50% - 125px);
+  top : calc(50% - 200px);
+  width: 250px;
+  height: 25px;
+  border: 1px solid #ffffff;
+  border-left : none;
+  border-right: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.layer-2 .compass .dashes .dashbox
+{
+  position: absolute;
+  left: calc(50% - 1080px);
+  width: 2120px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.layer-2 .compass .dashes .dashbox .dash
+{
+  width: 2px;
+  height: 10px;
+  background: #aaaaaa;
+}
+
+.layer-2 .compass .dashes .dashbox :nth-child(5n)
+{
+  width: 3px;
+  height: 15px;
+  background: #ffcb6a;
+}
+
+/*infos*/
+
+.layer-2 .infos .infobox
+{
+  position: absolute;
+  top : calc(50% - 175px);
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+  border-bottom: 2px dashed #ffcb6a;
+}
+
+.layer-2 .infos .left
+{
+  left : calc(50% - 250px);
+  transform: rotateY(30deg) rotateX(-25deg);
+  border-right: none;
+}
+
+.layer-2 .infos .right
+{
+  left : calc(50% + 200px);
+  transform: rotateY(-30deg) rotateX(-25deg);
+  border-left:none;
+}
+
+.layer-2 .infos .infobox .text
+{
+  color: #ffffff;
+  position: absolute;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.layer-2 .infos .left .text
+{
+  text-align: left;
+}
+
+.layer-2 .infos .right .text
+{
+  text-align: right;
+}
+
+.layer-2 .infos .infobox .triangles
+{
+  width: 60px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.layer-2 .infos .left .triangles .triangle
+{
+  width: 0;
+  height: 0;
+  border-top: 10px solid #ffcb6a;
+  border-left: 10px solid transparent;
+  transform: rotateY(30deg);
+}
+
+.layer-2 .infos .right .triangles .triangle
+{
+  width: 0;
+  height: 0;
+  border-top: 10px solid #ffcb6a;
+  border-right: 10px solid transparent;
+  transform: rotateY(30deg);
+  animation-direction: reverse;
+  will-change: border-top-color, transform;
+}
+
+.layer-2 .infos .triangles .tri2{animation-name: triangleBehaviour2; animation-iteration-count: infinite; animation-duration: 3s;}
+.layer-2 .infos .triangles .tri3{animation-name: triangleBehaviour3; animation-iteration-count: infinite; animation-duration: 3s;}
+.layer-2 .infos .triangles .tri4{animation-name: triangleBehaviour4; animation-iteration-count: infinite; animation-duration: 3s;}
+
+/*fuel*/
+
+.layer-2 .fuel .outlines
+{
+  position: absolute;
+  height: 175px;
+  width: 150px;
+  background: transparent;
+  border : 2px solid #ffffff;
+  border-right : none;
+  transform: skewX(25deg);
+  left: calc(50% - 400px);
+}
+
+.layer-2 .fuel .square
+{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: #ffffff;
+  transform: skewX(25deg);
+  left: calc(50% - 430px);
+}
+
+.layer-2 .fuel .triangle
+{
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 20px solid #ffffff;
+  border-right: 20px solid transparent;
+  transform: skewX(25deg);
+  left: calc(50% - 421px);
+  top: calc(50% + 20px);
+}
+
+.layer-2 .fuel .boxes
+{
+  position: absolute;
+  transform: skewX(25deg);
+  height: 120px;
+  width: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  left: calc(50% - 380px);
+  top: calc(50% + 57px);
+}
+
+.layer-2 .fuel .boxes .box
+{
+  height: 20px;
+  width: 20px;
+  background: #aaaaaa;
+  left: calc(50% - 430px);
+  will-change: background;
+}
+
+.layer-2 .fuel .left
+{
+  transform: translateZ(-100px) rotateY(30deg) rotateX(15deg);
+}
+.layer-2 .fuel .right
+{
+  transform: scale(-1,1) translateZ(-100px) rotateY(30deg) rotateX(15deg) ;
+}
+
+.layer-2 .fuel .boxes .box1{animation-name: boxBehaviour1; animation-iteration-count: infinite; animation-duration: 3s;}
+.layer-2 .fuel .boxes .box2{animation-name: boxBehaviour2; animation-iteration-count: infinite; animation-duration: 3s;}
+.layer-2 .fuel .boxes .box3{animation-name: boxBehaviour3; animation-iteration-count: infinite; animation-duration: 3s;}
+.layer-2 .fuel .boxes .box4{animation-name: boxBehaviour4; animation-iteration-count: infinite; animation-duration: 3s;}
+.layer-2 .fuel .boxes .box5{animation-name: boxBehaviour5; animation-iteration-count: infinite; animation-duration: 3s;}
+
+.layer-2 .fuel .sensor
+{
+  position: absolute;
+  left: calc(50% + 75px);
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layer-2 .fuel .sensor .circle
+{
+  border-radius: 50%;
+  border: 1px dashed #ffcb6a;
+  position: absolute;
+}
+
+.layer-2 .fuel .sensor .cir1{width: 15px;height: 15px;}
+.layer-2 .fuel .sensor .cir2{width: 35px;height: 35px;}
+.layer-2 .fuel .sensor .cir3{width: 55px;height: 55px;}
+.layer-2 .fuel .sensor .cir4{width: 75px;height: 75px;border: 2px solid #ffffff;}
+
+.layer-2 .fuel .sensor .line
+{
+  position: absolute;
+  left : 0;
+  width: 37px;
+  height: 1px;
+  background: #ffffff;
+  transform-origin: left;
+  animation-name: sensor;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.layer-2 .fuel .state
+{
+  position: absolute;
+  left: calc(50% + 75px);
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layer-2 .fuel .state .circle
+{
+  border-radius: 50%;
+  border: 2px solid #ffcb6a;
+  position: absolute;
+  animation-name: state;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-origin: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: transform;
+}
+
+.layer-2 .fuel .state .cir1{width: 30px;height: 30px;border-style: dashed;animation-duration: 3s}
+.layer-2 .fuel .state .cir2{width: 40px;height: 40px;border: 2px dashed #ffffff;animation-duration: 7s}
+.layer-2 .fuel .state .cir3{width: 50px;height: 55px;animation-duration: 10s}
+.layer-2 .fuel .state .cir4{width: 75px;height: 75px;border: 2px dashed #ffffff;animation-name: none;}
+
+.layer-2 .fuel .bouncingBars
+{
+  position: absolute;
+  left: -30px;
+  top: -56px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.layer-2 .fuel .bouncingBars .bar
+{
+  margin-bottom: 5px;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  transform-origin: right;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform, background, opacity;
+}
+
+.layer-2 .fuel .bouncingBars .bar1 {animation-name: bar1Behaviour; animation-duration: 2s;}
+.layer-2 .fuel .bouncingBars .bar2 {animation-name: bar2Behaviour; animation-duration: 4s;}
+.layer-2 .fuel .bouncingBars .bar3 {animation-name: bar3Behaviour; animation-duration: 3s;}
+.layer-2 .fuel .bouncingBars .bar4 {animation-name: bar4Behaviour; animation-duration: 3s;}
+.layer-2 .fuel .bouncingBars .bar5 {animation-name: bar5Behaviour; animation-duration: 2s;}
+
+/*radio*/
+
+.layer-2 .chat
+{
+  position: absolute;
+  width: 400px;
+  left: calc(50% - 600px);
+  top: calc(50% - 50px);
+  transform: rotateY(35deg) rotateX(15deg);
+}
+
+.layer-2 .radio .item
+{
+  position: absolute;
+  color: #ffffff;
+  font-size: 11px;
+  font-family: 'Roboto', sans-serif;
+  visibility: hidden;
+  animation-duration: 15s;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+  will-change: transform, visibility;
+}
+
+.layer-2 .radio .line1{animation-name: line1}
+.layer-2 .radio .line2{animation-name: line2}
+.layer-2 .radio .line3{animation-name: line3}
+.layer-2 .radio .line4{animation-name: line4}
+.layer-2 .radio .line5{animation-name: line5}
+.layer-2 .radio .line6{animation-name: line6}
+.layer-2 .radio .line7{animation-name: line7}
+.layer-2 .radio .line8{animation-name: line8}
+
+/*----------------------------------------------------------------------------*/
+/*   ---   LAYER 3 : ARTIFICIAL HORIZON  ---   */
+/*----------------------------------------------------------------------------*/
+
+.layer-3
+{
+  transform: translateZ(-150px);
+  transform-origin: 0 50px;
+  transition: all 0.2s ease-out;
+}
+
+.layer-3 .square1
+{
+  position: absolute;
+  height: 25px;
+  width: 5px;
+  background: #999999;
+  left: calc(50% - 150px);
+  top: calc(50% + 25px);
+}
+
+.layer-3 .square2
+{
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background: #999999;
+  left: calc(50% - 150px);
+  top: calc(50% + 0px);
+  transform: skewY(-35deg);
+}
+
+.layer-3 .circle1
+{
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  border-radius: 100% 0 0;
+  box-shadow: -3px -3px #999999;
+  left: calc(50% - 125px);
+  top: calc(50% - 60px);
+}
+
+.layer-3 .line{
+  position: absolute;
+  height: 260px;
+  width: 3px;
+  background: linear-gradient(#999999, #ffffff);
+  left: calc(50% - 140px);
+  top: calc(50% - 22px);
+  transform-origin: top;
+  transform: rotateZ(-70deg) rotateX(72deg);
+}
+
+.layer-3 .outlines
+{
+  position: absolute;
+  left: calc(50% - 350px);
+  top: calc(50% - 50px);
+  width: 200px;
+  height: 25px;
+  border: 3px solid #999999;
+  border-bottom: none;
+  border-left: none;
+  transform: skewX(35deg);
+}
+
+.layer-3 .square3
+{
+  position: absolute;
+  height: 15px;
+  width: 40px;
+  background: #999999;
+  left: calc(50% - 355px);
+  top: calc(50% - 50px);
+  transform: skewX(35deg);
+}
+
+.layer-3 .topRight {transform: scale(-1,1);}
+.layer-3 .bottomLeft {transform: scale(1,-1) translateY(-100px);}
+.layer-3 .bottomRight {transform: scale(-1,-1) translateY(-100px);}
+
+/*----------------------------------------------------------------------------*/
+/*   ---   LAYER 4 : IMPACTS  ---   */
+/*----------------------------------------------------------------------------*/
+
+.layer-4
+{
+  transform: translateZ(-350px);
+  transform-origin: 0 50px;
+  transition: all 0.2s ease-out;
+}
+
+.layer-4 .impact .hexagon
+{
+  width: 50px;
+  height: 27.5px;
+  background: #ffffff;
+  position: absolute;
+}
+
+.layer-4 .impact .hexagon:before
+{
+  content: "";
+  position: absolute;
+  top: -12.5px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 12.5px solid #ffffff;
+}
+
+.layer-4 .impact .hexagon:after
+{
+  content: "";
+  position: absolute;
+  bottom: -12.5px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 12.5px solid #ffffff;
+}
+
+.layer-4 .impact .hex1 {transform: rotateZ(0deg) translateX(0px);}
+.layer-4 .impact .hex2 {transform: rotateZ(0deg) translateX(50px); opacity: 0.6;}
+.layer-4 .impact .hex3 {transform: rotateZ(60deg) translateX(50px); opacity: 0.6;}
+.layer-4 .impact .hex4 {transform: rotateZ(120deg) translateX(50px); opacity: 0.6;}
+.layer-4 .impact .hex5 {transform: rotateZ(180deg) translateX(50px); opacity: 0.6;}
+.layer-4 .impact .hex6 {transform: rotateZ(240deg) translateX(50px); opacity: 0.6;}
+.layer-4 .impact .hex7 {transform: rotateZ(300deg) translateX(50px); opacity: 0.6;}
+
+.layer-4 .impact
+{
+  position: absolute;
+}
+
+.layer-4 .impact1
+{
+  left: calc(50% + 350px);
+  transform: rotateY(-35deg) rotateX(-25deg);
+  animation-name: impactAnim1;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  will-change: opacity;
+}
+
+.layer-4 .impact2
+{
+  left: calc(50% + 150px);
+  top: calc(50% + 350px);
+  transform: rotateY(-25deg) rotateX(35deg);
+  animation-name: impactAnim2;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  will-change: opacity;
+}
+
+.layer-4 .impact3
+{
+  left: calc(50% - 550px);
+  top: calc(50% + 250px);
+  transform: rotateY(45deg) rotateX(25deg);
+  animation-name: impactAnim3;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  will-change: opacity;
+}
+
+.layer-4 .comet
+{
+  position: absolute;
+  width: 8px;
+  height: 175px;
+  background: #ffffff;
+  border: 3px solid #bbbbbb;
+  border-radius: 45%;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  will-change: transform, opacity;
+}
+
+.layer-4 .comet1{animation-name: cometAnimImpact1;}
+.layer-4 .comet2{animation-name: cometAnimImpact2;}
+.layer-4 .comet3{animation-name: cometAnimImpact3;}
+/*----------------------------------------------------------------------------*/
+/*   ---   ANIMATIONS   ---   */
+/*----------------------------------------------------------------------------*/
+
+@keyframes movement
+{
+  0%{transform: scale(1.5, 1.5) translateY(100px) translateX(-5px) translateY(-5px);}
+  16%{transform: scale(1.5, 1.5) translateY(100px) translateX(-10px) translateY(0px);}
+  32%{transform: scale(1.5, 1.5) translateY(100px) translateX(-5px) translateY(5px);}
+  48%{transform: scale(1.5, 1.5) translateY(100px) translateX(5px) translateY(-5px);}
+  64%{transform: scale(1.5, 1.5) translateY(100px) translateX(10px) translateY(0px);}
+  80%{transform: scale(1.5, 1.5) translateY(100px) translateX(5px) translateY(5px);}
+  100%{transform: scale(1.5, 1.5) translateY(100px) translateX(-5px) translateY(-5px);}
+
+
+}
+
+@keyframes triangleBehaviour2
+{
+  0% {border-top-color: #777777; transform: rotateY(0deg);}
+  5% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  75% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  80% {border-top-color: #777777; transform: rotateY(0deg);}
+  100% {border-top-color: #777777; transform: rotateY(0deg);}
+}
+
+@keyframes triangleBehaviour3
+{
+  0% {border-top-color: #777777; transform: rotateY(0deg);}
+  5% {border-top-color: #777777; transform: rotateY(0deg);}
+  10% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  18% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  20% {border-top-color: #777777; transform: rotateY(0deg);}
+  25% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  75% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  80% {border-top-color: #777777; transform: rotateY(0deg);}
+  95% {border-top-color: #777777; transform: rotateY(0deg);}
+  100% {border-top-color: #777777; transform: rotateY(0deg);}
+}
+
+@keyframes triangleBehaviour4
+{
+  0% {border-top-color: #777777; transform: rotateY(0deg);}
+  35% {border-top-color: #777777; transform: rotateY(0deg);}
+  40% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  55% {border-top-color: #ffcb6a; transform: rotateY(30deg);}
+  60% {border-top-color: #777777; transform: rotateY(0deg);}
+  100% {border-top-color: #777777; transform: rotateY(0deg);}
+}
+
+@keyframes boxBehaviour1
+{
+  0% {background: #777777;}
+  5% {background: #ffcb6a;}
+  90% {background: #ffcb6a;}
+  95% {background: #777777;}
+  100% {background: #777777;}
+}
+
+@keyframes boxBehaviour2
+{
+  0% {background: #777777;}
+  5% {background: #ffcb6a;}
+  75% {background: #ffcb6a;}
+  80% {background: #777777;}
+  100% {background: #777777;}
+}
+
+@keyframes boxBehaviour3
+{
+  0% {background: #777777;}
+  5% {background: #777777;}
+  10% {background: #ffcb6a;}
+  18% {background: #ffcb6a;}
+  20% {background: #777777;}
+  25% {background: #ffcb6a;}
+  75% {background: #ffcb6a;}
+  80% {background: #777777;}
+  95% {background: #777777;}
+  100% {background: #777777;}
+}
+
+@keyframes boxBehaviour4
+{
+  0% {background: #777777;}
+  35% {background: #777777;}
+  40% {background: #ffcb6a;}
+  55% {background: #ffcb6a;}
+  60% {background: #777777;}
+  100% {background: #777777;}
+}
+
+@keyframes boxBehaviour5
+{
+  0% {background: #777777;}
+  40% {background: #777777;}
+  45% {background: #ffcb6a;}
+  50% {background: #ffcb6a;}
+  55% {background: #777777;}
+  100% {background: #777777;}
+}
+
+@keyframes sensor
+{
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(-360deg);}
+}
+
+@keyframes state
+{
+  0% {transform: rotateX(0deg) rotateY(0deg);}
+  25% {transform: rotateX(320deg) rotateY(160deg);}
+  50% {transform: rotateX(25deg) rotateY(360deg);}
+  75% {transform: rotateX(-340deg) rotateY(190deg);}
+  100% {transform: rotateX(0deg) rotateY(0deg);}
+}
+
+@keyframes bar1Behaviour
+{
+  0% {transform: scaleX(1); background: #999999;}
+  32% {transform: scaleX(5); background: #999999;}
+  51% {transform: scaleX(4); background: #999999;}
+  56% {transform: scaleX(6); background: #ffcb6a;}
+  100% {transform: scaleX(3); background: #999999;}
+}
+
+@keyframes bar2Behaviour
+{
+  0% {transform: scaleX(4); background: #999999;}
+  18% {transform: scaleX(6); background: #ffcb6a;}
+  42% {transform: scaleX(9); background: #ffcb6a;}
+  83% {transform: scaleX(5); background: #999999;}
+  100% {transform: scaleX(2); background: #999999;}
+}
+
+@keyframes bar3Behaviour
+{
+  0% {transform: scaleX(7); background: #ffcb6a;}
+  12% {transform: scaleX(4); background: #999999;}
+  46% {transform: scaleX(8); background: #ffcb6a;}
+  76% {transform: scaleX(3); background: #999999;}
+  100% {transform: scaleX(5); background: #999999;}
+}
+
+@keyframes bar4Behaviour
+{
+  0% {transform: scaleX(2); background: #999999;}
+  28% {transform: scaleX(5); background: #999999;}
+  42% {transform: scaleX(7); background: #ffcb6a;}
+  61% {transform: scaleX(9); background: #ffcb6a;}
+  75% {transform: scaleX(12); background: #ffcb6a; opacity: 1;}
+  80% {transform: scaleX(12); background: #ffcb6a; opacity: 0;}
+  85% {transform: scaleX(12); background: #ffcb6a; opacity: 1;}
+  90% {transform: scaleX(12); background: #ffcb6a; opacity: 0;}
+  95% {transform: scaleX(12); background: #ffcb6a; opacity: 1;}
+  100% {transform: scaleX(12); background: #ffcb6a; opacity: 0;}
+}
+
+@keyframes bar5Behaviour
+{
+  0% {transform: scaleX(7); background: #ffcb6a;}
+  22% {transform: scaleX(9); background: #ffcb6a;}
+  45% {transform: scaleX(4); background: #999999;}
+  71% {transform: scaleX(6); background: #ffcb6a;}
+  100% {transform: scaleX(3); background: #999999;}
+}
+
+@keyframes line1
+{
+  0%  {visibility: hidden;  transform: translateY(0px);}
+  6%  {visibility: visible; transform: translateY(0px);}
+  12% {visibility: visible; transform: translateY(-15px);}
+  18% {visibility: visible; transform: translateY(-15px);}
+  24% {visibility: visible; transform: translateY(-30px);}
+  32% {visibility: visible; transform: translateY(-30px);}
+  40% {visibility: visible; transform: translateY(-45px);}
+  42% {visibility: visible; transform: translateY(-45px);}
+  48% {visibility: visible; transform: translateY(-60px);}
+  54% {visibility: hidden; transform: translateY(-60px);}
+  60% {visibility: hidden;}
+  61% {visibility: hidden;}
+  67% {visibility: hidden;}
+  69% {visibility: hidden;}
+  76% {visibility: hidden;}
+  90% {visibility: hidden;}
+  100% {visibility: hidden;}
+}
+@keyframes line2
+{
+  0%  {visibility: hidden; transform: translateY(0px);}
+  6%  {visibility: hidden; transform: translateY(0px);}
+  12% {visibility: hidden; transform: translateY(0px);}
+  18% {visibility: visible; transform: translateY(0px);}
+  24% {visibility: visible; transform: translateY(-15px);}
+  32% {visibility: visible; transform: translateY(-15px);}
+  40% {visibility: visible; transform: translateY(-30px);}
+  42% {visibility: visible; transform: translateY(-30px);}
+  48% {visibility: visible; transform: translateY(-45px);}
+  54% {visibility: visible; transform: translateY(-45px);}
+  60% {visibility: visible; transform: translateY(-60px);}
+  61% {visibility: hidden; transform: translateY(-60px);}
+  67% {visibility: hidden;}
+  69% {visibility: hidden;}
+  76% {visibility: hidden;}
+  90% {visibility: hidden;}
+  100% {visibility: hidden;}
+}
+@keyframes line3
+{
+  0%  {visibility: hidden; transform: translateY(0px);}
+  6%  {visibility: hidden; transform: translateY(0px);}
+  12% {visibility: hidden; transform: translateY(0px);}
+  18% {visibility: hidden; transform: translateY(0px);}
+  24% {visibility: hidden; transform: translateY(0px);}
+  32% {visibility: visible; transform: translateY(0px);}
+  40% {visibility: visible; transform: translateY(-15px);}
+  42% {visibility: visible; transform: translateY(-15px);}
+  48% {visibility: visible; transform: translateY(-30px);}
+  54% {visibility: visible; transform: translateY(-30px);}
+  60% {visibility: visible; transform: translateY(-45px);}
+  61% {visibility: visible; transform: translateY(-45px);}
+  67% {visibility: visible; transform: translateY(-60px);}
+  69% {visibility: hidden; transform: translateY(-60px);}
+  76% {visibility: hidden;}
+  90% {visibility: hidden;}
+  100% {visibility: hidden;}
+}
+@keyframes line4
+{
+  0%  {visibility: hidden; transform: translateY(0px);}
+  6%  {visibility: hidden; transform: translateY(0px);}
+  12% {visibility: hidden; transform: translateY(0px);}
+  18% {visibility: hidden; transform: translateY(0px);}
+  24% {visibility: hidden; transform: translateY(0px);}
+  32% {visibility: hidden; transform: translateY(0px);}
+  40% {visibility: hidden; transform: translateY(0px);}
+  42% {visibility: visible; transform: translateY(0px);}
+  48% {visibility: visible; transform: translateY(-15px);}
+  54% {visibility: visible; transform: translateY(-15px);}
+  60% {visibility: visible; transform: translateY(-30px);}
+  61% {visibility: visible; transform: translateY(-30px);}
+  67% {visibility: visible; transform: translateY(-45px);}
+  69% {visibility: visible; transform: translateY(-45px);}
+  76% {visibility: visible; transform: translateY(-60px);}
+  90% {visibility: visible; transform: translateY(-60px);}
+  100% {visibility: visible; transform: translateY(-60px);}
+}
+@keyframes line5
+{
+  0%  {visibility: hidden; transform: translateY(0px);}
+  6%  {visibility: hidden; transform: translateY(0px);}
+  12% {visibility: hidden; transform: translateY(0px);}
+  18% {visibility: hidden; transform: translateY(0px);}
+  24% {visibility: hidden; transform: translateY(0px);}
+  32% {visibility: hidden; transform: translateY(0px);}
+  40% {visibility: hidden; transform: translateY(0px);}
+  42% {visibility: hidden; transform: translateY(0px);}
+  48% {visibility: hidden; transform: translateY(0px);}
+  54% {visibility: visible; transform: translateY(0px);}
+  60% {visibility: visible; transform: translateY(-15px);}
+  61% {visibility: visible; transform: translateY(-15px);}
+  67% {visibility: visible; transform: translateY(-30px);}
+  69% {visibility: visible; transform: translateY(-30px);}
+  76% {visibility: visible; transform: translateY(-45px);}
+  90% {visibility: visible; transform: translateY(-45px);}
+  100% {visibility: visible; transform: translateY(-45px);}
+}
+@keyframes line6
+{
+  0%  {visibility: hidden; transform: translateY(0px);}
+  6%  {visibility: hidden; transform: translateY(0px);}
+  12% {visibility: hidden; transform: translateY(0px);}
+  18% {visibility: hidden; transform: translateY(0px);}
+  24% {visibility: hidden; transform: translateY(0px);}
+  32% {visibility: hidden; transform: translateY(0px);}
+  40% {visibility: hidden; transform: translateY(0px);}
+  42% {visibility: hidden; transform: translateY(0px);}
+  48% {visibility: hidden; transform: translateY(0px);}
+  54% {visibility: hidden; transform: translateY(0px);}
+  60% {visibility: hidden; transform: translateY(0px);}
+  61% {visibility: visible; transform: translateY(0px);}
+  67% {visibility: visible; transform: translateY(-15px);}
+  69% {visibility: visible; transform: translateY(-15px);}
+  76% {visibility: visible; transform: translateY(-30px);}
+  90% {visibility: visible; transform: translateY(-30px);}
+  100% {visibility: visible; transform: translateY(-30px);}
+}
+@keyframes line7
+{
+  0%  {visibility: hidden; transform: translateY(0px);}
+  6%  {visibility: hidden; transform: translateY(0px);}
+  12% {visibility: hidden; transform: translateY(0px);}
+  18% {visibility: hidden; transform: translateY(0px);}
+  24% {visibility: hidden; transform: translateY(0px);}
+  32% {visibility: hidden; transform: translateY(0px);}
+  40% {visibility: hidden; transform: translateY(0px);}
+  42% {visibility: hidden; transform: translateY(0px);}
+  48% {visibility: hidden; transform: translateY(0px);}
+  54% {visibility: hidden; transform: translateY(0px);}
+  60% {visibility: hidden; transform: translateY(0px);}
+  61% {visibility: hidden; transform: translateY(0px);}
+  67% {visibility: hidden; transform: translateY(0px);}
+  69% {visibility: visible; transform: translateY(0px);}
+  76% {visibility: visible; transform: translateY(-15px);}
+  90% {visibility: visible; transform: translateY(-15px);}
+  100% {visibility: visible; transform: translateY(-15px);}
+}
+@keyframes line8
+{
+  0%  {visibility: hidden;}
+  6%  {visibility: hidden;}
+  12% {visibility: hidden;}
+  18% {visibility: hidden;}
+  24% {visibility: hidden;}
+  32% {visibility: hidden;}
+  40% {visibility: hidden;}
+  42% {visibility: hidden;}
+  48% {visibility: hidden;}
+  54% {visibility: hidden;}
+  60% {visibility: hidden;}
+  61% {visibility: hidden;}
+  67% {visibility: hidden;}
+  69% {visibility: hidden;}
+  76% {visibility: hidden;}
+  90% {visibility: visible;}
+  100% {visibility: visible;}
+}
+
+@keyframes impactAnim1 {
+  0%  {opacity: 0}
+  35% {opacity: 0}
+  36% {opacity: 0.8}
+  45% {opacity: 0}
+  100% {opacity: 0}
+}
+
+@keyframes impactAnim2 {
+  0%  {opacity: 0}
+  48% {opacity: 0}
+  49% {opacity: 0.8}
+  58% {opacity: 0}
+  100% {opacity: 0}
+}
+
+@keyframes impactAnim3 {
+  0%  {opacity: 0}
+  86% {opacity: 0}
+  87% {opacity: 0.8}
+  96% {opacity: 0}
+  100% {opacity: 0}
+}
+
+@keyframes cometAnimImpact1 {
+  0%  {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(10deg) ; opacity: 0;}
+  20%  {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(10deg) ; opacity: 0;}
+  30% {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(10deg) ; opacity: 1;}
+  35% {transform : translateZ(-350px) translateX(400px) translateY(50px) rotateX(-90deg) rotateZ(10deg) ; opacity: 1;}
+  36% {opacity: 0}
+  100% {opacity: 0}
+}
+
+@keyframes cometAnimImpact2 {
+  0%  {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(2deg) ; opacity: 0;}
+  33%  {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(2deg) ; opacity: 0;}
+  43% {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(2deg) ; opacity: 1;}
+  48% {transform : translateZ(-350px) translateX(190px) translateY(410px) rotateX(-90deg) rotateZ(2deg) ; opacity: 1;}
+  49% {opacity: 0}
+  100% {opacity: 0}
+}
+@keyframes cometAnimImpact3 {
+  0%  {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(-4deg) ; opacity: 0;}
+  71%  {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(-4deg) ; opacity: 0;}
+  81% {transform : translateZ(-4000px) translateX(0px) translateY(0px) rotateX(-90deg) rotateZ(-4deg) ; opacity: 1;}
+  86% {transform : translateZ(-350px) translateX(-550px) translateY(300px) rotateX(-90deg) rotateZ(-4deg) ; opacity: 1;}
+  87% {opacity: 0}
+  100% {opacity: 0}
+}
