@@ -24,7 +24,7 @@
     {
         // Parse folder name
         $matches = array();
-        preg_match_all("/cours\_(.*)-(.*)/",$_entry,$matches);
+        preg_match_all("/(?:cours\_)?(.*)-(.*)/",$_entry,$matches);
         $file            = new stdClass();
         $file->url       = '../cours/'.$_entry;
         $file->num       = $matches[1][0];
@@ -79,25 +79,9 @@
                         <td class="title"><?php echo $_file->title; ?></td>
                         <td class="action text-right">
 
-                            <?php if(!empty($_file->resources)): ?>
-                                <div class="dropdown hidden-sm hidden-md hidden-lg">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <i class="glyphicon glyphicon-download glyphicon-white"></i>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                                        <?php foreach($_file->resources as $_resource): ?>
-                                            <li><a href="<?php echo $_resource->url ?>" target="_blank"><i class="glyphicon glyphicon-download glyphicon-white hidden-xs"></i> <?= $_resource->name ?></a></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            <?php endif; ?>
-
-                            <span class="hidden-xs">
-                                <?php foreach($_file->resources as $_resource): ?>
-                                    <a class="btn btn-default" href="<?php echo $_resource->url ?>" target="_blank"><i class="glyphicon glyphicon-download glyphicon-white hidden-xs"></i> <?= $_resource->name ?></a>
-                                <?php endforeach; ?>
-                            </span>
+                            <?php foreach($_file->resources as $_resource): ?>
+                                <a class="btn btn-default" href="<?php echo $_resource->url ?>" target="_blank"><i class="glyphicon glyphicon-download glyphicon-white hidden-xs"></i> <?= $_resource->name ?></a>
+                            <?php endforeach; ?>
 
                             <a class="btn btn-primary" href="<?php echo $_file->url ?>" target="_blank">Open</a>
                         </td>

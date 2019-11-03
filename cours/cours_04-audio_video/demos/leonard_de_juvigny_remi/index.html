@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>HTML5 Video Player</title>
+</head>
+<body>
+  <div class="black-filter"></div>
+  <div class="player">
+    <div class="red-filter"></div>
+    <video class="video" src="res/video.mp4">Update your browser</video>
+    <div class="controls">
+      <video class="video blur" src="res/video.mp4" muted>Get chrome you scrub</video>
+      <i class="material-icons play-pause" data-state="paused">play_arrow</i>
+      <div class="volume-wrap">
+        <i class="material-icons volume">volume_up</i>
+        <div class="seek-bar-wrap">
+          <div class="seek-bar">
+            <div class="fill-bar">
+              <div class="cursor"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="time">0:00</p>
+      <div class="seek-bar time-bar">
+        <div class="fill-bar time-bar">
+          <div class="cursor time-bar"></div>
+        </div>
+      </div>
+      <p class="time-left">-0:00</p>
+      <i class="material-icons settings">settings</i>
+      <i class="material-icons full-screen">fullscreen</i>
+    </div>
+    <div class="settings-popup hidden">
+      <div class="setting speed">
+        <p>Speed</p>
+        <i class="material-icons">keyboard_arrow_right</i>
+        <div class="values">
+          <div class="value" data-speed="0.5">
+            <p>0.5</p>
+            <i class="material-icons">radio_button_unchecked</i>
+          </div>
+          <div class="value" data-speed="0.75">
+            <p>0.75</p>
+            <i class="material-icons">radio_button_unchecked</i>
+          </div>
+          <div class="value" data-speed="1">
+            <p>1</p>
+            <i class="material-icons">radio_button_checked</i>
+          </div>
+          <div class="value" data-speed="1.25">
+            <p>1.25</p>
+            <i class="material-icons">radio_button_unchecked</i>
+          </div>
+          <div class="value" data-speed="1.5">
+            <p>1.50</p>
+            <i class="material-icons">radio_button_unchecked</i>
+          </div>
+        </div>
+      </div>
+      <div class="setting night-mode">
+        <p>Night mode</p>
+        <i class="material-icons">check_box_outline_blank</i>
+      </div>
+      <div class="setting autoplay">
+        <p>Autoplay</p>
+        <i class="material-icons">check_box_outline_blank</i>
+      </div>
+    </div>
+  </div>
+  <div class="views">1 view</div>
+  <script src="js/script.js"></script>
+</body>

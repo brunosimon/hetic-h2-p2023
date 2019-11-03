@@ -5,9 +5,12 @@ body
 
 .container
 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     height: 200px;
-    background: #777777;
+    background: #666666;
     margin: 20px;
     padding: 20px;
 }
@@ -26,17 +29,17 @@ body
 
     transition-property: transform;
     transition-duration: 2s;
-    transition-timing-function: cubic-bezier(0.96, 0.47, 0.12, 1.49);
+    transition-timing-function: cubic-bezier(0.67, 0.2, 0.17, 1.49);
     transition-delay: 0s;
 
-    /* transition: 2s left 0s ease-in-out; */
+    /* transition: ease-in 2s 0s all; */
 
     will-change: transform;
 }
 
 .container:hover .transition
 {
-    transform: translateX(300px);
+    transform: scaleX(3);
 }
 
 /**
@@ -49,18 +52,16 @@ body
     left: calc(50% - 100px);
     width: 200px;
     height: 200px;
-    background: orange;
+    background: red;
 
     animation-name: my-super-animation;
     animation-duration: 2s;
-    animation-timing-function: ease-in;
+    animation-timing-function: linear;
     animation-delay: 0s;
-    /* animation-iteration-count: infinite; */
-    /* animation-direction: alternate-reverse; */
+    animation-iteration-count: 1;
+    animation-direction: normal;
     animation-play-state: paused;
-    animation-fill-mode: backwards;
-
-    /* animation: my-super-animation 2s; */
+    animation-fill-mode: forwards;
 }
 
 .container:hover .animation
@@ -70,9 +71,9 @@ body
 
 @keyframes my-super-animation
 {
-    0%   { width: 300px; }
-    50%  { width: 100px; }
-    100% { width: 800px; }
+    0%   { width: 400px; }
+    50%  { width: 800px; }
+    100% { width: 100px; }
 }
 
 /**
@@ -90,12 +91,10 @@ body
 .equalizer .bar
 {
     position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: calc(var(--height) / -2);
-    margin-left: calc(var(--width) / -2);
     width: var(--width);
     height: var(--height);
+    margin-top: calc(var(--height) / -2);
+    margin-left: calc(var(--width) / -2);
     background: #ffffff;
 
     animation-name: equalizer-bar;
@@ -112,8 +111,8 @@ body
 }
 
 .equalizer .bar-0 { animation-delay: 0.0s; left: calc(var(--width) * -3); }
-.equalizer .bar-1 { animation-delay: 0.3s; left: calc(var(--width) * -1.5); }
-.equalizer .bar-2 { animation-delay: 0.1s; left: calc(var(--width) * 0); }
+.equalizer .bar-1 { animation-delay: 0.1s; left: calc(var(--width) * -1.5); }
+.equalizer .bar-2 { animation-delay: 0.3s; left: calc(var(--width) * 0); }
 .equalizer .bar-3 { animation-delay: 0.2s; left: calc(var(--width) * 1.5); }
 .equalizer .bar-4 { animation-delay: 0.4s; left: calc(var(--width) * 3); }
 
@@ -127,6 +126,7 @@ body
     left: 0;
     width: 320px;
     height: 100%;
+    pointer-events: none;
 }
 
 .menu .mover
@@ -139,6 +139,7 @@ body
     background: #bbbbbb;
     transform: translateX(-100%);
     transition: transform 0.6s cubic-bezier(0.75, 0, 0.25, 1);
+    pointer-events: auto;
 }
 
 .menu.is-active .mover

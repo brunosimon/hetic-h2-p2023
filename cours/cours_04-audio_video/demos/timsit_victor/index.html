@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wavesPlayer</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+            <audio class="song-1" src="sounds/another-one.mp3"></audio>
+        <div class="background">
+            <div class="timer"></div>     
+        </div>
+        <div class="ground">
+            <div class="referentiel">
+                <div class="groundLines"></div>
+            </div>
+            <div class="referentiel-2">
+                <div class="seek-bar seek-bar-two">
+                <div class="cube soundCube">
+                    <div class="face face-1"></div>
+                    <div class="face face-2"></div>
+                    <div class="face face-3"></div>
+                    <div class="face face-4"></div>
+                    <div class="face face-5"></div>
+                    <div class="face face-6">
+                        <div class="sound">
+                            <div class="volume-0">
+                                <img src="images/volume-0.png" alt="#">
+                            </div>
+                            <div class="volume-1">
+                                <img src="images/volume-1.png" alt="#">
+                            </div>
+                            <div class="volume-2">
+                                <img src="images/volume-2.png" alt="#">
+                            </div>
+                            <div class="volume-3">
+                                <img src="images/volume-3.png" alt="#">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="seek-bar seek-bar-three">
+                    <div class="cube speedCube">
+                        <div class="face face-1"></div>
+                        <div class="face face-2"></div>
+                        <div class="face face-3"></div>
+                        <div class="face face-4"></div>
+                        <div class="face face-5"></div>
+                        <div class="face face-6">
+                            <div class="speedSlowIcon"></div>
+                            <div class="speedSlowIcon after"></div>
+                        </div>
+                    </div>
+                </div>
+            <div class="seek-bar seek-bar-one">
+                    <div class="cube playCube">
+                        <div class="face face-1"></div>
+                        <div class="face face-2"></div>
+                        <div class="face face-3"></div>
+                        <div class="face face-4"></div>
+                        <div class="face face-5"></div>
+                        <div class="face face-6">
+                            <div class="pause">
+                                    <div class="pauseIcon"></div>
+                            </div>
+                            <div class="play active">
+                                    <div class="playIcon active"></div>
+                            </div>
+                            <div class="cubeTimer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="songContainer">
+            <div class="songImg"></div>
+        </div>
+
+        <div class="songName">
+            <h2>MACDEMARCO</h2>
+            <h3 class="songTitleOne">Salad</h3>
+            <h3 class="songTitleTwo">Days</h3>
+        </div> 
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+
+</html>
