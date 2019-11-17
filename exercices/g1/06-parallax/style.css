@@ -1,0 +1,50 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background: orange;
+    overflow-x: hidden;
+}
+
+.hero
+{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero .layer
+{
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+}
+
+.hero .layer img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/**
+ * Lazyload
+ */
+.lazyload
+{
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    will-change: opacity;
+}
+
+.lazyload.is-loaded
+{
+    opacity: 1;
+}

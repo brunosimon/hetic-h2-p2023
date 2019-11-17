@@ -22,6 +22,8 @@ body
     position: absolute;
     top: 50%;
     left: 50%;
+    transition: transform 0.35s cubic-bezier(0.6, 0.25, 0.4, 1.85);
+    will-change: transform;
 }
 
 .clock .needle

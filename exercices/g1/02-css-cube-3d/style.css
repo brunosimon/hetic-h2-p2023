@@ -51,4 +51,31 @@
     transform: rotateY(180deg) translateZ(calc(var(--size) / 2));
 }
 
+.cube-3d .y-axis
+{
+    animation-name: cube-y-axis-rotation;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes cube-y-axis-rotation
+{
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+.cube-3d .x-axis
+{
+    animation-name: cube-x-axis-rotation;
+    animation-duration: 26.123s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes cube-x-axis-rotation
+{
+    0%   { transform: rotateX(0deg); }
+    100% { transform: rotateX(360deg); }
+}
 
