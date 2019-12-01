@@ -51,3 +51,20 @@ document.addEventListener('mousemove', (_event) =>
     })
 })
 
+/**
+ * Scroll parallax
+ */
+const scrollParallaxElements = document.querySelectorAll('.js-scroll-parallax')
+
+window.addEventListener('scroll', () =>
+{
+    const scrollRatio = window.scrollY / sizes.height
+
+    scrollParallaxElements.forEach((_element, _key) => 
+    {
+        const strength = 1 - _key / (cursorParallaxElements.length - 1)
+        const translateY = scrollRatio * strength * 100
+
+        _element.style.transform = `translateY(${translateY}%)`
+    })
+})

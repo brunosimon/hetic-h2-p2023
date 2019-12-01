@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FALLING DOTS - a canvas game by Amélie Grosjean</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="favicons/manifest.json">
+    <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="favicons/favicon.ico">
+    <meta name="msapplication-config" content="favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="info">
+        <svg class="title" version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+            <path d="M70 311H58v40h12c13 0 20-10 20-20 1-12-6-20-20-20zM169 310c-13 0-21 9-21 21 0 11 8 21 20 21s21-10 21-21c0-12-8-21-20-21zM198 69l-13 42h26z"/>
+            <path d="M0 0v400h400V0H0zm223 30l48 131h-45l-5-15h-47l-5 15h-44l48-131h50zm97 217c6 0 12-2 16-4v-4h-19v-26h48v41a59 59 0 0 1-45 20c-30 0-54-20-54-51 0-32 24-51 54-51 24 0 37 13 44 25l-26 13c-2-6-9-12-18-12-14 0-24 11-24 25s10 24 24 24zm-66-74v99h-29l-36-50v50h-30v-99h31l34 47v-47h30zm-112 0v99h-30v-99h30zM31 30h99v35H70v13h59v34H70v49H31V30zm0 143h30v73h38v26H31v-99zm39 200H32v-85h38c27 0 47 16 47 43s-20 42-47 42zm99 2c-27 0-47-18-47-44s20-44 46-44 47 18 47 44-20 44-46 44zm120-64h-23v62h-25v-62h-23v-23h71v23zm42 64c-18 0-31-6-40-14l14-19c6 6 16 11 27 11 5 0 9-1 9-5 0-8-47 0-47-33 0-14 12-28 35-28 14 0 27 4 36 12l-13 18c-8-6-17-8-25-8-5 0-7 1-7 3 0 8 47 2 47 33 0 19-14 30-36 30zm38-214h-90V30h40v97h50v34z"/>
+        </svg> 
+            
+        <div class="instructions">
+            <p>Change the <span class="bold">color</span></p>
+            <div class="colorOne key">A</div>
+            <div class="colorTwo key">Z</div>
+            <div class="colorThree key">E</div>
+            <p>Forget this <span class="bold">one</span></p>
+            <div class="colorMalus key"></div>
+            <p>Pause w/ <span class="bold">spacebar</span></p>
+        </div>
+        
+        <div class="themes">
+            <div class="themeDark theme"><span class="bold">Dark</span> theme</div>
+            <div class="themeNeon theme"><span class="bold">Neon</span> theme</div>
+            <div class="themeNormal theme"><span class="bold">Normal</span> theme</div>
+        </div>
+    </div>
+    <div class="scoreBloc">
+        <p class="score">0</p>
+    </div>
+    
+    <canvas></canvas>
+    <script src="scripts/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+@font-face {
+	font-family: "Ostrich";
+	src: url("OstrichSans-Heavy.otf")
+}
+
+canvas {
+	cursor: crosshair;
+	background: linear-gradient( #355C7D 0%, #6C5B7B 50%, #C06C84 100%);
+	position: absolute;
+	top: 5%;
+	left: calc(50% - 350px)
+}
+
+.sorry {
+	font-family: Ostrich;
+	display: none;
+}
+
+body {
+	background: #ecf0f1;
+}
+
+@media (max-width: 800px) {
+	canvas {
+		display: none;
+	}
+	.sorry {
+		display: block
+	}
+	body {
+		background: #f00;
+	}
+}

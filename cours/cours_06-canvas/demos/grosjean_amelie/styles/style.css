@@ -1,0 +1,114 @@
+@font-face 
+{
+    font-family: 'Proxima Nova';
+    font-weight: bold;
+    src: url('../fonts/Mark Simonson - Proxima Nova Alt Bold.otf');
+}
+
+@font-face 
+{
+    font-family: 'Proxima Nova';
+    font-weight: 900;
+    src: url('../fonts/Mark Simonson - Proxima Nova Alt Black.otf');
+}
+
+@font-face 
+{
+    font-family: 'Proxima Nova';
+    font-weight: normal;
+    src: url('../fonts/Mark Simonson - Proxima Nova Alt Regular.otf');
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Proxima Nova', sans-serif;  
+    font-weight: normal;
+}
+
+svg.title
+{
+    width: 250px;
+}
+
+.info
+{
+    position: absolute;
+    z-index: 5;
+    margin : 20px;
+}
+
+
+.instructions
+{
+    margin-top: 20px;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.key
+{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    display: inline-block;
+    margin : 5px;
+    padding-top: 15px;
+    font-size: 30px;
+}
+
+.instructions p
+{
+    margin-top : 10px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.scoreBloc
+{
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.score
+{
+    font-size: 75px;
+    font-weight: 900;
+}
+
+.theme
+{
+    margin-top: 20px;
+    padding: 10px 0px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.colorOne 
+{
+    background-color: orange;
+}
+
+.colorTwo
+{
+    background-color: green;
+}
+
+.colorThree
+{
+    background-color: lightblue;
+}

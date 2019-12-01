@@ -7,6 +7,13 @@
 body
 {
     background: orange;
+    overflow-x: hidden;
+}
+
+.content
+{
+    height: 150vh;
+    background: #210002;
 }
 
 .hero
@@ -24,6 +31,7 @@ body
     left: -5%;
     width: 110%;
     height: 110%;
+    will-change: transform;
 }
 
 .hero .layer img

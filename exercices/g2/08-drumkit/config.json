@@ -1,0 +1,32 @@
+[
+    {
+        "name": "clap",
+        "src": "sounds/clap.mp3",
+        "keyCodes": ["KeyQ", "Digit1"]
+    },
+    {
+        "name": "hi-hat",
+        "src": "sounds/hi-hat.mp3",
+        "keyCodes": ["KeyW", "Digit2"]
+    },
+    {
+        "name": "kick",
+        "src": "sounds/kick.mp3",
+        "keyCodes": ["KeyE", "Digit3"]
+    },
+    {
+        "name": "open-hat",
+        "src": "sounds/open-hat.mp3",
+        "keyCodes": ["KeyR", "Digit4"]
+    },
+    {
+        "name": "snare",
+        "src": "sounds/snare.mp3",
+        "keyCodes": ["KeyT", "Digit5"]
+    },
+    {
+        "name": "vox",
+        "src": "sounds/vox.mp3",
+        "keyCodes": ["KeyY", "Digit6"]
+    }
+]

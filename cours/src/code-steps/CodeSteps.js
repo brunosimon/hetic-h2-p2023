@@ -44,6 +44,7 @@ export default class CodeSteps
         if(!this.type)
         {
             console.warn('CodeSteps: Missing type', this)
+            this.type = 'html'
         }
 
         // Text (mandatory)

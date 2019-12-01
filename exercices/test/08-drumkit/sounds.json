@@ -1,0 +1,32 @@
+[
+    {
+        "name": "clap",
+        "src": "https://bruno-simon.com/hetic/p2023/resources/drumkit/sounds/clap.mp3",
+        "keyCodes": ["KeyQ", "Digit1"]
+    },
+    {
+        "name": "hi-hat",
+        "src": "https://bruno-simon.com/hetic/p2023/resources/drumkit/sounds/hi-hat.mp3",
+        "keyCodes": ["KeyW", "Digit2"]
+    },
+    {
+        "name": "kick",
+        "src": "https://bruno-simon.com/hetic/p2023/resources/drumkit/sounds/kick.mp3",
+        "keyCodes": ["KeyE", "Digit3"]
+    },
+    {
+        "name": "open-hat",
+        "src": "https://bruno-simon.com/hetic/p2023/resources/drumkit/sounds/open-hat.mp3",
+        "keyCodes": ["KeyR", "Digit4"]
+    },
+    {
+        "name": "snare",
+        "src": "https://bruno-simon.com/hetic/p2023/resources/drumkit/sounds/snare.mp3",
+        "keyCodes": ["KeyT", "Digit5"]
+    },
+    {
+        "name": "vox",
+        "src": "https://bruno-simon.com/hetic/p2023/resources/drumkit/sounds/vox.mp3",
+        "keyCodes": ["KeyY", "Digit6"]
+    }
+]

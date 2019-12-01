@@ -21,11 +21,13 @@ export default class CodeStepManager
 
             if(!alreadySet)
             {
+                const $code = _$codeSteps.querySelector('code')
+
                 // Set options
                 const options = {}
 
                 options.$element = _$codeSteps
-                options.text = _$codeSteps.innerText
+                options.text = $code.innerText
 
                 if(typeof _$codeSteps.dataset.type !== 'undefined')
                 {

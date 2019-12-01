@@ -1,0 +1,533 @@
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* GENERAL                                                                    |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+html
+{ height: 100%; }
+
+body
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: #EEEEEE;
+    font-family: 'Barlow', sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+::-moz-selection
+{
+    color: #111111;
+    background: #EEEEEE;
+}
+  
+::selection
+{
+    color: #111111;
+    background: #EEEEEE;
+}
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* TITLE                                                                      |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+h1
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 2.5em;
+    font-variant: small-caps;
+    opacity: 0;
+    transform: translate(-50%, 0%);
+    transition:
+    opacity 1.25s ease-in-out,
+    transform 1.25s ease-in-out;
+    will-change: opacity, transform;
+}
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* HOME                                                                       |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+.home
+{
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+    opacity: 1;
+    transition: opacity 1.25s ease-in-out;
+    will-change: opacity;
+}
+
+/*--------------------------------------------------*\
+|                                                    |
+|                                                    |
+| ********** CONTAINER 1                             |
+|                                                    |
+|                                                    |
+\*--------------------------------------------------*/
+
+.home .container-1
+{
+    margin: auto;
+    padding-left: 10%;
+    padding-right: 10%;
+    opacity: 1;
+    transition: opacity 1.25s ease-in-out;
+    will-change: opacity;
+}
+
+.home a
+{ 
+    position: relative;
+    text-decoration: none;
+}
+
+.home a::after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    width: 100%;
+    height: 100%;
+    border-bottom: solid 0.01em #EEEEEE;
+    transform-origin: 50% 50%;
+    transform: scaleX(0);
+    transition: transform 0.25s ease-in-out;
+    will-change: transform;
+}
+
+.home a:hover::after
+{ transform: scaleX(1); }
+
+.home p
+{
+    margin: 1em;
+    line-height: 1.25em;
+}
+
+.home p.hashtags
+{ margin: 2.5em; }
+
+.home span.button
+{
+    position: relative;
+    font-size: 1.25em;
+    font-variant: small-caps;
+    cursor: pointer;
+}
+
+.home span.button::before
+{
+    border-top: solid 0.01em #EEEEEE;
+    border-bottom: solid 0.01em #EEEEEE;
+    transform: scale(0, 1);
+}
+
+.home span.button::after
+{
+    border-left: solid 0.01em #EEEEEE;
+    border-right: solid 0.01em #EEEEEE;
+    transform: scale(1, 0);
+}
+
+.home span.button::before,
+.home span.button::after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    left: -0.5em;
+    top: -0.5em;
+    width: calc(100% + 1em);
+    height: calc(100% + 1em);
+    opacity: 0;
+    transform-origin: 50% 50%;
+    transition:
+    opacity 0.25s ease-in-out,
+    transform 0.25s ease-in-out;
+    will-change: opacity, transform;
+}
+
+
+.home span.button:hover::before,
+.home span.button:hover::after
+{ 
+    opacity: 1;
+    transform: scale(1); 
+}
+
+.home i.fa,
+.home span.title
+{ margin: 0.5em; }
+
+.home i.fa
+{
+    transform: translateX(0);
+    will-change: transform;
+}
+
+.home span.button:hover i.fa
+{ animation: shake-buton-play 2.5s ease-in-out infinite; }
+
+.home a.author
+{
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    font-size: 0.75em;
+}
+
+/*--------------------------------------------------*\
+|                                                    |
+|                                                    |
+| ********** CONTAINER 2                             |
+|                                                    |
+|                                                    |
+\*--------------------------------------------------*/
+
+.home .container-2
+{
+    display: none;
+    margin: auto;
+}
+
+.home img.logo
+{
+    width: 37.5%;
+    height: auto;
+}
+
+.home img.logo.animated
+{
+    animation: introduction-animation 5s ease-in-out forwards;
+    animation-delay: 0s;
+}
+
+.home p.title
+{
+    font-size: 2em;
+    font-variant: small-caps;
+}
+
+.home p.title.animated
+{
+    animation: introduction-animation 5s ease-in-out forwards;
+    animation-delay: 1.25s;
+}
+
+.home img.logo,
+.home p.title
+{
+    opacity: 0;
+    transform: scale(0.875);
+}
+
+.home img.logo.animated,
+.home p.title.animated
+{
+    will-change: opacity, transform;
+}
+
+.home span.date
+{ font-size: 0.75em; }
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* CANVAS                                                                     |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+canvas
+{
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.25s ease-in-out;
+    will-change: opacity;
+}
+
+canvas.bars,
+canvas.stars
+{ top: 0; }
+
+canvas.piano
+{
+    bottom: 0;
+    cursor: pointer;
+}
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* MENU                                                                       |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+.menu
+{
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.875);
+    transform: translateY(-100%);
+    will-change: transform;
+}
+
+/*--------------------------------------------------*\
+|                                                    |
+|                                                    |
+| ********** TOGGLE                                  |
+|                                                    |
+|                                                    |
+\*--------------------------------------------------*/
+
+.menu .cross,
+.menu .hamburger
+{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: #FFFFFF;
+}
+
+.menu .cross
+{ top: 2.5%; }
+
+.menu .hamburger
+{
+    top: 102.5%;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    will-change: opacity;
+}
+
+.menu i.fa
+{
+    cursor: pointer;
+    font-size: 2.5em;
+    opacity: 0.75;
+    transition: opacity 0.25s ease-out;
+    will-change: opacity;
+}
+
+.menu i.fa:hover
+{ opacity: 1; }
+
+/*--------------------------------------------------*\
+|                                                    |
+|                                                    |
+| ********** CONTAINER                               |
+|                                                    |
+|                                                    |
+\*--------------------------------------------------*/
+
+.menu .container
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.menu .container p.option
+{
+    position: relative;
+    margin: auto;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 0.25s ease-in-out;
+    will-change: opacity;
+}
+
+.menu .container p.option:hover
+{ opacity: 1; }
+
+.menu .container p.option::after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 43.75%;
+    width: 100%;
+    height: 12.5%;
+    background-color: #FFFFFF;
+    transform-origin: 50% 50%;
+    transform: scaleX(0);
+    transition: transform 0.25s ease-in-out;
+    will-change: transform;
+}
+
+.menu .container p.disabled::after
+{ transform: scaleX(1); }
+
+.menu .buttons
+{
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25%;
+}
+
+.menu .buttons .keys
+{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    font-size: 1.25em;
+}
+
+.menu .buttons p
+{ margin: auto; }
+
+.menu .buttons .group
+{
+    margin: auto;
+    height: 100%;
+    display: flex;
+}
+
+.menu .buttons .size-2
+{ width: 30%; }
+
+.menu .buttons .size-3
+{ width: 40%; }
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* SCORE                                                                      |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+.score
+{
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: calc(100% * 2 / 3);
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    will-change: opacity;
+}
+
+.score .points
+{
+    margin: auto;
+    color: #FFFFFF;
+    font-size: 10em;
+    cursor: default;
+    user-select: none;
+}
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* END                                                                        |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+.end
+{
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+    transition: transform 1s ease-out;
+    will-change: transform;
+}
+
+.end .repeat
+{
+    margin: auto;
+    font-size: 5em;
+    color: #FFFFFF;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 0.25s ease-in-out;
+    will-change: opacity;
+}
+
+.end .repeat:hover
+{ opacity: 1; }
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* MEDIA QUERIES                                                              |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 720px)
+{
+    body { font-size: 0.5rem; }
+}
+
+@media screen and (max-height: 720px)
+{
+    body { font-size: 0.5rem; }
+}
+
+/*----------------------------------------------------------------------------------------------------*\
+|                                                                                                      |
+|                                                                                                      |
+| ************************* KEYFRAMES                                                                  |
+|                                                                                                      |
+|                                                                                                      |
+\*----------------------------------------------------------------------------------------------------*/
+
+@keyframes shake-buton-play
+{
+    0%    { transform: translateX(0); }
+    25%   { transform: translateX(-25%); }
+    37.5% { transform: translateX(25%); }
+    50%   { transform: translateX(0); }
+    100%  { transform: translateX(0); }
+}
+
+@keyframes introduction-animation
+{
+    0%   { opacity: 0; transform: scale(0.875); }
+    50%  { opacity: 1; transform: scale(1); }
+    75%  { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1); }
+}

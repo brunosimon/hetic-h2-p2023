@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07 - Audio / Video</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="player js-player">
+        <video
+            class="js-video"
+            src="video.mp4"
+            controls
+        ></video>
+        <button class="js-play">play</button>
+        <button class="js-pause">pause</button>
+        <button class="js-volume-down">-</button>
+        <button class="js-volume-up">+</button>
+        <div class="seek-bar js-seek-bar">
+            <div class="fill js-seek-bar-fill"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
