@@ -1257,11 +1257,11 @@ console.log(foo.classList.contains('ipsum'))
                 </section>
 
                 <section>
-                    <h3 class="no-text-transform">innerText</h3>
+                    <h3 class="no-text-transform">textContent</h3>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // Remplace le contenu par "hey"
-foo.innerText = 'hey'
+foo.textContent = 'hey'
                         </code></pre>
                     </div>
                 </section>
@@ -1274,7 +1274,7 @@ foo.innerText = 'hey'
 foo.innerHTML = '&lt;span&gt;hey&lt;/span&gt;'
                         </code></pre>
                     </div>
-                    <p>La différence avec <span class="hl">innerText</span> est la possibilité d'écrire du HTML</p>
+                    <p>La différence avec <span class="hl">textContent</span> est la possibilité d'écrire du HTML</p>
                 </section>
 
                 <section>
@@ -1308,7 +1308,7 @@ const toto = document.createElement('span')
 toto.classList.add('toto')
 
 // Lui ajoute du texte
-toto.innerText = 'Coucou, je suis toto'
+toto.textContent = 'Coucou, je suis toto'
 
 // Le rajoute au DOM dans l'élément foo
 foo.appendChild(toto)

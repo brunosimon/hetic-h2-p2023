@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Speeder</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Get to the finish line">
+  <meta property="og:title" content="Speeder ">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/icon_speeder.png">
+  <meta property="og:description" content="Pick up loot, power up & fly">
+  <meta property="og:site_name" content="Speeder">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="shortcut icon" href="img/icon_speeder.png">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="mainGame">
+    <canvas id="game" class="js-canvas"></canvas>
+  </div>
+  <div class="option">
+    <div id="Play">
+      <span>Play</span>
+    </div>
+  </div>
+  <div class="option-game-container">
+    <div class="option-menu-button button-open-animation">
+      <div class="menu-bar-1 menu-bar"></div>
+      <div class="menu-bar-2 menu-bar"></div>
+      <div class="menu-bar-3 menu-bar"></div>
+    </div>
+    <div class="option-menu-container option-menu-container-selected menu-container-close">
+      <div class="hidding-bar-effect menu-container-bar-1 hidding-bar-effect-show"></div>
+      <div class="hidding-bar-effect menu-container-bar-2 hidding-bar-effect-show"></div>
+      <div class="hidding-bar-effect menu-container-bar-3 hidding-bar-effect-show"></div>
+      <div class="hidding-bar-effect menu-container-bar-4 hidding-bar-effect-show"></div>
+      <div class="star-containers"></div>
+      <div class="option-main-image"></div>
+      <div class="title_menu big-font">Speeder</div>
+      <div class="inner-menu-option-container">
+        <span class="big-font">Options</span>
+        <div class="motion-blur-button menu-button motion-blur-on"><span>Motion blur</span></div>
+        <div class="particles-button menu-button particles-on"><span>Particles</span></div>
+        <div class="sound-button menu-button sound-on"><span>Sound</span></div>
+        <div class="return-home menu-button"><span>return home</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="menu-container menu-container-selected">
+    <div class="star-containers"></div>
+    <div class="menu-main-image"></div>
+    <div class="title_menu big-font">Speeder</div>
+    <div class="inner-menu-container">
+      <div class="play-button menu-button"><span>play</span></div>
+      <div class="principal-option-inner-button menu-button"><span>options</span></div>
+      <div class="controls-button menu-button"><span>controls</span></div>
+      <div class="custom-button menu-button"><span>custom</span></div>
+    </div>
+  </div>
+  <div class="option-main-container ">
+    <div class="star-containers"></div>
+    <div class="option-main-image"></div>
+    <div class="title_menu big-font">Speeder</div>
+    <div class="inner-menu-container">
+      <div class="motion-blur-button menu-button motion-blur-on"><span>Motion blur</span></div>
+      <div class="particles-button menu-button particles-on"><span>Particles</span></div>
+      <div class="sound-button menu-button sound-on"><span>Sound</span></div>
+      <div class="generate-button menu-button"><span>Generate</span></div>
+      <div class="principal-option-button menu-button"><span>Return home</span></div>
+    </div>
+  </div>
+  <div class="custom-main-container ">
+    <div class="star-containers"></div>
+    <div class="option-main-image"></div>
+    <div class="title_menu big-font">Speeder</div>
+    <div class="inner-menu-container">
+      <span class="custom-xp-span"></span>
+      <div class="bonus-container">
+        <span class="bonus-title">Laser: </span>
+        <div class="laser-bonus bonus-button bonus-button-selected"><span>level 0</span><span class="laser-bonus-price bonus-price">0 xp</span></div>
+        <div class="laser-bonus bonus-button"><span>level 1</span><span class="laser-bonus-price bonus-price">5000 xp</span></div>
+        <div class="laser-bonus bonus-button"><span>level 2</span><span class="laser-bonus-price bonus-price">50000 xp</span></div>
+        <div class="laser-bonus bonus-button"><span>level 3</span><span class="laser-bonus-price bonus-price">500000 xp</span></div>
+      </div>
+      <div class="bonus-container">
+        <span class="bonus-title">Boost: </span>
+        <div class="boost-bonus bonus-button bonus-button-selected"><span>level 0</span><span class="boost-bonus-price bonus-price">0xp</span></div>
+        <div class="boost-bonus bonus-button"><span>level 1</span><span class="boost-bonus-price bonus-price">5000xp</span></div>
+        <div class="boost-bonus bonus-button"><span>level 2</span><span class="boost-bonus-price bonus-price">50000xp</span></div>
+        <div class="boost-bonus bonus-button"><span>level 3</span><span class="boost-bonus-price bonus-price">100000xp</span></div>
+      </div>
+      <div class="bonus-container">
+        <span class="bonus-title">Trail: </span>
+        <div class="trail-bonus hover-color-blue bonus-button selected-color-blue"><span>Blue</span><span class="trail-bonus-price bonus-price">0xp</span></div>
+        <div class="trail-bonus hover-color-red bonus-button"><span>Red</span><span class="trail-bonus-price bonus-price">5000xp</span></div>
+        <div class="trail-bonus hover-color-rose bonus-button"><span>Rose</span><span class="trail-bonus-price bonus-price">50000xp</span></div>
+        <div class="trail-bonus hover-color-yellow bonus-button"><span>Yellow</span><span class="trail-bonus-price bonus-price">100000xp</span></div>
+      </div>
+      <div class="custom-return-button menu-button"><span>Return home</span></div>
+    </div>
+  </div>
+  <div class="controls-main-container">
+    <div class="star-containers"></div>
+    <div class="option-main-image"></div>
+    <div class="title_menu big-font">Speeder</div>
+    <div class="inner-controls-container">
+      <div class="img-controls-container">
+        <div class="img-small-container">
+          <img class="img-controls" src="img/Z_controls.png" alt="Z control image">
+          <img class="img-controls" src="img/Arrow_up_controls.png" alt="Arrow up control image">
+          <span class="controls-span">Go up</span>
+        </div>
+        <div class="img-small-container">
+          <img class="img-controls" src="img/S_controls.png" alt="S control image">
+          <img class="img-controls" src="img/Arrow_down_controls.png" alt="Arrow down control image">
+          <span class="controls-span">Go down</span>
+        </div>
+        <div class="img-small-container">
+          <img class="img-controls" src="img/A_controls.png" alt="A control image">
+          <img class="img-controls" src="img/Space_controls.png" alt="Space control image">
+          <span class="controls-span">Shoot or continue</span>
+        </div>
+        <div class="img-small-container">
+          <img class="img-controls" src="img/E_controls.png" alt="E control image">
+          <img class="img-controls" src="img/Arrow_right_controls.png" alt="Arrow right control image">
+          <span class="controls-span">Bonus</span>
+        </div>
+        <div class="img-small-container">
+          <img class="img-controls" src="img/R_controls.png" alt="R control image">
+          <span class="controls-span">Restart</span>
+        </div>
+        <div class="img-small-container">
+          <img class="img-controls" src="img/ESC_controls.png" alt="Echap control image">
+          <span class="controls-span">Pause/unpause</span>
+        </div>
+      </div>
+      <div class="controls-return-button menu-button"><span>Return home</span></div>
+    </div>
+  </div>
+  <div class="generate-main-container">
+    <div class="star-containers"></div>
+    <div class="menu-main-image"></div>
+    <div class="title_menu big-font">Speeder</div>
+    <div class="inner-generate-container">
+      <span class="big-font">Generate</span>
+      <form class="seedForm">
+        <div id="seedInput">
+          <label for="seed">Seed : (enter your seed here)</label>
+          <input type="text" value="Xxx_bruno_xoxo_xxX" placeholder="Xxx_bruno_xoxo_xxX" id="seed" name="seed">
+        </div>
+        <div id="sizeInput">
+          <label for="size">Size of Elements (ratio) :</label>
+          <input type="text" value="1" placeholder="Exemple: 1,2,3" id="size" name="size">
+        </div>
+        <div id="numberInput">
+          <label for="numberElements">Number of elements :</label>
+          <input type="text" value="40" placeholder="Exemple: 10" id="numberElements" name="numberElements">
+        </div>
+        <div id="numberSpacingInput">
+          <label for="numberSpacing">Number of spacing :</label>
+          <input type="text" value="5" placeholder="Exemple: 50" id="numberSpacing" name="numberSpacing">
+        </div>
+        <div class="containerSelection">
+          <div id="manualGenerate">
+            <span>Generate !</span>
+          </div>
+          <div id="autoGenerate" class="unselected">
+            <span>auto</span>
+          </div>
+        </div>
+      </form>
+      <div class="generate-buttons-container">
+        <div class="principal-generate-button menu-button"><span>Return</span></div>
+        <div class="play-generate-button menu-button"><span>Play</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="finishing-container">
+  </div>
+  <div class="finishing-variables">
+    <span class="xp-container">xp gained : 0</span>
+    <span class="timer-container">Time taken : 34 secondes</span>
+    <span class="total-xp-container">Total xp : 560</span>
+    <div class="divide-container"></div>
+    <div class="canvas-button"><span>continue</span></div>
+    <span></span>
+  </div>
+  <div class="version"><span>0.8b</span></div>
+  <div class="responsive-alert">
+    <span>Sorry folks !</span>
+    <span>You need to have a resolution of at least 1280 x 720 pixels !</span>
+    <span class="i-dunno-span">¯\_(ツ)_/¯</span>
+  </div>
+  <script src="js/sound.js"></script>
+  <script src="js/chrono.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/dom_handler.js"></script>
+  <script src="js/trapGenerator.js"></script>
+  <script src="js/seedGenerator.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/difficultyHandler.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

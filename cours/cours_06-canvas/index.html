@@ -490,19 +490,23 @@ image.src = 'image.jpg'
                         data-type="js"
                         data-trim
                         data-steps="
-                            *: 
+                            *: ;
+                            l1: On créé le dégradé allant d'un point (x1, y1) sur le canvas à un autre point (x2, y2);
+                            l3-l5: On ajoute des couleurs au début (0), au milieu (0.5) et à la fin (1);
+                            l7: On défini le dégradé comme style de remplissage;
+                            l9: On rempli un carré
                         "
                     >
                         <pre contenteditable><code>
 const gradient = context.createLinearGradient(50, 50, 250, 250) // x1, y1, x2, y2
 
-gradient.addColorStop(0, 'rgb(255, 80, 0)')    // Couleur de départ
-gradient.addColorStop(0.5, 'rgb(255, 191, 0)') // Couleur de milieu
-gradient.addColorStop(1, 'rgb(255, 246, 155)') // Couleur de arrivée
+gradient.addColorStop(0, 'rgb(255, 80, 0)')
+gradient.addColorStop(0.5, 'rgb(255, 191, 0)')
+gradient.addColorStop(1, 'rgb(255, 246, 155)')
 
-context.fillStyle = gradient  // Le dégradé devient le style de remplissage
+context.fillStyle = gradient
 
-context.fillRect(0, 0, 400, 400) // On dessine un carré
+context.fillRect(0, 0, 400, 400)
                         </code></pre>
                     </div>
                 </section>
@@ -519,22 +523,26 @@ context.fillRect(0, 0, 400, 400) // On dessine un carré
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1-l4: On créé le dégradé allant d'un cercle (x1, y1, r1) sur le canvas vers un autre cercle (x2, y2, r2);
+                            l6-l8: On ajoute des couleurs au début (0), au milieu (0.5) et à la fin (1);
+                            l10: On défini le dégradé comme style de remplissage;
+                            l12: On rempli un carré
                         "
                     >
                         <pre contenteditable><code>
 const gradient = context.createRadialGradient(
-    100, 100, 50, // Coordonnées et rayon du premier cercle
-    100, 250, 250 // Coordonnées et rayon du deuxième cercle
+    100, 100, 50, // x1, y1, r1
+    100, 250, 250 // x2, y2, r2
 )
 
-gradient.addColorStop(0, 'rgb(255, 80, 0)')    // Couleur de départ
-gradient.addColorStop(0.5, 'rgb(255, 191, 0)') // Couleur de milieu
-gradient.addColorStop(1, 'rgb(255, 246, 155)') // Couleur de arrivée
+gradient.addColorStop(0, 'rgb(255, 80, 0)')
+gradient.addColorStop(0.5, 'rgb(255, 191, 0)')
+gradient.addColorStop(1, 'rgb(255, 246, 155)')
 
-context.fillStyle = gradient  // Le dégradé devient le style de remplissage
+context.fillStyle = gradient
 
-context.fillRect(0, 0, 400, 400) // On dessine un carré
+context.fillRect(0, 0, 400, 400)
                         </code></pre>
                     </div>
                 </section>
@@ -560,30 +568,47 @@ context.fillRect(0, 0, 400, 400) // On dessine un carré
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1-l6: On sauvegarde les propriétés du context et on trace un trait;
+                            l8-l13: On sauvegarde les propriétés du context et on trace un trait plus gros;
+                            l15-l20: On sauvegarde les propriétés du context et on trace un trait plus gros;
+                            l22-l26: On restore les propriétés du context et on trace un trait sans préciser l'épaisseur;
+                            l28-l32: On restore les propriétés du context et on trace un trait sans préciser l'épaisseur
                         "
                     >
                         <pre contenteditable><code>
+context.save()
 context.beginPath()
 context.moveTo(50, 50)
-context.lineTo(300, 50)
-context.save()              // Sauvegarde les propriétés du context
-context.lineWidth = 20      // Changement d'une des propriétés
-context.stroke()            // Dessin du trait
+context.lineTo(50, 100)
+context.lineWidth = 1
+context.stroke()
 
+context.save()
 context.beginPath()
-context.moveTo(50, 100)
-context.lineTo(300, 100)
-context.save()              // Nouvelle sauvegarde des propriétés du context
-context.strokeStyle = 'red' // Changement d'une autre propriété
-context.stroke()            // Dessin du trait
+context.moveTo(100, 50)
+context.lineTo(100, 100)
+context.lineWidth = 5
+context.stroke()
 
+context.save()
 context.beginPath()
-context.moveTo(50, 150)
-context.lineTo(300, 150)
-context.restore()           // Restauration des propriétés à la derniène sauvegarde
-context.restore()           // Restauration des propriétés à la sauvegarde encore avant
-context.stroke()            // Dessin du trait
+context.moveTo(150, 50)
+context.lineTo(150, 100)
+context.lineWidth = 10
+context.stroke()
+
+context.restore()
+context.beginPath()
+context.moveTo(200, 50)
+context.lineTo(200, 100)
+context.stroke()
+
+context.restore()
+context.beginPath()
+context.moveTo(250, 50)
+context.lineTo(250, 100)
+context.stroke()
                         </code></pre>
                     </div>
                 </section>
@@ -611,16 +636,21 @@ context.stroke()            // Dessin du trait
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1-l2: On place le point de départ;
+                            l4: On place le premier point de tension;
+                            l5: On place le deuxième point de tension;
+                            l6: On place le point d'arrivée;
+                            l8: On dessine et le canvas se chargera de créer la courbe de bézier
                         "
                     >
                         <pre contenteditable><code>
 context.beginPath()
-context.moveTo(50, 50) // Coordonnées du point de départ
+context.moveTo(50, 50)
 context.bezierCurveTo(
-    300, 100, // Coordonnées du premier points de tension
-    100, 300, // Coordonnées du deuxième points de tension
-    300, 300  // Coordonnées du troisième points de tension
+    300, 100,
+    100, 300,
+    300, 300
 )
 context.stroke()
                         </code></pre>
@@ -639,15 +669,19 @@ context.stroke()
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1-l2: On place le point de départ;
+                            l4: On place le seul point de tension;
+                            l5: On place le point d'arrivée;
+                            l7: On dessine et le canvas se chargera de créer la courbe de bézier
                         "
                     >
                         <pre contenteditable><code>
 context.beginPath()
-context.moveTo(50, 50) // Coordonnées du point de départ
+context.moveTo(50, 50)
 context.quadraticCurveTo(
-    300, 100, // Coordonnées du premier points de tension
-    300, 300  // Coordonnées du premier points de tension
+    300, 100,
+    300, 300
 )
 context.stroke()
                         </code></pre>
@@ -669,11 +703,13 @@ context.stroke()
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1: On réduit l'opacité;
+                            l3-l10: On dessine 3 carrés qui se superposent
                         "
                     >
                         <pre contenteditable><code>
-context.globalAlpha = 0.3 /* Réduction de l'opacité */
+context.globalAlpha = 0.3
 
 context.fillStyle = '#ff0000'
 context.fillRect(50, 50, 200, 200)
@@ -706,7 +742,10 @@ context.fillRect(150, 150, 200, 200)
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1: On change la manière avec laquelle les couleurs se mélangent;
+                            l1: 'lighter' équivaut au comportement de la lumière (rouge + vert + bleu = blanc);
+                            l3-l10: On dessine 3 carrés qui se superposent
                         "
                     >
                         <pre contenteditable><code>
@@ -734,7 +773,11 @@ context.fillRect(150, 150, 200, 200)
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1-l2: On dessine un carré;
+                            l4: On change la manière avec laquelle les couleurs se mélangent;
+                            l4: 'destination-out' veut dire que les dessine qui viennent vont retirer de la matière au dessin original (comme une gomme);
+                            l6-l9: On dessine un demi disque
                         "
                     >
                         <pre contenteditable><code>
@@ -780,35 +823,35 @@ context.fill()
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1: On créé une image (il est nécessaire d'utiliser un serveur pour que ça fonctionne (MAMP/WAMP));
+                            l3-l4,l18: On écoute le chargement de l'image;
+                            l20: On lance le chargement;
+                            l5: On dessine l'image;
+                            l6: On récupère l'imageData;
+                            l6: imageData va contenir tous les pixels dans un tableau linéaire composé de rouge, vers, bleu, alpha;
+                            l8-l9,l15: On boucle 4 par 4 dans le tableau (équivalent à boucler pixel par pixel);
+                            l10: On calcule la moyenne de gris (rouge + vert + bleu, le tout divisé par 3);
+                            l12-l14: On remplace les valeurs de rouge, vert et bleu par le gris
                         "
                     >
                         <pre contenteditable><code>
-// Si vous utilisez une image dans le canvas, lancez MAMP/WAMP pour éviter les proplème de cross-domain
 const image = document.createElement('img')
 
-// Attend que l'image soit chargé
 image.addEventListener('load', () =>
 {
-    // Dessiner l'image chargée dans le canvas
     context.drawImage(image, 0, 0)
-
-    // Récupérer les pixels dans imageData
     const imageData = context.getImageData(0, 0, image.width, image.height)
 
-    // Parcourir les pixels 4 par 4
     for(let i = 0; i < imageData.data.length; i += 4)
     {
-        // Traiter ces pixels couleur par couleur
-        // Ici, on rend l'image noir et blanc en calculant une valeur de gris et en mettant cette valeur pour chaque couleur primaire
         const gray = (imageData.data[i + 0] + imageData.data[i + 1] + imageData.data[i + 2]) / 3
+
         imageData.data[i + 0] = gray
         imageData.data[i + 1] = gray
         imageData.data[i + 2] = gray
-        // On ne touche pas à l'apha
     }
 
-    // Dessiner la nouvelle image par dessus
     context.putImageData(imageData, 0, 0)
 })
 
@@ -843,7 +886,10 @@ image.src = 'image.jpg'
                         data-type="js"
                         data-trim
                         data-steps="
-                            
+                            *: ;
+                            l1-l2,l5: Fonction qui sera appelée à chaque frame;
+                            l6: On l'appelle une première fois;
+                            l3: On l'appelle à nouveau (la fonction sera exécuté à la prochaine frame)
                         "
                     >
                         <pre contenteditable><code>
@@ -852,7 +898,7 @@ const loop = () =>
     window.requestAnimationFrame(loop)
     console.log('loop')
 }
-window.requestAnimationFrame(loop)
+loop()
                         </code></pre>
                     </div>
                     <p>La fonction loop sera appelée dès la prochaine frame</p>
@@ -871,7 +917,7 @@ window.requestAnimationFrame(loop)
                     >
                         <pre contenteditable><code>
 // Coordonnées de base
-const coords = { x: 200, y: 200 }
+const ball = { x: 200, y: 200 }
 
 // Fonction déclenchée à chaque frame
 const loop = () =>
@@ -879,13 +925,13 @@ const loop = () =>
     window.requestAnimationFrame(loop)
 
     // Mise à jour des coordonnées
-    coords.x += 4
-    coords.y = 200 - Math.abs(Math.sin(Date.now() * 0.005)) * 100
+    ball.x += 4
+    ball.y = 200 - Math.abs(Math.sin(Date.now() * 0.005)) * 100
 
     // Limite
-    if(coords.x > canvas.width + 50)
+    if(ball.x > canvas.width + 50)
     {
-        coords.x = -50
+        ball.x = -50
     }
 
     // Efface le canvas
@@ -895,7 +941,7 @@ const loop = () =>
 
     // Dessine la balle
     context.beginPath()
-    context.arc(coords.x, coords.y, 50, 0, Math.PI * 2)
+    context.arc(ball.x, ball.y, 50, 0, Math.PI * 2)
     context.globalAlpha = 1
     context.fillStyle = 'orange'
     context.fill()
@@ -932,7 +978,7 @@ window.addEventListener('mousemove', (event) =>
 })
 
 // Coordonnées de la la balle
-const coords = { x: 0, y: 0 }
+const ball = { x: 0, y: 0 }
 
 // Fonction déclenchée à chaque frame
 const loop = () =>
@@ -940,8 +986,8 @@ const loop = () =>
     window.requestAnimationFrame(loop)
 
     // Met à jour les coordonnées de la balle en appliquant un easing
-    coords.x += (mouse.x - coords.x) * 0.1
-    coords.y += (mouse.y - coords.y) * 0.1
+    ball.x += (mouse.x - ball.x) * 0.1
+    ball.y += (mouse.y - ball.y) * 0.1
 
     // Efface le canvas
     context.globalAlpha = 0.2
@@ -950,7 +996,7 @@ const loop = () =>
 
     // Dessine la balle
     context.beginPath()
-    context.arc(coords.x, coords.y, 50, 0, Math.PI * 2)
+    context.arc(ball.x, ball.y, 50, 0, Math.PI * 2)
     context.globalAlpha = 1
     context.fillStyle = 'orange'
     context.fill()
@@ -978,13 +1024,14 @@ loop()
                     <ul>
                         <li><a href="demos/balossini_arthur/index.html" target="_blank">Balossini Arthur</a></li>
                         <li><a href="demos/cao_van_truong_alain/index.html" target="_blank">Cao Van Truong</a></li>
+                        <li><a href="demos/gentric_loana/index.html" target="_blank">Gentric Loana</a></li>
                         <li><a href="demos/grosjean_amelie/index.html" target="_blank">Grosjean Amélie</a></li>
+                        <li><a href="demos/lacroix_thomas/index.html" target="_blank">Lacroix Thomas</a></li>
                         <li><a href="demos/laurent_adrien/index.html" target="_blank">Laurent Adrien</a></li>
                         <li><a href="demos/le_bras_leo/index.html" target="_blank">Le Bras Léo</a></li>
                         <li><a href="demos/obadia_thomas/index.html" target="_blank">Obadia Thomas</a></li>
-                        <li><a href="demos/parisot_mathieu/index.html" target="_blank">Parisot Mathieu</a></li>
-                        <li><a href="demos/thiriot_virgile/index.html" target="_blank">Thiriot Virgile</a></li>
-                        <li><a href="demos/timsit_victor/index.html" target="_blank">Timsit Victor</a></li>
+                        <li><a href="demos/parot_clement/index.html" target="_blank">Parot Clément</a></li>
+                        <li><a href="demos/smagghe_damien/index.html" target="_blank">Smagghe Damien</a></li>
                         <li><a href="demos/villain_baptiste/index.html" target="_blank">Villain Baptiste</a></li>
                     </ul>
                 </section>

@@ -130,24 +130,38 @@ contexts[10].fillStyle = gradient;                  // Le gradient devient le st
 contexts[10].fillRect(0,0,400,400);                 // Faire apparaître
 
 /* Save() et Restore() */
-contexts[11].beginPath();
-contexts[11].moveTo(50,50);
-contexts[11].lineTo(300,50);
-contexts[11].save();              // Sauvegarde les propriétés du context
-contexts[11].lineWidth = 20;      // Changement d'une des propriétés
-contexts[11].stroke();            // Dessin du trait
-contexts[11].beginPath();
-contexts[11].moveTo(50,100);
-contexts[11].lineTo(300,100);
-contexts[11].save();              // Nouvelle sauvegarde des propriétés du context
-contexts[11].strokeStyle = 'red'; // Changement d'une autre propriété
-contexts[11].stroke();            // Dessin du trait
-contexts[11].beginPath();
-contexts[11].moveTo(50,150);
-contexts[11].lineTo(300,150);
-contexts[11].restore();           // Restauration des propriétés à la derniène sauvegarde
-contexts[11].restore();           // Restauration des propriétés à la sauvegarde encore avant
-contexts[11].stroke();            // Dessin du trait
+contexts[11].save()
+contexts[11].beginPath()
+contexts[11].moveTo(50, 50)
+contexts[11].lineTo(50, 100)
+contexts[11].lineWidth = 1
+contexts[11].stroke()
+
+contexts[11].save()
+contexts[11].beginPath()
+contexts[11].moveTo(100, 50)
+contexts[11].lineTo(100, 100)
+contexts[11].lineWidth = 5
+contexts[11].stroke()
+
+contexts[11].save()
+contexts[11].beginPath()
+contexts[11].moveTo(150, 50)
+contexts[11].lineTo(150, 100)
+contexts[11].lineWidth = 10
+contexts[11].stroke()
+
+contexts[11].restore()
+contexts[11].beginPath()
+contexts[11].moveTo(200, 50)
+contexts[11].lineTo(200, 100)
+contexts[11].stroke()
+
+contexts[11].restore()
+contexts[11].beginPath()
+contexts[11].moveTo(250, 50)
+contexts[11].lineTo(250, 100)
+contexts[11].stroke()
 
 /* Courbe de Bézier */
 contexts[12].beginPath();
@@ -193,10 +207,10 @@ image = new Image();
 image.onload = function()
 {
     /* Dessiner l'image chargée dans le canvas */
-    contexts[17].drawImage(image,0,0,image.width / 6,image.height / 6);
+    contexts[17].drawImage(image,0,0,image.width,image.height);
 
     /* Récupérer les pixels dans image_data */
-    var image_data = contexts[17].getImageData(0,0,image.width / 6,image.height / 6);
+    var image_data = contexts[17].getImageData(0,0,image.width,image.height);
 
     /* parcourir les pixels 4 par 4 */
     for(var i = 0; i < image_data.data.length; i += 4)

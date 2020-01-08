@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This tron game allows you to drive a motorbike and play against a friend with the same computer">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tron Game</title>
+    <link rel="icon" href="assets/images/lightcycle.ico" />
+    <link rel="stylesheet" href="styles/compressReset.css">
+    <link rel="stylesheet" href="styles/compressStyle.css">
+</head>
+
+<body>
+
+    <div class="game">
+        <div class="game__score">
+            <p>Player 1 : <span class="js-value1">0</span></p>
+            <p>Player 2 : <span class="js-value2">0</span></p>
+        </div>
+        <canvas width="800" height="600" class="canvas js-canvas"></canvas>
+        <div class="game__title">
+            <h2>The tron game</h2>
+            <h3>How to play ?</h3>
+            <ul class="game__explaination">
+                <li>You need to be 2</li>
+                <li>Each player will control a Tron bike</li>
+                <li>The tron bike is always moving</li>
+                <li>The goal is to avoid shield left by the other player and yours</li>
+                <li>If you hit a border of the game or a shield you'll lose</li>
+            </ul>
+            <h3>keyboard</h3>
+            <ul class="game__touch">
+                <li> <span>A</span> Player 1 left rotation</li>
+                <li><span>E</span> Player 1 right rotation</li>
+                <li><span>&#8592;</span> Player 2 left rotation</li>
+                <li><span>&#8594;</span> Player 2 right rotation</li>
+            </ul>
+            <div class="js-game__selector">
+                <ul class="game__colors">
+                    <li>
+                        <label for="">Player 1's color</label>
+                        <input type="color" id="color1" name="color1" value="#cb0000"></li>
+                    <li>
+                        <label for="">Player 2's color</label>
+                        <input type="color" id="color2" name="color2" value="#07cff6"></li>
+                </ul>
+            </div>
+            <div class="game__winner">Winner : <span class="value"></span></div>
+            <button class="game__launcher js-launcher">Play</button>
+        </div>
+    </div>
+    <div class="sounds">
+        <audio class="js-audio" src="assets/sounds/bo1.mp3"></audio>
+        <audio class="js-audio" src="assets/sounds/bo2.mp3"></audio>
+        <audio class="js-audio" src="assets/sounds/bo3.mp3"></audio>
+        <audio class="js-audio" src="assets/sounds/bo4.mp3"></audio>
+        <audio class="js-audio" src="assets/sounds/bo5.mp3"></audio>
+        <audio class="js-audio" src="assets/sounds/bo6.mp3"></audio>
+    </div>
+    <script src="scripts/compressBoost.js"></script>
+    <script src="scripts/compressApp.js"></script>
+</body>
+
+</html>

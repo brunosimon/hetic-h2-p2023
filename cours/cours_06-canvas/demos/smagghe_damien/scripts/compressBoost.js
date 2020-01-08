@@ -1,0 +1,1 @@
+class Boost{constructor(t,s,h){this.x=Math.random()*t,this.y=Math.random()*s,this.context=h}draw(){this.context.save(),this.context.beginPath(),this.context.arc(this.x,this.y,5,0,2*Math.PI),this.context.shadowOffsetX=0,this.context.shadowOffsetY=0,this.context.shadowBlur=0,this.context.fillStyle="green",this.context.fill(),this.context.restore()}}

@@ -1,0 +1,88 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: -webkit-linear-gradient(#82BFC6, #212282)
+}
+
+.canvas
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+h1.title
+{
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    color:  #ffffff;
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+h2.mouth
+{
+    position: absolute;
+    top: 50px;
+    left: 980px;
+    color:  #ffffff;
+    font-family: 'Raleway', sans-serif;
+}
+
+h2.wink
+{
+    position: absolute;
+    top: 200px;
+    left: 980px;
+    color:  #ffffff;
+    font-family: 'Raleway', sans-serif;
+}
+
+.wink-button{
+    position: absolute;
+    top: 250px;
+    left: 980px;
+    width: 30px;
+    height: 30px;
+    background: #ffffff;
+    border-radius: 20%;
+}
+
+.wink-button:hover
+{
+    background-color: lighten(green, 5%);
+    cursor: pointer;
+    cursor: hand;
+}
+
+h3.space
+{
+    position: absolute;
+    top: 500px;
+    left: 980px;
+    color:  #ffffff;
+    font-family: 'Raleway', sans-serif;
+}
+
+h3.enter
+{
+    position: absolute;
+    top: 400px;
+    left: 980px;
+    color:  #ffffff;
+    font-family: 'Raleway', sans-serif;
+}
