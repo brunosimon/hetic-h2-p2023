@@ -26,7 +26,7 @@
         $matches = array();
         preg_match_all("/(?:cours\_)?(.*)-(.*)/",$_entry,$matches);
         $file            = new stdClass();
-        $file->url       = '../cours/'.$_entry;
+        $file->url       = '../cours/'.$_entry.'/';
         $file->num       = $matches[1][0];
         $file->title     = $matches[2][0];
         $file->resources = array();

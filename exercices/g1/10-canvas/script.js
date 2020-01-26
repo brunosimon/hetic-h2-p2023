@@ -1,23 +1,30 @@
-const $canvas = document.querySelector('.canvas')
+const $canvas = document.querySelector('.js-canvas')
 const context = $canvas.getContext('2d')
 
-context.beginPath()
+$canvas.width = 800
+$canvas.height = 600
 
-context.moveTo(50, 50)
-context.lineTo(200, 200)
-context.lineTo(50, 200)
-// context.closePath()
+const ball = { x: 200, y: 200, radius: 50 }
 
-context.lineWidth = 20
-context.lineCap = 'round'
-context.lineJoin = 'bevel'
-context.strokeStyle = 'hsl(0deg, 100%, 50%)'
+const loop = () =>
+{
+    window.requestAnimationFrame(loop)
 
-context.fillStyle = 'orange'
-context.shadowOffsetX = 5
-context.shadowOffsetY = 10
-context.shadowBlur = 50
-context.shadowColor = 'blue'
+    context.clearRect(0, 0, $canvas.width, $canvas.height)
 
-context.fill()
-context.stroke()
+    ball.x += 4
+
+    ball.y = - Math.abs(Math.sin(Date.now() * 0.005)) * 100 + 200
+
+    if(ball.x > $canvas.width + ball.radius)
+    {
+        ball.x = - ball.radius
+    }
+    
+    context.beginPath()
+    context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2)
+    context.fillStyle = 'orange'
+    context.fill()
+}
+
+loop()
