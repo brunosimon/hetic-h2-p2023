@@ -407,7 +407,7 @@ npm i package1 package2 package3
                 </section>
 
                 <section>
-                    <p>Nous allons donc rajouter <span class="hl">node_modules</span> dans le <span class="hl">.gitignore</span></p>
+                    <p>Nous allons donc ajouter <span class="hl">node_modules</span> dans le <span class="hl">.gitignore</span></p>
                     <p>Mais vient un nouveau problème</p>
                     <p>Comment les autres développeurs savent quels modules installer ?</p>
                     <p class="fragment"><span class="hl">package.json</span></p>
@@ -444,7 +444,7 @@ npm init -y
                 </section>
 
                 <section>
-                    <p>Une fois le <span class="hl">package.json</span> créé, pour rajouter une dépendance et la sauvegarder dans le fichier, utilisez la commande <span class="hl">install</span> mais en rajoutant <span class="hl">--save-prod</span></p>
+                    <p>Une fois le <span class="hl">package.json</span> créé, pour ajouter une dépendance et la sauvegarder dans le fichier, utilisez la commande <span class="hl">install</span> mais en rajoutant <span class="hl">--save-prod</span></p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm install --save-prod webpack
@@ -471,7 +471,7 @@ npm i -P webpack
                 </section>
 
                 <section>
-                    <p>Pour rajouter une dépendance de <span class="u">development</span></p>
+                    <p>Pour ajouter une dépendance de <span class="u">development</span></p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm install --save-dev webpack
@@ -573,14 +573,14 @@ npm i -D webpack-cli
 
                 <section>
                     <p>Ce fichier va contenir du JS qui sera éxecuté par Node.js</p>
-                    <p>Node.js utilise CommonJS pour sa gestion des modules</p>
-                    <p>Les modules permettent d'importer et d'exporter du JS</p>
-                    <p>Notre fichier doit simplement exporter un objet</p>
+                    <p>De base Node.js utilise <span class="u">CommonJS</span> pour sa gestion des modules</p>
+                    <p>☝️ Les modules permettent d'importer et d'exporter du JS</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 module.exports = {}
                         </code></pre>
                     </div>
+                    <p>Ici, notre fichier exporte un objet vide que nous allons remplir par la suite</p>
                 </section>
 
                 <section>
@@ -594,7 +594,9 @@ module.exports = {
 }
                         </code></pre>
                     </div>
-                    <p><span class="hl">path</span> est une librairie incluse avec Node.js permettant de gérer les chemins de fichiers</p>
+                    <p>☝️ <span class="hl">path</span> est une librairie incluse avec Node.js permettant de gérer les chemins de fichiers</p>
+                    <p>☝️ <span class="hl">__dirname</span> est une variable globale fournie par Node.js qui correspond au chemin absolu du fichier JS</p>
+                    <p>☝️ le fichier <span class="hl">src/index.js</span> n'existe pas encore</p>
                 </section>
 
                 <section>
@@ -613,6 +615,7 @@ module.exports = {
 }
                         </code></pre>
                     </div>
+                    <p>☝️ on indique à Webpack de nous sortir un fichier js <span class="hl">bundle.js</span> qui devra se trouver dans le dossier <span class="hl">dist/</span></p>
                 </section>
 
                 <section>
@@ -652,6 +655,7 @@ npm run build
                 </section>
 
                 <section>
+                    <p>☝️</p>
                     <p>Après chaque modification, il faut relancer <span class="hl">npm run build</span></p>
                     <p>Nous automatiserons cette tâche plus tard</p>
                 </section>
@@ -747,7 +751,7 @@ export default class Toto
                 </section>
 
                 <section>
-                    <p>Rajoutez les dépendances <span class="hl">style-loader</span> et <span class="hl">css-loader</span> à votre projet</p>
+                    <p>Ajoutez les dépendances <span class="hl">style-loader</span> et <span class="hl">css-loader</span> à votre projet</p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D style-loader css-loader
@@ -756,7 +760,7 @@ npm i -D style-loader css-loader
                 </section>
 
                 <section>
-                    <p>Rajoutez les règles à <span class="hl">bundler/webpack.config.js</span></p>
+                    <p>Ajoutez les règles à <span class="hl">bundler/webpack.config.js</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -785,6 +789,10 @@ module.exports = {
                 </section>
 
                 <section>
+                    <p>☝️ La syntaxe <span class="hl">/\.css$/</span> correspond à une Regex. Elle veut dire <span class="hl">se termine par ".css"</span></p>
+                </section>
+
+                <section>
                     <p>Créez un fichier CSS <span class="hl">src/style/main.css</span> avec un peu de style dedans</p>
                     <div class="code-steps" data-type="css" data-trim>
                         <pre contenteditable><code>
@@ -801,13 +809,13 @@ body
                     <p><span class="hl">src/index.js</span></p>
                     <div class="code-steps" data-type="css" data-trim>
                         <pre contenteditable><code>
-import './css/style.css'
+import './style/main.css'
 
 // ...
                         </code></pre>
                     </div>
                     <p>Lancez un <span class="hl">build</span> et testez la page</p>
-                    <p>Le CSS est bien pris en compte</p>
+                    <p>Celle-ci devrait être en rouge</p>
                 </section>
 
                 <!-- Images -->
@@ -816,7 +824,7 @@ import './css/style.css'
                 </section>
 
                 <section>
-                    <p>Rajoutez la dépendance <span class="hl">file-loader</span></p>
+                    <p>Ajoutez la dépendance <span class="hl">file-loader</span></p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D file-loader
@@ -826,7 +834,7 @@ npm i -D file-loader
                 </section>
 
                 <section>
-                    <p>Rajoutez la règle à <span class="hl">bundler/webpack.config.js</span></p>
+                    <p>Ajoutez la règle à <span class="hl">bundler/webpack.config.js</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -843,7 +851,7 @@ npm i -D file-loader
                 </section>
 
                 <section>
-                    <p>Rajoutez une image à votre projet dans le dossier <span class="hl">src/images/</span></p>
+                    <p>Ajoutez une image à votre projet dans le dossier <span class="hl">src/images/</span></p>
                     <p>Vous pouvez maintenant la charger en l'important dans le JS</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
@@ -917,6 +925,12 @@ document.body.appendChild($image)
                     </div>
                 </section>
 
+                <section>
+                    <p>☝️</p>
+                    <p>Les anciens fichiers ne se suppriment pas automatiquement</p>
+                    <p>Nous gèrerons ça plus tard</p>
+                </section>
+
                 <!-- Fonts -->
                 <section id="fonts">
                     <h3>Fonts</h3>
@@ -927,7 +941,7 @@ document.body.appendChild($image)
                 </section>
 
                 <section>
-                    <p>Rajoutez la règle à <span class="hl">bundler/webpack.config.js</span></p>
+                    <p>Ajoutez la règle à <span class="hl">bundler/webpack.config.js</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -950,7 +964,7 @@ document.body.appendChild($image)
                 </section>
 
                 <section>
-                    <p>Rajoutez des fonts dans le dossier <span class="hl">src/fonts/</span></p>
+                    <p>Ajoutez des fonts dans le dossier <span class="hl">src/fonts/</span></p>
                     <p>Chargez les dans le CSS <span class="hl">src/style/main.css</span> avec <span class="hl">@font-face</span></p>
                     <div class="code-steps" data-type="css" data-trim>
                         <pre contenteditable><code>
@@ -979,9 +993,9 @@ body
                 </section>
 
                 <section>
-                    <p>Le HTML se gère différemment car il ne suffit pas de l'importer dans le JS puisque c'est lui qui doit importer le JS</p>
+                    <p>Le HTML se gère différemment car il ne suffit pas de l'importer dans le JS puisque c'est lui qui doit charger le JS</p>
                     <p>Nous allons utiliser un premier <span class="hl">plugin</span> Webpack</p>
-                    <p>Rajoutez les dépendances <span class="hl">html-webpack-plugin</span> et <span class="hl">html-loader</span></p>
+                    <p>Ajoutez les dépendances <span class="hl">html-webpack-plugin</span> et <span class="hl">html-loader</span></p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D html-webpack-plugin html-loader
@@ -990,21 +1004,25 @@ npm i -D html-webpack-plugin html-loader
                 </section>
 
                 <section>
-                    <p>Rajoutez la règle à <span class="hl">bundler/webpack.config.js</span></p>
+                    <p>Ajoutez la règle à <span class="hl">bundler/webpack.config.js</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
             {
-                test: /\.(html)$/,
-                use: ['html-loader']
+                test: /\.html?$/,
+                use:
+                [
+                    'html-loader'
+                ]
             }
 // ...
                         </code></pre>
                     </div>
+                    <p>☝️ La Regex <span class="hl">/\.html?$/</span> veut dire <span class="hl">Se termine par ".html" et le "l" est optionnel</span></p>
                 </section>
 
                 <section>
-                    <p>Toujours dans <span class="hl">bundler/webpack.config.js</span>, rajoutez à l'export une propriété <span class="hl">plugins</span></p>
+                    <p>Toujours dans <span class="hl">bundler/webpack.config.js</span>, ajoutez à l'export une propriété <span class="hl">plugins</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -1053,7 +1071,7 @@ module.exports = {
                 <section>
                     <p>Lancez un <span class="hl">build</span> et testez la page</p>
                     <p>Tout devrait être similaire, mais vous n'avez plus à créer et conserver le HTML dans <span class="hl">dist/</span></p>
-                    <p>Vous pouvez d'ailleurs rajouter le dossier <span class="hl">dist/</span> au <span class="hl">.gitignore</span></p>
+                    <p>Vous pouvez d'ailleurs ajouter le dossier <span class="hl">dist/</span> au <span class="hl">.gitignore</span></p>
                 </section>
 
                 <!-- Transpiling -->
@@ -1062,7 +1080,7 @@ module.exports = {
                 </section>
 
                 <section>
-                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, rajoutez la propriété <span class="hl">mode</span> avec comme valeur <span class="hl">'development'</span></p>
+                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, ajoutez la propriété <span class="hl">mode</span> avec comme valeur <span class="hl">'development'</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1090,16 +1108,17 @@ module.exports = {
                 </section>
 
                 <section>
-                    <p>Rajoutez les dépendances <span class="hl">@babel/core</span>, <span class="hl">babel-loader</span> et <span class="hl">@babel/preset-env</span></p>
+                    <p>Ajoutez les dépendances <span class="hl">@babel/core</span>, <span class="hl">babel-loader</span> et <span class="hl">@babel/preset-env</span></p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D @babel/core babel-loader @babel/preset-env
                         </code></pre>
                     </div>
+                    <p>☝️ Le JS est déjà géré par Webpack. mais nous allons y ajouter Babel</p>
                 </section>
 
                 <section>
-                    <p>Rajoutez une règle <span class="hl">bundler/webpack.config.js</span> pour les fichiers JS avec <span class="hl">babel-loader</span></p>
+                    <p>Ajoutez une règle <span class="hl">bundler/webpack.config.js</span> pour les fichiers JS avec <span class="hl">babel-loader</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1120,7 +1139,7 @@ npm i -D @babel/core babel-loader @babel/preset-env
                 </section>
 
                 <section>
-                    <p>Rajoutez un fichier <span class="hl">.babelrc</span> à la racine du projet</p>
+                    <p>Ajoutez un fichier <span class="hl">.babelrc</span> à la racine du projet</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 {
@@ -1131,6 +1150,8 @@ npm i -D @babel/core babel-loader @babel/preset-env
 }
                         </code></pre>
                     </div>
+                    <p>☝️ Ce fichier permet de configurer Babel</p>
+                    <p>Nous y indiquons d'utiliser les options par défaut</p>
                 </section>
                 
                 <section>
@@ -1145,12 +1166,12 @@ npm i -D @babel/core babel-loader @babel/preset-env
 
                 <section>
                     <p>Lorsque nous mettons une nouvelle version d'un site en ligne, nous aimerions que tous les utilisateurs voient cette dernière version</p>
-                    <p>Sauf que les navigateurs gèrent un cache</p>
+                    <p>Sauf que les navigateurs utilisent divers caches</p>
                     <p>Une astuce consiste à changer le nom du fichier JS à chaque build</p>
                 </section>
 
                 <section>
-                    <p>Dans la propriété <span class="hl">output.filename</span> de <span class="hl">bundler/webpack.config.js</span>, rajoutez <span class="hl">[hash]</span></p>
+                    <p>Dans la propriété <span class="hl">output.filename</span> de <span class="hl">bundler/webpack.config.js</span>, ajoutez <span class="hl">[hash]</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1185,7 +1206,7 @@ module.exports = {
                 <section>
                     <p>À chaque build, les fichiers se rajoutent dans <span class="hl">dist/</span>, mais les anciens ne disparaissent pas</p>
                     <p>Nous allons utiliser le plugin <span class="hl">clean-webpack-plugin</span></p>
-                    <p>Rajoutez la dépendance <span class="hl">clean-webpack-plugin</span></p>
+                    <p>Ajoutez la dépendance</p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D clean-webpack-plugin
@@ -1194,7 +1215,7 @@ npm i -D clean-webpack-plugin
                 </section>
 
                 <section>
-                    <p>Dans la propriété <span class="hl">plugins</span> de <span class="hl">bundler/webpack.config.js</span>, rajoutez une instance du plugin avec les options suivantes</p>
+                    <p>Dans la propriété <span class="hl">plugins</span> de <span class="hl">bundler/webpack.config.js</span>, ajoutez une instance du plugin avec les options suivantes</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1207,7 +1228,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
     [
         // ...
 
-        new CleanWebpackPlugin(['dist'], { root: path.resolve(__dirname, '..') })
+        new CleanWebpackPlugin()
         
         // ...
     ]
@@ -1231,11 +1252,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
                     <p>Lorsque des logs ou des erreurs surviennent, la console indique la ligne et le fichier concerné</p>
                     <p>Mais comme notre JS est compilé en un seul fichier, ces indicateurs ne veulent plus dire grand chose</p>
                     <p>Les <span class="hl">sourcemaps</span> permettent de conserver cette information</p>
-                    <p>Il existe plusieurs façons de les rajouter, mais l'idéal est de générer un fichier à part</p>
+                    <p>Il existe plusieurs façons de les ajouter, mais l'idéal est de générer un fichier à part</p>
                 </section>
 
                 <section>
-                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, rajoutez la propriété <span class="hl">devtool</span> avec comme valeur <span class="hl">'source-map'</span></p>
+                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, ajoutez la propriété <span class="hl">devtool</span> avec comme valeur <span class="hl">'source-map'</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1270,7 +1291,7 @@ module.exports = {
                 </section>
 
                 <section>
-                    <p>Dans <span class="hl">package.json</span> dupliquez le script <span class="hl">build</span>, renommez le <span class="hl">watch</span> et rajoutez le paramètre <span class="hl">--watch</span></p>
+                    <p>Dans <span class="hl">package.json</span> dupliquez le script <span class="hl">build</span>, renommez le <span class="hl">watch</span> et ajoutez le paramètre <span class="hl">--watch</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 {
@@ -1308,7 +1329,7 @@ npm run watch
                 <section>
                     <p>Le développement de certains sites nécessitent de faire tourner un serveur local</p>
                     <p>Grâce à <span class="hl">webpack-dev-server</span>, nous pouvons faire cela facilement</p>
-                    <p>Rajoutez la dépendance <span class="hl">webpack-dev-server</span> à votre projet</p>
+                    <p>Ajoutez la dépendance <span class="hl">webpack-dev-server</span> à votre projet</p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D webpack-dev-server
@@ -1334,7 +1355,7 @@ npm i -D webpack-dev-server
                 </section>
 
                 <section>
-                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, rajoutez à l'export la propriété <span class="hl">devServer</span></p>
+                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, ajoutez à l'export la propriété <span class="hl">devServer</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1371,6 +1392,43 @@ npm run dev
                     </div>
                 </section>
 
+                <section>
+                    <p>Si vous le souhaitez, vous pouvez rendre votre site accessible sur le réseau local</p>
+                    <p>Il suffira à n'importe quel device de taper comme URL votre <span class="u">IP local</span> suivi du <span class="u">port</span> pour accéder au site</p>
+                    <p>C'est très utile pour débugger sur mobile ou sur des OS différent</p>
+                </section>
+
+                <section>
+                    <p>Pour cela, ajoutez simplement <span class="hl">host: '0.0.0.0'</span> dans les propriétés de <span class="hl">devServer</span></p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+// ...
+
+    devServer:
+    {
+        contentBase: './dist',
+        open: true,
+        host: '0.0.0.0'
+    },
+
+// ...
+                        </code></pre>
+                </section>
+                
+                <section>
+                    <p>Pour trouver votre IP locale sur Mac, cliquez sur l'icône de wifi tout en pressant la touche <span class="hl">option/alt</span></p>
+                    <p>
+                        <img src="src/img/ip-mac.jpg" width="300">
+                    </p>
+                </section>
+                
+                <section>
+                    <p>Pour trouver votre IP locale sur Windows, lancez votre <span class="u">invit de commande</span> (ou terminal) et tapez <span class="hl">ipconfig</span></p>
+                    <p>
+                        <img src="src/img/ip-windows.png" width="600">
+                    </p>
+                </section>
+
                 <!-- Hot reload -->
                 <!--
                 <section id="hot-reload">
@@ -1378,12 +1436,12 @@ npm run dev
                 </section>
 
                 <section>
-                    <p>Maintenant que nous avons un serveur de développement, nous pouvons rajouter le <span class="hl">Hot Reload</span></p>
+                    <p>Maintenant que nous avons un serveur de développement, nous pouvons ajouter le <span class="hl">Hot Reload</span></p>
                     <p>Le Hot Reload est encore mieux que le watch car il permet d'actualiser les éléments du site sans avoir à rafraîchir la page</p>
                 </section>
 
                 <section>
-                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, rajoutez la propriété <span class="hl">hot: true</span> au devServer</p>
+                    <p>Dans <span class="hl">bundler/webpack.config.js</span>, ajoutez la propriété <span class="hl">hot: true</span> au devServer</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1406,7 +1464,7 @@ module.exports = {
                 </section>
 
                 <section>
-                    <p>Toujours dans <span class="hl">bundler/webpack.config.js</span>, rajoutez le plugin de Hot Reload</p>
+                    <p>Toujours dans <span class="hl">bundler/webpack.config.js</span>, ajoutez le plugin de Hot Reload</p>
                     <p>Celui-ci est directement contenu dans Webpack</p>
                     <p>Il faut donc importer webpack</p>
                     <div class="code-steps" data-type="js" data-trim>
@@ -1431,7 +1489,7 @@ const webpack = require('webpack')
                 </section>
 
                 <section>
-                    <p>A la fin du fichier <span class="hl">src/index.js</span> rajoutez le code suivant pour indiquer que le script supporte le Hot Reload</p>
+                    <p>A la fin du fichier <span class="hl">src/index.js</span> ajoutez le code suivant pour indiquer que le script supporte le Hot Reload</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
@@ -1498,8 +1556,8 @@ module.hot.dispose(() =>
                     <p>Nous allons séparer notre configuration en 3 fichiers</p>
                     <ul>
                         <li><span class="hl">webpack.common.js</span> qui va contenir la configuration commune aux deux environnements</li>
-                        <li><span class="hl">webpack.prod.js</span> qui va importer la configuration commune et y rajouter la configuration de production</li>
-                        <li><span class="hl">webpack.dev.js</span> qui va importer la configuration commune et y rajouter la configuration de développement</li>
+                        <li><span class="hl">webpack.prod.js</span> qui va importer la configuration commune et y ajouter la configuration de production</li>
+                        <li><span class="hl">webpack.dev.js</span> qui va importer la configuration commune et y ajouter la configuration de développement</li>
                     </ul>
                 </section>
 
@@ -1659,7 +1717,7 @@ module.exports = webpackMerge(
                 </section>
 
                 <section>
-                    <p>Rajoutez la dependance <span class="hl">mini-css-extract-plugin</span> à votre projet</p>
+                    <p>Ajoutez la dependance <span class="hl">mini-css-extract-plugin</span> à votre projet</p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D mini-css-extract-plugin
@@ -1668,72 +1726,34 @@ npm i -D mini-css-extract-plugin
                 </section>
 
                 <section>
-                    <p>Nous souhaitons extraire le CSS uniquement en <span class="u">production</span></p>
-                    <p>Nous allons donc retirer la <span class="hl">rule CSS</span> de la configuration <span class="u">common</span>, la remettre dans <span class="u">dev</span> et en créer une légèrement différente dans <span class="u">prod</span></p>
-                </section>
-
-                <section>
-                    <p>Supprimez la <span class="hl">rule CSS</span> de <span class="hl">bundler/webpack.common.js</span></p>
-                </section>
-
-                <section>
-                    <p>Ajoutez la <span class="hl">rule CSS</span> à <span class="hl">bundler/webpack.dev.js</span></p>
-                    <div class="code-steps" data-type="js" data-trim>
-                        <pre contenteditable><code>
-// ...
-
-module.exports = webpackMerge(
-    commonConfiguration,
-    {
-        // ...
-
-        module:
-        {
-            rules:
-            [
-                {
-                    test: /\.css$/,
-                    use:
-                    [
-                        'style-loader',
-                        'css-loader'
-                    ]
-                }
-            ]
-        }
-    }
-)
-                        </code></pre>
-                    </div>
-                </section>
-
-                <section>
-                    <p>Ajoutez la nouvelle <span class="hl">rule CSS</span> ainsi que le plugin <span class="hl">mini-css-extract-plugin</span> à <span class="hl">bundler/webpack.prod.js</span></p>
+                    <p>Remplacez la <span class="hl">rule CSS</span> et ajoutez le plugin <span class="hl">mini-css-extract-plugin</span> à <span class="hl">bundler/webpack.common.js</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // ...
 
-        plugins:
+    plugins:
+    [
+        new MiniCssExtractPlugin(),
+        // ...
+    ],
+    module:
+    {
+        rules:
         [
-            new MiniCssExtractPlugin(),
             // ...
-        ],
-        module:
-        {
-            rules:
-            [
-                {
-                    test: /\.css$/,
-                    use:
-                    [
-                        MiniCssExtractPlugin.loader,
-                        'css-loader'
-                    ]
-                }
-            ]
-        }
+            {
+                test: /\.css$/,
+                use:
+                [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader'
+                ]
+            }
+            // ...
+        ]
+    }
         
 // ...
                         </code></pre>
@@ -1741,7 +1761,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
                 </section>
                 
                 <section>
-                    <p>Lancez un <span class="hl">build</span></p>
+                    <p>Lancez un <span class="hl">build</span> ou un <span class="hl">dev</span></p>
                     <p>Le CSS est maintenant dans un fichier séparé</p>
                 </section>
 
@@ -1752,7 +1772,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
                 <section>
                     <p>Le CSS c'est bien, mais <a href="http://stylus-lang.com/" target="_blank">Stylus</a> c'est mieux</p>
-                    <p>Rajoutez les dépendances <span class="hl">stylus</span> et <span class="hl">stylus-loader</span></p>
+                    <p>Ajoutez les dépendances <span class="hl">stylus</span> et <span class="hl">stylus-loader</span></p>
                     <div class="code-steps" data-type="bash" data-trim>
                         <pre contenteditable><code>
 npm i -D stylus stylus-loader
@@ -1761,41 +1781,20 @@ npm i -D stylus stylus-loader
                 </section>
 
                 <section>
-                    <p>Rajouter la <span class="hl">rule</span> pour les fichiers <span class="hl">.styl</span> dans <span class="hl">bundler/webpack.dev.js</span></p>
+                    <p>Ajoutez la <span class="hl">rule</span> pour les fichiers <span class="hl">.styl</span> dans <span class="hl">bundler/webpack.common.js</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 // ...
 
-                {
-                    test: /\.styl$/,
-                    use:
-                    [
-                        'style-loader',
-                        'css-loader',
-                        'stylus-loader'
-                    ]
-                }
-
-// ...
-                        </code></pre>
-                    </div>
-                </section>
-
-                <section>
-                    <p>Rajouter la <span class="hl">rule</span> pour les fichiers <span class="hl">.styl</span> dans <span class="hl">bundler/webpack.prod.js</span></p>
-                    <div class="code-steps" data-type="js" data-trim>
-                        <pre contenteditable><code>
-// ...
-
-                {
-                    test: /\.styl$/,
-                    use:
-                    [
-                        MiniCssExtractPlugin.loader,
-                        'css-loader',
-                        'stylus-loader'
-                    ]
-                }
+            {
+                test: /\.styl$/,
+                use:
+                [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'stylus-loader'
+                ]
+            }
 
 // ...
                         </code></pre>
@@ -1804,6 +1803,7 @@ npm i -D stylus stylus-loader
 
                 <section>
                     <p>Remplacez les fichiers <span class="hl">.css</span> par <span class="hl">.styl</span></pre>
+                    <p>Remplacez l'<span class="hl">import</span></p>
                     <p>Lancez un <span class="hl">build</span> ou un <span class="hl">dev</span></pre>
                     <p>Codez votre style en Stylus</p>
                 </section>
@@ -1829,7 +1829,7 @@ npm i -D copy-webpack-plugin
                 </section>
 
                 <section>
-                    <p>Rajoutez le plugin à <span class="hl">bundlers/webpack.common.js</span> de manière à ce qu'il soit utilisé en <span class="u">développement</span> et en <span class="u">production</span></p>
+                    <p>Ajoutez le plugin à <span class="hl">bundlers/webpack.common.js</span> de manière à ce qu'il soit utilisé en <span class="u">développement</span> et en <span class="u">production</span></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -1849,7 +1849,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
                 <section>
                     <p>Créez un dossier <span class="hl">static/</span></p>
-                    <p>Rajoutez y une image nommée <span class="hl">static-image.jpg</span></p>
+                    <p>Ajoutez y une image nommée <span class="hl">static-image.jpg</span></p>
                     <p>Chargez la dans le html</p>
                     <div class="code-steps" data-type="html" data-trim>
                         <pre contenteditable><code>

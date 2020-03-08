@@ -1,30 +1,109 @@
-const $canvas = document.querySelector('.js-canvas')
+/**
+ * Canvas
+ */
+const $canvas = document.createElement('canvas')
+$canvas.classList.add('canvas')
+document.body.appendChild($canvas)
+
 const context = $canvas.getContext('2d')
 
-$canvas.width = 800
-$canvas.height = 600
+/**
+ * Sizes
+ */
+const sizes = { width: null, height: null }
 
-const ball = { x: 200, y: 200, radius: 50 }
+const resize = () =>
+{
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+
+    $canvas.width = sizes.width
+    $canvas.height = sizes.height
+}
+
+window.addEventListener('resize', resize)
+resize()
+
+/**
+ * Cursor
+ */
+const cursor = { x: 0, y: 0 }
+
+window.addEventListener('mousemove', (_event) =>
+{
+    cursor.x = _event.clientX
+    cursor.y = _event.clientY
+})
+
+/**
+ * Balls
+ */
+const balls = []
+
+window.addEventListener('mousedown', () =>
+{
+    balls.push({
+        x: cursor.x,
+        y: cursor.y,
+        speedX: (Math.random() - 0.5) * 20,
+        speedY: - 5,
+        radius: Math.random() * 50,
+        color: `hsl(${Math.random() * 360}deg, 100%, 90%)`
+    })
+})
+
+const gravity = 0.5
+const friction = 0.1
+
+/**
+ * Loop
+ */
+let previousTime = Date.now()
 
 const loop = () =>
 {
     window.requestAnimationFrame(loop)
 
+    // Time
+    const time = Date.now()
+    const delta = time - previousTime
+    previousTime = time
+
+    // Clear canvas
     context.clearRect(0, 0, $canvas.width, $canvas.height)
 
-    ball.x += 2
-
-    if(ball.x > $canvas.width + ball.radius)
+    // Each ball
+    for(const ball of balls)
     {
-        ball.x = - ball.radius
-    }
+        // Update ball
+        ball.speedY += gravity
 
-    ball.y = 300 - Math.abs(Math.sin(Date.now() * 0.005)) * 150
-    
-    context.beginPath()
-    context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2)
-    context.fillStyle = 'orange'
-    context.fill()
+        ball.x += ball.speedX
+        ball.y += ball.speedY
+
+        if(ball.y > sizes.height - ball.radius)
+        {
+            ball.speedY *= - (1 - friction)
+            ball.y = sizes.height - ball.radius
+        }
+        if(ball.x > sizes.width - ball.radius)
+        {
+            ball.speedX *= - (1 - friction)
+            ball.x = sizes.width - ball.radius
+        }
+        if(ball.x < ball.radius)
+        {
+            ball.speedX *= - (1 - friction)
+            ball.x = ball.radius
+        }
+        
+        // Draw ball
+        context.beginPath()
+        context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2)
+        context.fillStyle = ball.color
+        context.fill()
+    }
 }
 
 loop()
+
