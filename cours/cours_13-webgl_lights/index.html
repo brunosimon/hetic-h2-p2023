@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cours 13 - WebGL - Lights</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css"> -->
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <!-- Code steps start -->
+        <link rel="stylesheet" href="../src/code-steps/prism-tomorrow.css">
+        <link rel="stylesheet" href="../src/code-steps/style.css">
+        <!-- Code steps end -->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+                <section>
+                    <h3>H2 - P2023</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 13</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2023">https://github.com/brunosimon/hetic-p2023</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2023/">http://bruno-simon.com/hetic/p2023/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Lights</h2>
+                </section>
+
+                <section>
+                    <p>Sommaire</p>
+                    <ul>
+                        <li><a href="#intro">Intro</a></li>
+                        <li><a href="#AmbientLight">AmbientLight</a></li>
+                        <li><a href="#DirectionalLight">DirectionalLight</a></li>
+                        <li><a href="#HemisphereLight">HemisphereLight</a></li>
+                        <li><a href="#PointLight">PointLight</a></li>
+                        <li><a href="#RectAreaLight">RectAreaLight</a></li>
+                        <li><a href="#SpotLight">SpotLight</a></li>
+                        <li><a href="#helpers">Helpers</a></li>
+                        <li><a href="#shadows">Shadows</a></li>
+                    </ul>
+                </section>
+
+                <section id="intro">
+                    <p>La gestion des lumières est très gourmande en terme de performance</p>
+                    <p>Pour fonctionner, nous devons utiliser des <span class="u">materials</span> réagissant à la lumière et rajouter les lumières dans la scène</p>
+                    <ul>
+                        <li>MeshLambertMaterial</li>
+                        <li>MeshPhongMaterial</li>
+                        <li>MeshToonMaterial</li>
+                        <li>MeshStandardMaterial</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Afin de mieux visualiser les lumières, il est conseillé de mettre en place une petite scène avec un sol</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+// Material
+const material = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    roughness: 0.3,
+    metalness: 0.3
+})
+
+// Sphere
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(2, 16, 16), material)
+sphere.position.x = - 6
+scene.add(sphere)
+
+// Plane
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4, 100, 100), material)
+scene.add(plane)
+
+// Torus Knot
+const torusKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.5, 0.5, 128, 16), material)
+torusKnot.position.x = 6
+scene.add(torusKnot)
+
+// Floor
+const floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(20, 20, 1, 1), material)
+floor.position.y = - 3
+floor.rotation.x -= Math.PI * 0.5
+scene.add(floor)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section id="AmbientLight">
+                    <h2 class="default">AmbientLight</h2>
+                </section>
+
+                <section>
+                    <p><a href="https://threejs.org/docs/index.html#api/lights/AmbientLight" target="_blank">AmbientLight</a> est une lumière omnidirectionnelle</p>
+                    <p>On l'utilise en général pour s'assurer que toutes les faces des objets soient un minimum visibles</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
+scene.add(ambientLight)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <!-- DirectionalLight -->
+                <section id="DirectionalLight">
+                    <h2 class="default">DirectionalLight</h2>
+                </section>
+
+                <section>
+                    <p><a href="https://threejs.org/docs/index.html#api/lights/DirectionalLight" target="_blank">DirectionalLight</a> est une lumière directionnelle dont les rayons de lumières sont parallèles</p>
+                    <p>On peut l'utiliser pour simuler l'éclairage du soleil</p>
+                    <p>La direction se fait entre les propriétés <span class="hl">position</span> et <span class="hl">target</span></p>
+                    <p>La puissance de la lumière ne varie pas avec la distance</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
+scene.add(ambientLight)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <!-- HemisphereLight -->
+                <section id="HemisphereLight">
+                    <h2 class="default">HemisphereLight</h2>
+                </section>
+
+                <section>
+                    <p><a href="https://threejs.org/docs/index.html#api/lights/HemisphereLight" target="_blank">HemisphereLight</a> est une lumière qui éclaire tel un dôme au dessus de la scène</p>
+                    <p>La couleur vari entre la skyColor (premier paramètre et haut du dôme) et la groundColor (deuxième paramètre et bas du dôme)</p>
+                    <p>Utile pour créer une ambiance non uniforme</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
+scene.add(hemisphereLight)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <!-- PointLight -->
+                <section id="PointLight">
+                    <h2 class="default">PointLight</h2>
+                </section>
+
+                <section>
+                    <p><a href="https://threejs.org/docs/index.html#api/lights/PointLight" target="_blank">PointLight</a> est un point de lumière qui se propage dans toutes les directions</p>
+                    <p>Plus l'objet éclairé est proche, plus l'intensité de la lumière sera forte</p>
+                    <p>Utile pour créer des éclairages tel qu'un briquet, une led ou une torche</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const pointLight = new THREE.PointLight(0xff9000, 0.5)
+pointLight.position.x = - 5
+pointLight.position.y = 2
+pointLight.position.z = 2
+scene.add(pointLight)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <!-- RectAreaLight -->
+                <section id="RectAreaLight">
+                    <h2 class="default">RectAreaLight</h2>
+                </section>
+
+                <section>
+                    <p><a href="https://threejs.org/docs/index.html#api/lights/RectAreaLight" target="_blank">RectAreaLight</a> est un carré de lumière qui se propage dans son sens de rotation avec une légère diffusion de la lumière</p>
+                    <p>Il est conseillé d'utiliser <span class="hl">lookAt</span> pour diriger la lumière facilement</p>
+                    <p>Utile pour créer des éclairages style photoshoot</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const rectAreaLight = new THREE.RectAreaLight(0x4e00ff, 3, 5, 5)
+rectAreaLight.position.x = 5
+rectAreaLight.position.z = 5
+rectAreaLight.position.y = - 3
+rectAreaLight.lookAt(new THREE.Vector3())
+scene.add(rectAreaLight)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <!-- SpotLight -->
+                <section id="SpotLight">
+                    <h2 class="default">SpotLight</h2>
+                </section>
+
+                <section>
+                    <p><a href="https://threejs.org/docs/index.html#api/lights/SpotLight" target="_blank">SpotLight</a> est un cône de lumière qui se propage vers sa propriété <span class="hl">target</span> (qui est un Object3D) avec une légère diffusion de la lumière</p>
+                    <p>Puisque le <span class="hl">target</span> est un objet 3D, il vaut mieux le rajouter à la scène</p>
+                    <p>Utile pour créer des éclairages style lampe torche</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const spotLight = new THREE.SpotLight(0x00ff9c, 1, 0, Math.PI * 0.2, 0.5)
+spotLight.position.z = 3
+spotLight.position.y = 2
+scene.add(spotLight)
+
+spotLight.target.position.z = - 2
+scene.add(spotLight.target)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Code final avec toutes les lumières</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+/**
+ * Lights
+ */
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.15)
+scene.add(ambientLight)
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
+directionalLight.position.x = 5
+directionalLight.position.z = 5
+scene.add(directionalLight)
+
+const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
+scene.add(hemisphereLight)
+
+const pointLight = new THREE.PointLight(0xff9000, 0.5)
+pointLight.position.x = - 5
+pointLight.position.y = 2
+pointLight.position.z = 2
+scene.add(pointLight)
+
+const rectAreaLight = new THREE.RectAreaLight(0x4e00ff, 3, 5, 5)
+rectAreaLight.position.x = 5
+rectAreaLight.position.z = 5
+rectAreaLight.position.y = - 3
+rectAreaLight.lookAt(new THREE.Vector3())
+scene.add(rectAreaLight)
+
+const spotLight = new THREE.SpotLight(0x00ff9c, 1, 0, Math.PI * 0.2, 0.5)
+spotLight.position.z = 5
+spotLight.position.x = - 5
+spotLight.position.y = 2
+scene.add(spotLight)
+
+spotLight.target.position.z = 0
+spotLight.target.position.x = - 1
+scene.add(spotLight.target)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <!-- Helpers -->
+                <section id="helpers">
+                    <h2>helpers</h2>
+                </section>
+
+                <section>
+                    <p>La majorité des Lights supportent des helpers</p>
+                    <ul>
+                        <li>DirectionalLight</li>
+                        <li>HemisphereLight</li>
+                        <li>PointLight</li>
+                        <li>SpotLight</li>
+                    </ul>
+                    <p>Les helpers permettent de visualiser la forme et la direction des lights</p>
+                    <p>Il faut les initialiser et les rajouter à la scène</p>
+                </section>
+
+                <section>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight)
+scene.add(directionalLightHelper)
+
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight)
+scene.add(hemisphereLightHelper)
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight)
+scene.add(pointLightHelper)
+
+const spotLightHelper = new THREE.SpotLightHelper(spotLight)
+scene.add(spotLightHelper)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <!-- House -->
+                <!-- <section id="house">
+                    <p>Nous allons utiliser une <a href="https://threejs.org/docs/index.html#api/lights/PointLight" target="_blank">PointLight</a> que nous allons mettre au dessus de la porte, une <a href="https://threejs.org/docs/index.html#api/lights/DirectionalLight" target="_blank">DirectionalLight</a> pour imiter l'illumitation du soleil et une <a href="https://threejs.org/docs/index.html#api/lights/AmbientLight" target="_blank">AmbientLight</a> pour éclairer les faces cachées</p>
+                </section>
+
+                <section>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+/**
+ * Lights
+ */
+const doorLight = new THREE.PointLight()
+doorLight.position.x = -1.02
+doorLight.position.y = 0
+doorLight.position.z = 0
+house.add(doorLight)
+
+const ambientLight = new THREE.AmbientLight(0x555555)
+scene.add(ambientLight)
+
+const sunLight = new THREE.DirectionalLight(0xffffff, 0.6)
+sunLight.position.x = 1
+sunLight.position.y = 1
+sunLight.position.z = 1
+house.add(sunLight)
+                        </code></pre>
+                    </div>
+                </section> -->
+
+                <!-- Ombres -->
+                <section id="shadows">
+                    <h2>Shadows</h2>
+                </section>
+
+                <section>
+                    <p>Les ombres ont toujours été un challenge pour la 3D temps réel. Même aujourd'hui, avec les cartes graphiques actuelles, les développeurs doivent faire preuve d'ingéniosité pour afficher des ombres</p>
+                    <p>Three.js intègre une gestion basique et peu réaliste des ombres, mais qui peut suffire</p>
+                </section>
+
+                <section>
+                    <p>Nous devons avertir le renderer que des ombres vont être utilisées</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+renderer.shadowMap.enabled = true
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Nous devons ensuite avertir si chaque objet (Mesh) doit générer une ombre (<span class="u">castShadow</span>) et/ou recevoir des ombres (<span class="u">receiveShadow</span>)</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+object.castShadow = true
+object.receiveShadow = true
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Il est important de n'activer les ombres que sur les objets le nécessitant</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+sphere.castShadow = true
+sphere.receiveShadow = true
+
+plane.castShadow = true
+plane.receiveShadow = true
+
+torusKnot.castShadow = true
+torusKnot.receiveShadow = true
+
+floor.receiveShadow = true
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>⚠️ Toutes les lumières ne gèrent pas des ombres</p>
+                    <p>Liste des lumières qui gèrent les ombres :</p>
+                    <ul>
+                        <li>DirectionalLight</li>
+                        <li>PointLight</li>
+                        <li>SpotLight</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Nous devons définir pour chaque lumière si elle doit générer des ombres</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+directionalLight.castShadow = true
+pointLight.castShadow = true
+spotLight.castShadow = true
+                        </code></pre>
+                    </div>
+                    <p>Comme vous pouvez le voir, la combinaison de plusieurs lumières qui gèrent des ombres à un résultat décevant 😧</p>
+                </section>
+
+                <section>
+                    <p>Code final pour gérer les ombres</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+renderer.shadowMap.enabled = true
+
+sphere.castShadow = true
+sphere.receiveShadow = true
+plane.castShadow = true
+plane.receiveShadow = true
+torusKnot.castShadow = true
+torusKnot.receiveShadow = true
+floor.receiveShadow = true
+
+directionalLight.castShadow = true
+pointLight.castShadow = true
+spotLight.castShadow = true
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Si vous le pouvez, évitez les ombres natives de Three.js et préférez utiliser des astuces tel que le baking ou de fausses ombres qui imitent la forme qu'aurait du avoir l'ombre</p>
+                    <p><a href="https://medium.com/@bruno_simon/bruno-simon-portfolio-case-study-960402cc259b#efe9" target="_blank">Case study Bruno Simon</a></p>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+
+        <!-- Code steps start -->
+        <script src="../src/code-steps/prism.js" data-manual></script>
+        <!-- Code steps end -->
+
+        <script type="module" src="../src/custom/script-module.js"></script>
+    </body>
+</html>

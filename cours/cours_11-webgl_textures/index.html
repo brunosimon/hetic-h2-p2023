@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cours 11 - WebGL - Textures</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css"> -->
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <!-- Code steps start -->
+        <link rel="stylesheet" href="../src/code-steps/prism-tomorrow.css">
+        <link rel="stylesheet" href="../src/code-steps/style.css">
+        <!-- Code steps end -->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2023</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 11</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2023">https://github.com/brunosimon/hetic-p2023</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2023/">http://bruno-simon.com/hetic/p2023/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Textures</h2>
+                </section>
+
+                <section>
+                    <p>Pour plus de réalisme, nous allons utiliser des <span class="u">textures</span></p>
+                    <p>Three.js gère plusieurs types de textures avec des sources différentes</p>
+                    <ul>
+                        <li><a target="_blank" href="https://threejs.org/docs/index.html#api/en/textures/Texture">Texture</a> pour des images</li>
+                        <li><a target="_blank" href="https://threejs.org/docs/index.html#api/en/textures/CanvasTexture">CanvasTexture</a> pour des canvas</li>
+                        <li><a target="_blank" href="https://threejs.org/docs/index.html#api/en/textures/VideoTexture">VideoTexture</a> pour des vidéos</li>
+                    </ul>
+                    <p>Nous n'allons nous concentrer que sur les images</p>
+                </section>
+
+                <section>
+                    <h2>Charger une image</h2>
+                    <p>Pour pouvoir utiliser une image en texture, il faut l'avoir chargée</p>
+                </section>
+
+                <section>
+                    <p>Il est possible d'écouter le chargement d'une image en JS natif</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+// Import image source
+import imageSource from './image.jpg'
+
+// Create image and texture
+const image = new Image()
+const texture = new THREE.Texture(image)
+
+// Wait for the image load event
+image.addEventListener('load', () =>
+{
+    texture.needsUpdate = true
+})
+
+// Set the source of the image to start loading
+image.src = imageSource
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Il est aussi possible d'utiliser la class <a href="https://threejs.org/docs/#api/loaders/TextureLoader" target="_blank">TextureLoader</a> qui automatise le processus</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+// Import image source
+import imageSource from './image.jpg'
+
+// Instantiate a texture loader
+const textureLoader = new THREE.TextureLoader()
+
+// Create the texture
+const texture = textureLoader.load(imageSource)
+                        </code></pre>
+                    </div>
+                    <p>N'instanciez TextureLoader qu'une seule fois</p>
+                </section>
+
+                <section>
+                    <p>Une fois la <span class="u">texture</span> créée, il suffit de l'ajouter dans la propriété <span class="u">map</span> du material (ici MeshStandardMaterial)</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const mesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(10, 10, 1, 1),
+    new THREE.MeshBasicMaterial({ map: texture })
+)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>La texture se réparti sur la mesh en fonction de l'<span class="hl">UV</span></p>
+                    <p>Voyez l'UV unwrap comme le dépliage d'une forme</p>
+                    <p>L'UV est défini dans la géométrie et il est difficile de le modifier, le mieux étant en général de passer par un logiciel 3D</p>
+                    <img class="no-style" src="src/img/uv-unwrap.png">
+                </section>
+
+                <section>
+                    <p>⚠️ Le chargement des textures ne fonctionnera pas toujours avec des fichiers locaux pour des raisons de sécurité</p>
+                    <p>Il vous faudra lancer un serveur</p>
+                </section>
+
+                <section>
+                    <p>⚠️ La résolution des textures doit être une puissance de 2</p>
+                    <p>Exemples: <span class="hl">512x512</span>, <span class="hl">1024x512</span>, <span class="hl">4048x4048</span></p>
+                    <p>Si vous utilisez une résolution qui n'est pas une puissance de 2, Three.js s'occupera de redimensionner la texture, ce qui n'est pas conseillé</p>
+                </section>
+
+                <section>
+                    <h2>Repeat</h2>
+                </section>
+
+                <section>
+                    <p>Il est possible de répéter la texture un certain nombre de fois</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+texture.wrapS = THREE.RepeatWrapping
+texture.wrapT = THREE.RepeatWrapping
+texture.repeat.x = 4
+texture.repeat.y = 4
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Rotation</h2>
+                </section>
+
+                <section>
+                    <p>Il est possible de faire pivoter la texture</p>
+                    <p>⚠️ Le centre de rotation se trouve par défaut dans le coin en haut à gauche de la texture</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+texture.rotation = Math.PI * 0.5
+texture.center.x = 0.5
+texture.center.y = 0.5
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>MinFilter et MagFilter</h2>
+                </section>
+
+                <section>
+                    <p>Le <span class="hl">magFilter</span> correspond à quelle couleur de la texture affichée lorsque qu'un pixel de la texture couvre plusieurs pixels de rendu</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+texture.magFilter = THREE.LinearFilter // Default
+texture.magFilter = THREE.NearestFilter
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>
+                        <span class="hl">THREE.LinearFilter</span>
+                        <br><img width="600" class="no-style" src="src/img/magfilter-linear.jpg">
+                    </p>
+                    <p>
+                        <span class="hl">THREE.NearestFilter</span>
+                        <br><img width="600" class="no-style" src="src/img/magfilter-nearest.jpg">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Le <span class="hl">minFilter</span> correspond à quelle couleur de la texture affichée lorsque plusieurs pixels de la texture rentrent dans un pixel de rendu</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+texture.minFilter = THREE.LinearMipmapLinearFilter // Default
+texture.minFilter = THREE.LinearMipmapNearestFilter
+texture.minFilter = THREE.LinearFilter
+texture.minFilter = THREE.NearestFilter
+texture.minFilter = THREE.NearestMipmapNearestFilter
+texture.minFilter = THREE.NearestMipmapLinearFilter
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>
+                        <span class="hl">THREE.LinearMipmapLinearFilter</span>
+                        <br><img width="600" class="no-style" src="src/img/minfilter-linearmipmaplinearfilter.jpg">
+                    </p>
+                    <p>
+                        <span class="hl">THREE.NearestFilter</span>
+                        <br><img width="600" class="no-style" src="src/img/minfilter-nearest.jpg">
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Où trouver des textures</h2>
+                    <ul>
+                        <li><a target="_blank" href="https://www.poliigon.com/">poliigon.com</a> (certaines payantes)</li>
+                        <li><a target="_blank" href="https://3dtextures.me/">3dtextures.me</a> (gratuites)</li>
+                        <li><a target="_blank" href="https://www.arroway-textures.ch/">arroway-textures.ch</a> (basse résolution gratuites)</li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+
+        <!-- Code steps start -->
+        <script src="../src/code-steps/prism.js" data-manual></script>
+        <!-- Code steps end -->
+
+        <script type="module" src="../src/custom/script-module.js"></script>
+    </body>
+</html>

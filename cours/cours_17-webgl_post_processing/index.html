@@ -1,0 +1,406 @@
+
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cours 17 - WebGL - Post-processing</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css"> -->
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <!-- Code steps start -->
+        <link rel="stylesheet" href="../src/code-steps/prism-tomorrow.css">
+        <link rel="stylesheet" href="../src/code-steps/style.css">
+        <!-- Code steps end -->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+                <section>
+                    <h3>H2 - P2023</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 17</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2023">https://github.com/brunosimon/hetic-p2023</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2023/">http://bruno-simon.com/hetic/p2023/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Post-processing</h2>
+                </section>
+
+                <section>
+                    <p>Le post-processing (en français post-traitement) correspond à des effets ajoutés <span class="u">après le rendu</span> afin d'<span class="hl">agrémenter</span> celui-ci</p>
+                    <p>On l'utilise beaucoup dans la vidéo, mais on peut aussi l'utiliser en WebGL</p>
+                    <p>Ce peut être esthétique comme utile</p>
+                </section>
+
+                <section>
+                    <p>Exemples :</p>
+                    <ul>
+                        <li><a href="https://threejs.org/examples/#webgl_postprocessing" target="_blank">Dot screen</a></li>
+                        <li><a href="https://threejs.org/examples/#webgl_postprocessing_glitch" target="_blank">Glitch</a></li>
+                        <li><a href="https://threejs.org/examples/#webgl_postprocessing_unreal_bloom" target="_blank">Unreal bloom</a></li>
+                        <li><a href="https://threejs.org/examples/#webgl_postprocessing_pixel" target="_blank">Pixel</a></li>
+                        <li><a href="https://threejs.org/examples/#webgl_postprocessing_masking" target="_blank">Mask</a></li>
+                        <li><a href="https://threejs.org/examples/#webgl_postprocessing_dof2" target="_blank">Depth of field</a></li>
+                        <li><a href="https://threejs.org/examples/#webgl_postprocessing_godrays" target="_blank">God rays</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Pour faire du postprocess<br>(sans rentrer dans les détails) :</p>
+                    <ul>
+                        <li>On sauvegarde le rendu de notre scène dans une texture</li>
+                        <li>On applique cette texture sur un plan composé de deux triangles</li>
+                        <li>On utilise un shader custom pour modifier cette texture et lui appliquer diver effets</li>
+                        <li>On fait un nouveau rendu de ce plan</li>
+                        <li>On affiche ce rendu final dans le canvas</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Nous n'avons pas besoin de faire toutes ces étapes car il existe une classe Three.js qui s'en occupe : <a href="https://threejs.org/docs/#examples/en/postprocessing/EffectComposer" target="_blank">EffectComposer</a></p>
+                </section>
+
+                <section>
+                    <p><a href="https://threejs.org/docs/#examples/en/postprocessing/EffectComposer" target="_blank">EffectComposer</a> ne faisant pas parti de Three.js en natif, il faut l'importer avant de l'initialiser avec le <span class="hl">renderer</span> en paramètre</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+
+const effectComposer = new EffectComposer(renderer)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Il faut aussi appeler sa méthode <span class="hl">setSize</span> au resize</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+window.addEventListener('resize', () =>
+{
+    /* ... */
+
+    // Update effect composer
+    effectComposer.setSize(sizes.width, sizes.height)
+    
+    /* ... */
+})
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Il va maintenant falloir demander à EffectComposer de faire les rendus à la place du renderer</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const loop = () =>
+{
+    /* ... */
+
+    // Render
+    effectComposer.render(scene, camera)
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>⚠️ Plus rien ne s'affiche !</p>
+                    <p>C'est normal car nous devons maintenant ajouter des <span class="u">passes</span> à notre effect composer</p>
+                    <p>La première passe qu'il faut presque toujours ajouter est un simple rendu de la scène appelé <span class="hl">RenderPass</span></p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+
+/* ... */
+
+const effectComposer = new EffectComposer(renderer)
+
+const renderPass = new RenderPass(scene, camera)
+effectComposer.addPass(renderPass)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Nous pouvons maintenant y ajouter diverses passes</p>
+                    <p>La majorité des passes sont des <span class="hl">ShaderPass</span> auxquelles on transmet des shaders pré-conçu</p>
+                    <p>Chaque pass possède ses propres paramètres et il faut en général modifier ses <span class="hl">uniforms</span></p>
+                </section>
+
+                <section>
+                    <h3 class="default">DotShader pass</h3>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
+import { DotScreenShader } from 'three/examples/jsm/shaders/DotScreenShader.js'
+
+/* ... */
+
+const dotPass = new ShaderPass(DotScreenShader)
+dotPass.uniforms.scale.value = 2
+effectComposer.addPass(dotPass)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="default">RGBShift pass</h3>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+import { RGBShiftShader } from 'three/examples/jsm/shaders/RGBShiftShader.js'
+
+/* ... */
+
+const rgbShiftPass = new ShaderPass(RGBShiftShader)
+rgbShiftPass.uniforms.amount.value = 0.005
+effectComposer.addPass(rgbShiftPass)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="default">Pixel pass</h3>
+                    <p>⚠️ Certaines passes nécessitent d'être mises à jour au resize</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+import { PixelShader } from 'three/examples/jsm/shaders/PixelShader.js'
+
+/* ... */
+
+const pixelPass = new ShaderPass(PixelShader)
+pixelPass.uniforms.pixelSize.value = 10
+pixelPass.uniforms.resolution.value = new THREE.Vector2(sizes.width, sizes.height)
+effectComposer.addPass(pixelPass)
+
+/* ... */
+
+window.addEventListener('resize', () =>
+{
+    /* ... */
+
+    // Update passes
+    pixelPass.uniforms.resolution.value.x = sizes.width
+    pixelPass.uniforms.resolution.value.y = sizes.height
+
+    /* ... */
+})
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="default">Unreal pass</h3>
+                    <p>⚠️ Certaines passes plus complexe s'initialisent directement sans passer par un <span class="hl">ShaderPass</span></p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+
+const unrealPass = new UnrealBloomPass(new THREE.Vector2(sizes.width, sizes.height))
+unrealPass.strength = 0.6
+unrealPass.radius = 0.4
+unrealPass.threshold = 0.05
+effectComposer.addPass(unrealPass)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Custom pass</h2>
+                </section>
+
+                <section>
+                    <p>Nous pouvons aussi créer nos propres passes</p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const customPass = new ShaderPass({})
+effectComposer.addPass(customPass)
+                        </code></pre>
+                    </div>
+                    <p>Nous obtenons un écran rouge qui correspond aux shaders de base</p>
+                </section>
+
+                <section>
+                    <p>Nous pouvons maintenant écrire nos propres <span class="hl">vertexShader</span> et <span class="hl">fragmentShader</span></p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+const customPass = new ShaderPass({
+    vertexShader: `
+        void main()
+        {
+            gl_Position = vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        void main()
+        {
+            gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+        }
+    `,
+    uniforms:
+    {
+        tDiffuse: { value: null }
+    }
+})
+effectComposer.addPass(customPass)
+                        </code></pre>
+                    </div>
+                    <p><span class="hl">tDiffuse</span> sera utilisé par la suite ☝️</p>
+                </section>
+
+                <section>
+                    <p>Pour commencer, nous souhaiterions simplement afficher le rendu, mais nous devons d'abord trouver un moyen de récupérer les coordonnées sur ce plan</p>
+                    <p>Par défaut, Three.js envoie les coordonnées <span class="hl">uv</span> au vertex shader</p>
+                    <p>Nous allons les envoyer au fragment et les afficher dans la couleur</p>
+                </section>
+
+                <section>
+                    <p>Vertex shader :</p>
+                    <div class="code-steps" data-type="glsl" data-trim>
+                        <pre contenteditable><code>
+varying vec2 vUv;
+
+void main()
+{
+    vUv = uv;
+    gl_Position = vec4(position, 1.0);
+}
+                        </code></pre>
+                    </div>
+                    <p>Fragment shader :</p>
+                    <div class="code-steps" data-type="glsl" data-trim>
+                        <pre contenteditable><code>
+varying vec2 vUv;
+
+void main()
+{
+    gl_FragColor = vec4(vUv, 1.0, 1.0);
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>EffectComposer injecte automatiquement le résultat de la Pass précédente dans l'uniform <span class="hl">tDiffuse</span> que nous avons précédemment rajouté et dont le type est <span class="hl">sampler2D</span></p>
+                </section>
+
+                <section>
+                    <p>Fragment shader :</p>
+                    <div class="code-steps" data-type="glsl" data-trim>
+                        <pre contenteditable><code>
+uniform sampler2D tDiffuse;
+
+varying vec2 vUv;
+
+void main()
+{
+    vec4 color = texture2D(tDiffuse, vUv);
+    gl_FragColor = color;
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Nous pouvons maintenant manipuler le rendu à volonté par exemple pour donner une teinte violette</p>
+                    <p>Fragment shader :</p>
+                    <div class="code-steps" data-type="glsl" data-trim>
+                        <pre contenteditable><code>
+uniform sampler2D tDiffuse;
+
+varying vec2 vUv;
+
+void main()
+{
+    vec4 color = texture2D(tDiffuse, vUv);
+    color.r *= 1.5;
+    color.b *= 2.0;
+    
+    gl_FragColor = color;
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Ou pour donner un effet <span class="u">vignette</span></p>
+                    <p>Fragment shader :</p>
+                    <div class="code-steps" data-type="glsl" data-trim>
+                        <pre contenteditable><code>
+uniform sampler2D tDiffuse;
+
+varying vec2 vUv;
+
+void main()
+{
+    vec4 color = texture2D(tDiffuse, vUv);
+
+    float vignetteStrength = distance(vUv, vec2(0.5));
+    color.rgb *= 1.0 - vignetteStrength;
+
+    gl_FragColor = color;
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Ou pour donner un effet <span class="u">noise</span></p>
+                    <div class="code-steps" data-type="glsl" data-trim>
+                        <pre contenteditable><code>
+uniform sampler2D tDiffuse;
+
+varying vec2 vUv;
+
+float random(vec2 st)
+{
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void main()
+{
+    vec4 color = texture2D(tDiffuse, vUv);
+
+    color.r += (random(vUv + 0.0) - 0.5) * 0.35;
+    color.g += (random(vUv + 0.1) - 0.5) * 0.35;
+    color.b += (random(vUv + 0.2) - 0.5) * 0.35;
+
+    gl_FragColor = color;
+}
+                        </code></pre>
+                    </div>
+                    <p>La fonction de <span class="hl">random</span> a été récupérée sur <a href="https://thebookofshaders.com/10/?lan=fr" target="_blank">thebookofshaders.com</a></p>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+
+        <!-- Code steps start -->
+        <script src="../src/code-steps/prism.js" data-manual></script>
+        <!-- Code steps end -->
+
+        <script type="module" src="../src/custom/script-module.js"></script>
+    </body>
+</html>
