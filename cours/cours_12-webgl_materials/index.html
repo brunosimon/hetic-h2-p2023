@@ -71,29 +71,37 @@
                 </section>
 
                 <section>
-                    <p>Jusqu'à présent, nous avons utilisé <span class="u">MeshBasicMaterial</span>, mais il en existe de nombreux autres qui ont un résultat différent, qui peuvent réagir à la lumière et qui sont plus ou moins performant</p>
+                    <p>Jusqu'à présent, nous avons utilisé <span class="u">MeshBasicMaterial</span> qui permet d'appliquer des techniques simples telles qu'une couleur ou une texture</p>
+                    <p>Il en existe de nombreux autres qui ont un résultat différent, qui peuvent réagir à la lumière, qui peuvent générer des ombres, qui peuvent donner de l'épaisseur, etc.</p>
+                    <p>⚠️ Certains Materials peuvent coûter chère en terme de performance</p>
                 </section>
 
                 <!-- Environment -->
                 <section id="environment">
-                    <p>Afin de mieux visualiser les materials, vous pouvez créer quelques objets de forme varier partageant le même material et les faire tourner</p>
+                    <p>Afin de mieux visualiser les Materials, nous allons créer quelques objets de forme variées partageant le même Material et les faire tourner</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
+/**
+ * Objects
+ */
+const objectsGroup = new THREE.Group()
+scene.add(objectsGroup)
+
 const material = new THREE.MeshBasicMaterial()
 
 // Sphere
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(2, 16, 16), material)
 sphere.position.x = - 6
-scene.add(sphere)
+objectsGroup.add(sphere)
 
 // Plane
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4, 4, 4), material)
-scene.add(plane)
+objectsGroup.add(plane)
 
 // Torus Knot
 const torusKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.5, 0.5, 128, 16), material)
 torusKnot.position.x = 6
-scene.add(torusKnot)
+objectsGroup.add(torusKnot)
 
 /* ... */
 
@@ -115,31 +123,45 @@ const loop = () =>
                 </section>
 
                 <section>
-                    <p>Nous allons aussi utiliser des textures de porte dans nos materials</p>
+                    <p>☝️</p>
+                    <p>Plutôt que de retirer tout le code de la maison, il suffit de la rendre invisible en passant la propriété <span class="hl">visible</span> de <span class="hl">houseGroup</span> sur <span class="hl">false</span></p>
+                    <div class="code-steps" data-type="js" data-trim>
+                        <pre contenteditable><code>
+houseGroup.visible = false
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-1.jpg"></p>
+                </section>
+
+                <section>
+                    <p>Nous allons ensuite importer et instancier des textures de porte ainsi qu'une texture de matcap</p>
                     <p>Celles-ci sont disponibles dans le pack <a download href="../03-textures/textures.zip">textures.zip</a> du cours précédent</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 /* ... */
 
-import doorColorImageSource from './assets/images/door/color.jpg'
-import doorAmbientOcclusionImageSource from './assets/images/door/ambientOcclusion.jpg'
-import doorHeightImageSource from './assets/images/door/height.png'
-import doorMetalnessImageSource from './assets/images/door/metalness.jpg'
-import doorNormalImageSource from './assets/images/door/normal.jpg'
-import doorAlphaImageSource from './assets/images/door/alpha.jpg'
-import doorColorRoughnessSource from './assets/images/door/roughness.jpg'
-import matcapSource from './assets/images/matcaps/1.jpg'
+import doorColorSource from './images/house/door/color.jpg'
+import doorAmbientOcclusionSource from './images/house/door/ambientOcclusion.jpg'
+import doorHeightSource from './images/house/door/height.png'
+import doorMetalnessSource from './images/house/door/metalness.jpg'
+import doorNormalSource from './images/house/door/normal.jpg'
+import doorAlphaSource from './images/house/door/alpha.jpg'
+import doorRoughnessSource from './images/house/door/roughness.jpg'
+import matcapSource from './images/matcaps/1.jpg'
 
 /* ... */
 
 const textureLoader = new THREE.TextureLoader()
-const doorColorTexture = textureLoader.load(doorColorImageSource)
-const doorAmbientOcclusionTexture = textureLoader.load(doorAmbientOcclusionImageSource)
-const doorHeightTexture = textureLoader.load(doorHeightImageSource)
-const doorMetalnessTexture = textureLoader.load(doorMetalnessImageSource)
-const doorNormalTexture = textureLoader.load(doorNormalImageSource)
-const doorAlphaTexture = textureLoader.load(doorAlphaImageSource)
-const doorColorRoughnessTexture = textureLoader.load(doorColorRoughnessSource)
+const doorColorTexture = textureLoader.load(doorColorSource)
+const doorAmbientOcclusionTexture = textureLoader.load(doorAmbientOcclusionSource)
+const doorHeightTexture = textureLoader.load(doorHeightSource)
+const doorMetalnessTexture = textureLoader.load(doorMetalnessSource)
+const doorNormalTexture = textureLoader.load(doorNormalSource)
+const doorAlphaTexture = textureLoader.load(doorAlphaSource)
+const doorRoughnessTexture = textureLoader.load(doorRoughnessSource)
 const matcapTexture = textureLoader.load(matcapSource)
 
 /* ... */
@@ -162,12 +184,16 @@ const material = new THREE.MeshBasicMaterial({
     alphaMap: doorAlphaTexture,
     transparent: true,
     opacity: 0.8,
-    color: new THREE.Color(0x8888ff),
-    wireframe: false,
+    color: 0xaaffaa,
+    wireframe: true,
     side: THREE.DoubleSide
 })
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-2.jpg"></p>
                 </section>
 
                 <section>
@@ -213,7 +239,7 @@ const material = new THREE.MeshBasicMaterial({
                             <td>THREE.FrontSide, THREE.BackSide, THREE.DoubleSide</td>
                         </tr>
                     </table>
-                    <p>Ces trois propriétés sont valables pour tous les materials, nous ne les répèterons pas</p>
+                    <p>☝️ Ces trois propriétés sont valables pour tous les materials, nous ne les répèterons pas</p>
                 </section>
 
                 <section>
@@ -226,7 +252,7 @@ material.map = doorColorTexture
 material.alphaMap = doorAlphaTexture
 material.transparent = true
 material.opacity = 0.8
-material.color = new THREE.Color(0x8888ff)
+material.color = 0x8888ff
 material.wireframe = false
 material.side = THREE.DoubleSide
                         </code></pre>
@@ -256,13 +282,7 @@ const material = new THREE.MeshNormalMaterial()
                 </section>
 
                 <section>
-                    <table>
-                        <tr>
-                            <td><span class="u">map</span></td>
-                            <td>Texture<br>(<span class="u">Color</span> modifiera la teinte de la texture)</td>
-                            <td>THREE.Texture</td>
-                        </tr>
-                    </table>
+                    <p><img src="src/images/screen-3.jpg"></p>
                 </section>
 
                 <!-- MeshMatcapMaterial -->
@@ -282,10 +302,14 @@ const material = new THREE.MeshNormalMaterial()
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 const material = new THREE.MeshMatcapMaterial({
-    matcap: matcapSourceTexture
+    matcap: matcapTexture
 })
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-4.jpg"></p>
                 </section>
 
                 <section>
@@ -299,7 +323,7 @@ const material = new THREE.MeshMatcapMaterial({
                 </section>
 
                 <section>
-                    <p>Les matcaps sont très performantes et peuvent être crées dans un logiciel 3D ou directement dans un logiciel de retouche tel que Photoshop</p>
+                    <p>Les matcaps sont très performantes et peuvent être créées dans un logiciel 3D ou directement dans un logiciel de retouche tel que Photoshop</p>
                     <p>Malheureusement, les ombres, lumières et reflet qui la compose ne sont pas en temps réel et feront toujours face à la caméra</p>
                 </section>
 
@@ -317,10 +341,13 @@ const material = new THREE.MeshMatcapMaterial({
                     <p>Ajoutez une <a href="https://threejs.org/docs/index.html#api/en/lights/PointLight" target="_blank">PointLight</a></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
+/**
+ * Lights
+ */
 const pointLight = new THREE.PointLight(0xffffff, 1, 10)
-pointLight.position.x = 10
+pointLight.position.x = 2
 pointLight.position.y = 3
-pointLight.position.z = 5
+pointLight.position.z = 4
 scene.add(pointLight)
                         </code></pre>
                     </div>
@@ -337,10 +364,14 @@ scene.add(pointLight)
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 const material = new THREE.MeshLambertMaterial({
-    color: new THREE.Color(0xffffff)
+    color: 0xffffff
 })
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-5.jpg"></p>
                 </section>
 
                 <section>
@@ -357,12 +388,16 @@ const material = new THREE.MeshLambertMaterial({
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 const material = new THREE.MeshPhongMaterial({
-    color: new THREE.Color(0xffffff),
+    color: 0xffffff,
     shininess: 100,
-    specular: new THREE.Color(0x1188ff)
+    specular: 0x1188ff
 })
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-6.jpg"></p>
                 </section>
 
                 <section>
@@ -394,9 +429,9 @@ toonGradient.magFilter = THREE.NearestFilter
 toonGradient.minFilter = THREE.NearestFilter
 
 const material = new THREE.MeshToonMaterial({
-    color: new THREE.Color(0xffffff),
+    color: 0xffffff,
     shininess: 100,
-    specular: new THREE.Color(0x1188ff),
+    specular: 0x1188ff,
     gradientMap: toonGradient
 })
                         </code></pre>
@@ -422,22 +457,27 @@ const material = new THREE.MeshToonMaterial({
 
                 <section>
                     <p>Le <a target="_blank" href="https://threejs.org/docs/index.html#api/en/materials/MeshStandardMaterial">MeshStandardMaterial</a> est le nouveau standard pour les matériaux, pas seulement dans Three.js mais aussi dans de nombreux logiciels tels que <span class="u">Unreal Engine</span>, <span class="u">Blender</span>, <span class="u">Unity</span>, etc.</p>
-                    <p><span class="u">Physically based</span> correspond à une volonté de baser les paramètres d'une entité sur des valeurs physique proche de la réalité. Cela s'applique aux Materials, mais vous pouvez aussi retrouvez ça dans d'autres domaines tels que la physique, la génération procédurale, etc.</p>
+                    <p><span class="u">Physically based</span> correspond à une volonté de baser les paramètres d'une entité sur des valeurs physiques proches de la réalité. Cela s'applique aux Materials, mais vous pouvez aussi retrouvez ça dans d'autres domaines tels que la physique, la génération procédurale, etc.</p>
                     <p>Comme ce Material est standard, vous avez plus de chances d'obtenir le même résultat en passant d'un logiciel à l'autre</p>
                 </section>
 
                 <section>
                     <p>Le MeshStandardMaterial rajoute deux principales notions qui sont le <span class="u">roughness</span> (a quel point l'objet est rugueux) et le <span class="u">metalness</span> (à quel point l'objet est métalique)</p>
                     <ul>
-                        <li><a href="https://threejs.org/examples/?q=standa#webgl_materials_variations_standard" target="_blank">Exemple d'un objet</a></li>
-                        <li><a href="https://threejs.org/examples/?q=standa#webgl_materials_standard" target="_blank">Exemple des variations de roughness et metalness</a></li>
+                        <li><a href="https://threejs.org/examples/?q=standa#webgl_materials_variations_standard" target="_blank">Exemple 1</a></li>
+                        <li><a href="https://sketchfab.com/3d-models/compact-sink-pbr-6b15b1fd7ab2435ba8d7d675939cdfc8" target="_blank">Exemple 2</a></li>
+                        <li><a href="https://sketchfab.com/3d-models/bayonet-knife-ad9288589a7048eaa4d2428452930512" target="_blank">Exemple 3</a></li>
+                        <li><a href="https://sketchfab.com/3d-models/phonebook-ec08b13e380c468a943913f5700c30cd" target="_blank">Exemple 4</a></li>
+                        <li><a href="https://threejs.org/examples/?q=standa#webgl_materials_standard" target="_blank">Exemple des variations</a></li>
                     </ul>
-                    <br>
-                    <br>
+                </section>
+
+                <section>
+                    <p>Il est possible de définir un <span class="hl">metalness</span> et un <span class="hl">roughness</span> pour toute la surface de l'objet</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 const material = new THREE.MeshStandardMaterial({
-    color: new THREE.Color(0xffffff),
+    color: 0xffffff,
     metalness: 0.3,
     roughness: 0.8
 })
@@ -468,17 +508,6 @@ const plane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4, 100, 100), material)
 scene.add(plane)
                         </code></pre>
                     </div>
-                </section>
-
-                <section>
-                    <table>
-                        <tr>
-                            <td><span class="u">gradientMap</span></td>
-                            <td>Dégradé permettant de définir le nombre d'étape dans le shading</td>
-                            <td>THREE.Texture</td>
-                        </tr>
-                    </table>
-                    <p>Exemple de dégradé<br><img style="image-rendering: pixelated;" width="200" src="https://threejs.org/examples/textures/gradientMaps/threeTone.jpg"></p>
                 </section>
 
                 <section>
@@ -543,7 +572,7 @@ scene.add(plane)
 
                 <section>
                     <p>Le <a target="_blank" href="https://threejs.org/docs/index.html#api/en/materials/PointsMaterial">PointsMaterial</a> sert à gérer le material des particules</p>
-                    <p>Nous verrons ce matérial sur le cours dédié aux particules</p>
+                    <p>☝️ Nous verrons ce matérial sur le cours dédié aux particules</p>
                 </section>
 
                 <!-- ShaderMaterial -->
@@ -553,7 +582,7 @@ scene.add(plane)
 
                 <section>
                     <p>Le <a target="_blank" href="https://threejs.org/docs/index.html#api/en/materials/ShaderMaterial">ShaderMaterial</a> sert à créer nos propres shaders</p>
-                    <p>Nous verrons ce matérial sur le cours dédié aux shaders</p>
+                    <p>☝️ Nous verrons ce matérial sur le cours dédié aux shaders</p>
                 </section>
 
             </div>

@@ -1,0 +1,82 @@
+*
+    margin 0
+    padding 0
+
+html
+body
+    overflow hidden
+
+.aim-trainer
+    display flex
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    flex-direction column
+    align-items center
+    justify-content space-around
+    background radial-gradient(#333333, #000000)
+    color #555555
+    font-family Helvetica, Arial
+
+    .is-hidden
+        display none
+
+    .score
+        font-size 40px
+
+        .value
+            font-size 120px
+
+    .timer
+        font-size 60px
+
+    .play
+        font-size 60px
+        cursor pointer
+
+    .best-score
+        font-size 40px
+
+        .value
+            font-size 60px
+
+    .targets
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        pointer-events none
+
+        .target
+            position absolute
+            top 50%
+            left 50%
+            width 10vmin
+            height 10vmin
+            background linear-gradient(#cccccc, #999999)
+            border-radius 50%
+            box-shadow 10px 10px 10px rgba(0, 0, 0, 0.2)
+            pointer-events auto
+
+            &::before
+                content ''
+                position absolute
+                top calc(100% / 3 / 2)
+                left calc(100% / 3 / 2)
+                width calc(100% / 3 * 2)
+                height calc(100% / 3 * 2)
+                background linear-gradient(#cc0000, #990000)
+                border-radius 50%
+
+            &::after
+                content ''
+                position absolute
+                top calc(100% / 3)
+                left calc(100% / 3)
+                width calc(100% / 3)
+                height calc(100% / 3)
+                background linear-gradient(#cccccc, #999999)
+                border-radius 50%

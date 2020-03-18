@@ -99,8 +99,8 @@ scene.add(camera)
 
                 <section>
                     <p>⚠️ Ne mettez pas des valeurs extrèmement petite au <span class="u">near</span> et extrèmement grande au <span class="u">far</span></p>
-                    <p>Cela provoque des bug de z-fighting et des problèmes de performances</p>
-                    <p>Essayez de trouver des valeurs les proches possibles</p>
+                    <p>Cela provoque des bug de z-fighting et des problèmes de performances (<a href="https://twitter.com/FreyaHolmer/status/799602767081848832" target="_blank">Exemple 1</a>, <a href="https://twitter.com/Snapman_I_Am/status/800567120765616128" target="_blank">Exemple 2</a>)</p>
+                    <p>Essayez de trouver des valeurs proches, mais qui ne provoquent pas de bugs</p>
                 </section>
 
                 <section>
@@ -172,7 +172,7 @@ window.addEventListener('mousemove', (_event) =>
 
                 <section>
                     <p>Nous pouvons ensuite mettre à jour la position de la caméra à chaque frame dans la fonction de loop</p>
-                    <p>Simplement déplacement latéral</p>
+                    <p>Simple déplacement latéral</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 camera.position.x = cursor.x * 5
@@ -194,7 +194,7 @@ camera.position.y = - cursor.y * 5
 
                 <section>
                     <p>La caméra regarde toujours dans la même direction lorsqu'on la fait tourner autour de la scène 😕</p>
-                    <p>Nous pourrions mettre à jour sa rotation, mais il existe une methode pour indiquer à la caméra (ou tout autre objet) de "regarder" un point spécifique.</p>
+                    <p>Nous pourrions  calculer nous même la rotation à effectuer pour regarder le centre de la scène, mais il existe déjà une méthode pour faire ça</p>
                 </section>
 
                 <section>
@@ -217,7 +217,7 @@ camera.lookAt(new THREE.Vector3(0, 0, 0))
                 </section>
 
                 <section>
-                    <p>⚠️ Certains paramètres, lorsqu'ils sont mis à jour, nécessitent d'appeler la méthode <a target="_blank" href="https://threejs.org/docs/index.html#api/en/cameras/PerspectiveCamera.updateProjectionMatrix">updateProjectionMatrix</a></p>
+                    <p>⚠️ Certains paramètres de la caméra, lorsqu'ils sont mis à jour, nécessitent d'appeler la méthode <a target="_blank" href="https://threejs.org/docs/index.html#api/en/cameras/PerspectiveCamera.updateProjectionMatrix">updateProjectionMatrix</a></p>
                     <p>Par exemple, au resize, vous devez mettre la propriété <span class="hl">aspect</span> de la <span class="hl">PerspectiveCamera</span> et ensuite appeler <a target="_blank" href="https://threejs.org/docs/index.html#api/en/cameras/PerspectiveCamera.updateProjectionMatrix">updateProjectionMatrix</a></p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
@@ -244,7 +244,7 @@ window.addEventListener('resize', () =>
 
                 <section>
                     <h2>Camera controls</h2>
-                    <p>Three.js intègre plusieurs class permettant de rajouter des contrôles automatiques sur la caméra</p>
+                    <p>Three.js intègre plusieurs classes permettant de rajouter des contrôles automatiques sur la caméra</p>
                 </section>
 
                 <section>
@@ -299,7 +299,7 @@ const cameraControls = new OrbitControls(camera, renderer.domElement)
                         <li><span class="hl">Drag & drop click droit</span> pour déplacer latéralement</li>
                         <li><span class="hl">Wheel</span> pour zoomer/dezoomer</li>
                     </ul>
-                    <p>⚠️ Ne mettez pas à jour les propriété de la caméra vous-même</p>
+                    <p>⚠️ Ne mettez pas à jour les propriétés de la caméra vous même</p>
                 </section>
 
                 <section>
@@ -312,7 +312,7 @@ cameraControls.zoomSpeed = 0.3
                 </section>
 
                 <section>
-                    <p>Pour rajouter un effect d'inertie, il faut passer la propriété <span class="hl">enableDamping</span> sur <span class="hl">true</span></p>
+                    <p>Pour rajouter un effet d'inertie, il faut passer la propriété <span class="hl">enableDamping</span> sur <span class="hl">true</span></p>
                     <p>Il faut ensuite appeler la méthode <span class="hl">update</span> dans la fonction loop</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>

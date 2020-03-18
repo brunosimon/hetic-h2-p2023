@@ -55,6 +55,85 @@
                 </section>
 
                 <section>
+                    <h2>Les types de textures</h2>
+                </section>
+
+                <section>
+                    <p>Les textures permettent d'appliquer une image sur notre géométrie, mais les textures permettent aussi d'appliquer tout une séries d'effets</p>
+                    <p>Voici les utilisations les plus connues</p>
+                </section>
+
+                <section>
+                    <p><span class="hl">color</span> ou <span class="hl">albedo</span></p>
+                    <p><img src="src/img/door/color.jpg" width="380"></p>
+                    <p>Il ne s'agit que de l'image qui sera appliquée</p>
+                </section>
+
+                <section>
+                    <p><span class="hl">alpha</span></p>
+                    <p><img src="src/img/door/alpha.jpg" width="380"></p>
+                    <p>
+                        Masque de visibilité
+                        <br>Le blanc sera visible, le noir sera invisible
+                    </p>
+                </section>
+
+                <section>
+                    <p><span class="hl">ambient occlusion</span></p>
+                    <p><img src="src/img/door/ambientOcclusion.jpg" width="380"></p>
+                    <p>Assombrit les interstices pour donner du relief</p>
+                </section>
+
+                <section>
+                    <p><span class="hl">height</span> ou <span class="hl">displacement</span></p>
+                    <p><img src="src/img/door/height.png" width="380"></p>
+                    <p>Déplace les vertices pour donner de l'épaisseur de façon grossière</p>
+                </section>
+
+                <section>
+                    <p><span class="hl">normal</span> ou <span class="hl">bump</span></p>
+                    <p><img src="src/img/door/normal.jpg" width="380"></p>
+                    <p>
+                        Simule un relief de façon précise
+                        <br>☝️ la bump est en noir et blanc, mais est aussi moins précise qu'une normal
+                    </p>
+                </section>
+
+                <section>
+                    <p><span class="hl">metalness</span></p>
+                    <p><img src="src/img/door/metalness.jpg" width="380"></p>
+                    <p>
+                        Masque de zones métalliques
+                        <br>Le blanc réagira comme du metal
+                    </p>
+                </section>
+
+                <section>
+                    <p><span class="hl">roughness</span></p>
+                    <p><img src="src/img/door/roughness.jpg" width="380"></p>
+                    <p>
+                        Masque de zones rugueuses
+                        <br>Le blanc réagira comme une matière rugueuse
+                    </p>
+                </section>
+
+                <section>
+                    <p>Il existe encore bien d'autres types de textures, mais ceux que nous venons de voir sont les plus utilisés et tendent à être les standards</p>
+                </section>
+
+                <section>
+                    <p>Beaucoup de ces textures nécessitent d'utiliser des lumières pour en voir l'effet</p>
+                    <p>Nous les verrons donc plus tard</p>
+                </section>
+
+                <section>
+                    <p>Un <a href="./textures.zip" download>pack de textures 💾</a> vous est fourni avec le cours</p>
+                    <p>Il nous servira aussi pour les cours suivants</p>
+                    <p>Ajoutez le contenu du dossier house dans votre projet dans le dossier <span class="hl">src/images/</span></p>
+                    <p>Nous allons commencer avec la texture d'herbe <span class="hl">src/images/house/grass/color.jpg</span></p>
+                </section>
+
+                <section>
                     <h2>Charger une image</h2>
                     <p>Pour pouvoir utiliser une image en texture, il faut l'avoir chargée</p>
                 </section>
@@ -63,21 +142,22 @@
                     <p>Il est possible d'écouter le chargement d'une image en JS natif</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
-// Import image source
-import imageSource from './image.jpg'
+// ...
 
-// Create image and texture
-const image = new Image()
-const texture = new THREE.Texture(image)
+import grassColorSource from './images/house/grass/color.jpg'
 
-// Wait for the image load event
-image.addEventListener('load', () =>
+/**
+ * Textures
+ */
+const grassColorImage = new Image()
+const grassColorTexture = new THREE.Texture(grassColorImage)
+
+grassColorImage.addEventListener('load', () =>
 {
-    texture.needsUpdate = true
+    grassColorTexture.needsUpdate = true
 })
 
-// Set the source of the image to start loading
-image.src = imageSource
+grassColorImage.src = grassColorSource
                         </code></pre>
                     </div>
                 </section>
@@ -86,36 +166,48 @@ image.src = imageSource
                     <p>Il est aussi possible d'utiliser la class <a href="https://threejs.org/docs/#api/loaders/TextureLoader" target="_blank">TextureLoader</a> qui automatise le processus</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
-// Import image source
-import imageSource from './image.jpg'
+// ...
 
-// Instantiate a texture loader
+import grassColorSource from './images/house/grass/color.jpg'
+
+/**
+ * Textures
+ */
 const textureLoader = new THREE.TextureLoader()
 
-// Create the texture
-const texture = textureLoader.load(imageSource)
+const grassColorTexture = textureLoader.load(grassColorSource)
                         </code></pre>
                     </div>
-                    <p>N'instanciez TextureLoader qu'une seule fois</p>
+                    <p>☝️ Une instance de textureLoader permet de charger autant de textures que l'on veut</p>
                 </section>
 
                 <section>
-                    <p>Une fois la <span class="u">texture</span> créée, il suffit de l'ajouter dans la propriété <span class="u">map</span> du material (ici MeshStandardMaterial)</p>
+                    <p>Une fois la <span class="u">texture</span> créée, il suffit de l'ajouter dans la propriété <span class="u">map</span> du material (ici MeshBasicMaterial)</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
-const mesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(10, 10, 1, 1),
-    new THREE.MeshBasicMaterial({ map: texture })
+const grass = new THREE.Mesh(
+    new THREE.PlaneGeometry(15, 15, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x66bb66, map: grassColorTexture })
 )
                         </code></pre>
                     </div>
+                    <p>☝️ Si vous laissez la propriété <span class="hl">color</span>, cette couleur va s'appliquer sur la texture</p>
                 </section>
 
                 <section>
                     <p>La texture se réparti sur la mesh en fonction de l'<span class="hl">UV</span></p>
-                    <p>Voyez l'UV unwrap comme le dépliage d'une forme</p>
-                    <p>L'UV est défini dans la géométrie et il est difficile de le modifier, le mieux étant en général de passer par un logiciel 3D</p>
-                    <img class="no-style" src="src/img/uv-unwrap.png">
+                    <p>Voyez l'UV unwrap comme le fait de découper et déplier votre géométrie afin de l'applatir</p>
+                    <img class="no-style" src="src/img/uv-unwrap-1.png">
+                </section>
+
+                <section>
+                    <img class="no-style" src="src/img/uv-unwrap-2.png">
+                </section>
+
+                <section>
+                    <p>☝️</p>
+                    <p>La majorité des <span class="hl">Geometry</span> de Three.js sont déjà unwrap</p>
+                    <p>Si vous souhaitez faire votre propre unwrap, il vaut mieux utiliser un logiciel 3D puis importer le modèle</p>
                 </section>
 
                 <section>
@@ -137,10 +229,10 @@ const mesh = new THREE.Mesh(
                     <p>Il est possible de répéter la texture un certain nombre de fois</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
-texture.wrapS = THREE.RepeatWrapping
-texture.wrapT = THREE.RepeatWrapping
-texture.repeat.x = 4
-texture.repeat.y = 4
+grassColorTexture.wrapS = THREE.RepeatWrapping
+grassColorTexture.wrapT = THREE.RepeatWrapping
+grassColorTexture.repeat.x = 2
+grassColorTexture.repeat.y = 2
                         </code></pre>
                     </div>
                 </section>
@@ -152,11 +244,12 @@ texture.repeat.y = 4
                 <section>
                     <p>Il est possible de faire pivoter la texture</p>
                     <p>⚠️ Le centre de rotation se trouve par défaut dans le coin en haut à gauche de la texture</p>
+                    <p>☝️ Désactivez le <span class="hl">ReapetWrapping</span> si vous souhaitez voir le résultat</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
-texture.rotation = Math.PI * 0.5
-texture.center.x = 0.5
-texture.center.y = 0.5
+grassColorTexture.rotation = Math.PI * 0.5
+grassColorTexture.center.x = 0.5
+grassColorTexture.center.y = 0.5
                         </code></pre>
                     </div>
                 </section>
@@ -166,7 +259,7 @@ texture.center.y = 0.5
                 </section>
 
                 <section>
-                    <p>Le <span class="hl">magFilter</span> correspond à quelle couleur de la texture affichée lorsque qu'un pixel de la texture couvre plusieurs pixels de rendu</p>
+                    <p>Le <span class="hl">magFilter</span> correspond à quelle couleur de la texture affichée lorsque qu'un pixel de la texture couvre plusieurs pixels du rendu</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 texture.magFilter = THREE.LinearFilter // Default

@@ -61,13 +61,14 @@
 
                 <section id="intro">
                     <p>La gestion des lumières est très gourmande en terme de performance</p>
-                    <p>Pour fonctionner, nous devons utiliser des <span class="u">materials</span> réagissant à la lumière et rajouter les lumières dans la scène</p>
+                    <p>Pour fonctionner, nous devons utiliser des <span class="u">Materials</span> réagissant à la lumière</p>
                     <ul>
                         <li>MeshLambertMaterial</li>
                         <li>MeshPhongMaterial</li>
                         <li>MeshToonMaterial</li>
                         <li>MeshStandardMaterial</li>
                     </ul>
+                    <p>et rajouter les lumières dans la scène</p>
                 </section>
 
                 <section>
@@ -81,25 +82,26 @@ const material = new THREE.MeshStandardMaterial({
     metalness: 0.3
 })
 
+
 // Sphere
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(2, 16, 16), material)
 sphere.position.x = - 6
-scene.add(sphere)
+objectsGroup.add(sphere)
 
 // Plane
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4, 100, 100), material)
-scene.add(plane)
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4, 40, 40), material)
+objectsGroup.add(plane)
 
 // Torus Knot
 const torusKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.5, 0.5, 128, 16), material)
 torusKnot.position.x = 6
-scene.add(torusKnot)
+objectsGroup.add(torusKnot)
 
 // Floor
 const floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(20, 20, 1, 1), material)
 floor.position.y = - 3
 floor.rotation.x -= Math.PI * 0.5
-scene.add(floor)
+objectsGroup.add(floor)
                         </code></pre>
                     </div>
                 </section>
@@ -119,6 +121,10 @@ scene.add(ambientLight)
                     </div>
                 </section>
 
+                <section>
+                    <p><img src="src/images/screen-1.jpg"></p>
+                </section>
+
                 <!-- DirectionalLight -->
                 <section id="DirectionalLight">
                     <h2 class="default">DirectionalLight</h2>
@@ -131,10 +137,17 @@ scene.add(ambientLight)
                     <p>La puissance de la lumière ne varie pas avec la distance</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
-scene.add(ambientLight)
+const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.3)
+directionalLight.position.x = - 2
+directionalLight.position.y = 3
+directionalLight.position.z = 4
+scene.add(directionalLight)
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-2.jpg"></p>
                 </section>
 
                 <!-- HemisphereLight -->
@@ -143,7 +156,7 @@ scene.add(ambientLight)
                 </section>
 
                 <section>
-                    <p><a href="https://threejs.org/docs/index.html#api/lights/HemisphereLight" target="_blank">HemisphereLight</a> est une lumière qui éclaire tel un dôme au dessus de la scène</p>
+                    <p><a href="https://threejs.org/docs/index.html#api/lights/HemisphereLight" target="_blank">HemisphereLight</a> est une lumière qui éclaire tel un dôme autour de la scène</p>
                     <p>La couleur vari entre la skyColor (premier paramètre et haut du dôme) et la groundColor (deuxième paramètre et bas du dôme)</p>
                     <p>Utile pour créer une ambiance non uniforme</p>
                     <div class="code-steps" data-type="js" data-trim>
@@ -152,6 +165,10 @@ const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
 scene.add(hemisphereLight)
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-3.jpg"></p>
                 </section>
 
                 <!-- PointLight -->
@@ -165,13 +182,17 @@ scene.add(hemisphereLight)
                     <p>Utile pour créer des éclairages tel qu'un briquet, une led ou une torche</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
-const pointLight = new THREE.PointLight(0xff9000, 0.5)
-pointLight.position.x = - 5
-pointLight.position.y = 2
-pointLight.position.z = 2
+const pointLight = new THREE.PointLight(0xff9000, 1, 10)
+pointLight.position.x = 2
+pointLight.position.y = 3
+pointLight.position.z = 4
 scene.add(pointLight)
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-4.jpg"></p>
                 </section>
 
                 <!-- RectAreaLight -->
@@ -193,6 +214,10 @@ rectAreaLight.lookAt(new THREE.Vector3())
 scene.add(rectAreaLight)
                         </code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <p><img src="src/images/screen-5.jpg"></p>
                 </section>
 
                 <!-- SpotLight -->
@@ -218,27 +243,32 @@ scene.add(spotLight.target)
                 </section>
 
                 <section>
+                    <p><img src="src/images/screen-6.jpg"></p>
+                </section>
+
+                <section>
                     <p>Code final avec toutes les lumières</p>
                     <div class="code-steps" data-type="js" data-trim>
                         <pre contenteditable><code>
 /**
  * Lights
  */
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.15)
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
-directionalLight.position.x = 5
-directionalLight.position.z = 5
+const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.3)
+directionalLight.position.x = - 2
+directionalLight.position.y = 3
+directionalLight.position.z = 4
 scene.add(directionalLight)
 
 const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
 scene.add(hemisphereLight)
 
-const pointLight = new THREE.PointLight(0xff9000, 0.5)
-pointLight.position.x = - 5
-pointLight.position.y = 2
-pointLight.position.z = 2
+const pointLight = new THREE.PointLight(0xff9000, 1, 10)
+pointLight.position.x = 2
+pointLight.position.y = 3
+pointLight.position.z = 4
 scene.add(pointLight)
 
 const rectAreaLight = new THREE.RectAreaLight(0x4e00ff, 3, 5, 5)
@@ -249,13 +279,11 @@ rectAreaLight.lookAt(new THREE.Vector3())
 scene.add(rectAreaLight)
 
 const spotLight = new THREE.SpotLight(0x00ff9c, 1, 0, Math.PI * 0.2, 0.5)
-spotLight.position.z = 5
-spotLight.position.x = - 5
+spotLight.position.z = 3
 spotLight.position.y = 2
 scene.add(spotLight)
 
-spotLight.target.position.z = 0
-spotLight.target.position.x = - 1
+spotLight.target.position.z = - 2
 scene.add(spotLight.target)
                         </code></pre>
                     </div>
@@ -296,6 +324,10 @@ scene.add(spotLightHelper)
                     </div>
                 </section>
 
+                <section>
+                    <p><img src="src/images/screen-7.jpg"></p>
+                </section>
+
                 <!-- House -->
                 <!-- <section id="house">
                     <p>Nous allons utiliser une <a href="https://threejs.org/docs/index.html#api/lights/PointLight" target="_blank">PointLight</a> que nous allons mettre au dessus de la porte, une <a href="https://threejs.org/docs/index.html#api/lights/DirectionalLight" target="_blank">DirectionalLight</a> pour imiter l'illumitation du soleil et une <a href="https://threejs.org/docs/index.html#api/lights/AmbientLight" target="_blank">AmbientLight</a> pour éclairer les faces cachées</p>
@@ -331,8 +363,8 @@ house.add(sunLight)
                 </section>
 
                 <section>
-                    <p>Les ombres ont toujours été un challenge pour la 3D temps réel. Même aujourd'hui, avec les cartes graphiques actuelles, les développeurs doivent faire preuve d'ingéniosité pour afficher des ombres</p>
-                    <p>Three.js intègre une gestion basique et peu réaliste des ombres, mais qui peut suffire</p>
+                    <p>Les ombres ont toujours été un challenge pour la 3D temps réel. Même aujourd'hui, avec les cartes graphiques actuelles, les développeurs doivent faire preuve d'ingéniosité pour afficher des ombres <span class="u">réalistes</span> et <span class="u">performantes</span></p>
+                    <p>Three.js intègre une gestion basique et peu réaliste des ombres, mais qui peut parfois suffire</p>
                 </section>
 
                 <section>
@@ -416,7 +448,13 @@ spotLight.castShadow = true
                 </section>
 
                 <section>
-                    <p>Si vous le pouvez, évitez les ombres natives de Three.js et préférez utiliser des astuces tel que le baking ou de fausses ombres qui imitent la forme qu'aurait du avoir l'ombre</p>
+                    <p><img src="src/images/screen-8.jpg"></p>
+                </section>
+
+                <section>
+                    <p>Comme vous pouvez le voir, le résultat est décevant</p>
+                    <p>Au dessus d'une ou deux sources de lumières, Three.js aura du mal à afficher les ombres</p>
+                    <p>Si vous le pouvez, utilisez des astuces tel que le baking ou de fausses ombres qui imitent la forme qu'aurait du avoir l'ombre</p>
                     <p><a href="https://medium.com/@bruno_simon/bruno-simon-portfolio-case-study-960402cc259b#efe9" target="_blank">Case study Bruno Simon</a></p>
                 </section>
 
