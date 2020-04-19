@@ -1,0 +1,21 @@
+{
+  "name": "h2-p2023",
+  "version": "1.0.0",
+  "description": "GitHub des cours de développement web en deuxième année pour la promotion P2023",
+  "main": "index.js",
+  "scripts": {
+    "dev": "php -S localhost:8080",
+    "open": "open http://localhost:8080/site/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunosimon/hetic-p2023.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunosimon/hetic-p2023/issues"
+  },
+  "homepage": "https://github.com/brunosimon/hetic-p2023#readme"
+}

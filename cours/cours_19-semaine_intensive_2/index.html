@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cours 19 - Semaine intensive 2</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css"> -->
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <!-- Code steps start -->
+        <link rel="stylesheet" href="../src/code-steps/prism-tomorrow.css">
+        <link rel="stylesheet" href="../src/code-steps/style.css">
+        <!-- Code steps end -->
+    </head>
+    <body>
+        <div class="reveal">
+            <div id="pagination"></div>
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2023</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 19</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2023">https://github.com/brunosimon/hetic-p2023</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2023/">http://bruno-simon.com/hetic/p2023/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Vous allez réaliser</p>
+                </section>
+
+                <section>
+                    <h2><span class="fragment">Le</span> <span class="fragment">musée</span> <span class="fragment">3D</span> <span class="fragment">de</span> <span class="fragment u">ce que vous voulez</span></h2>
+                </section>
+
+                <section>
+                    <h2>Attentes</h2>
+                    <ul>
+                        <li class="fragment">Un site en ligne et fonctionnel</li>
+                        <li class="fragment">De la 3D en WebGL avec Three.js</li>
+                        <li class="fragment">Des models importés</li>
+                        <li class="fragment">Une caméra et des contrôles sans OrbitControls</li>
+                        <li class="fragment">Compatible navigateurs récents</li>
+                        <li class="fragment">Mobile non obligatoire</li>
+                        <li class="fragment">Accès au repo Github</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Déroulement</h2>
+                </section>
+
+                <section>
+                    <h3>Discord</h3>
+                    <p>Un Discord a été mis en place afin que vous puissiez travailler ensemble tout en laissant l'intervenant vous aider</p>
+                    <p><a href="https://discord.gg/Q3ZVjpv" target="_blank">discord.gg/Q3ZVjpv</a></p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Utilisez <span class="u">impérativement</span> votre <span class="u">nom</span> et votre <span class="u">prénom</span><br>(click droit sur votre profil puis <span class="hl">changer de pseudo</span>)</li>
+                        <li>Un channel audio et text a été créé pour chaque groupe</li>
+                        <li>Evitez d'espionner sur les autres groupes</li>
+                        <li>Essayez de poser vos questions à l'intervenant sur <span class="u">#general</span> afin que tout le monde en profite</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>L'intervenant passera dans votre channel à des horaires qui vous seront fourni à l'avance</li>
+                        <li>Tout le groupe doit être présent à ces horaires (toute absence sera enregistrée)</li>
+                        <li>Assurez vous d'avoir un micro (des écouteurs avec micro intégré feront l'affaire)</li>
+                        <li>Préférez des écouteurs ou un casque lors des discussions afin d'éviter les échos</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>planning</h3>
+                    <!-- <ul>
+                        <table>
+                            <tr>
+                                <td>Lundi</td>
+                                <td>Présentation du sujet et mise en place de votre concept</td>
+                            </tr>
+                            <tr>
+                                <td>Mardi</td>
+                                <td>Travail en autonomie</td>
+                            </tr>
+                            <tr>
+                                <td>Mercredi</td>
+                                <td>Le groupe présente l'avancée et l'intervenant aide</td>
+                            </tr>
+                            <tr>
+                                <td>Jeudi</td>
+                                <td>Travail en autonomie</td>
+                            </tr>
+                            <tr>
+                                <td>Vendredi</td>
+                                <td>Soutenances</td>
+                            </tr>
+                        </table>
+                    </ul> -->
+                </section>
+
+                <section>
+                    <h4>Lundi</h4>
+                    <ul>
+                        <li>Présentation du sujet</li>
+                        <li>Mise en place de votre concept</li>
+                        <li>Disponibilité de l'intervenant toute la matinée</li>
+                        <li>Passages de l'intervenant l'après-midi</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Mardi</h4>
+                    <ul>
+                        <li>Travail en autonomie</li>
+                        <li>Intervenant partiellement disponible (n'hésitez pas à le contacter, mais soyez patient)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Mercredi</h4>
+                    <ul>
+                        <li>Cours sur l'<span class="u">import de modèles</span> dans Three.js à <span class="u">9h</span> sur <span class="u">Blackboard</span></li>
+                        <li>Disponibilité de l'intervenant le reste de la matinée</li>
+                        <li>Passages de l'intervenant l'après-midi</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Jeudi</h4>
+                    <ul>
+                        <li>Travail en autonomie</li>
+                        <li>Intervenant partiellement disponible (n'hésitez pas à le contacter, mais soyez patient)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Soutenances</h3>
+                    <p>A confirmer, mais ce sera soit via la fonction Live de Discord soit via la plateforme <a href="https://zoom.us/" target="_blank">Zoom</a></p>
+                    <p>Vous pouvez dès à présent explorer cette fonctionnalité</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Publiques (venez assister aux soutenances de autres groupes)</li>
+                        <li>Démarre à 8h45</li>
+                        <li>10 minutes de présentation</li>
+                        <li>5 minutes de questions</li>
+                        <li>Au moins deux membres du groupe parlent</li>
+                        <li>Français</li>
+                        <li>Disponibilité de votre code sur Github</li>
+                        <li>Le stream seul suffit, inutile de lancer la webcam</li>
+                        <li>Jury composé de deux personnes (intervenant et <span class="u">développeur de chez Google</span>)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>☝️</p>
+                    <p>Le développeur assistera aux soutenances en son nom</p>
+                    <p>Tout ce qu'il dira n'engagera que lui et aucunement Google</p>
+                </section>
+
+                <section>
+                    <h2>Notation</h2>
+                    <p>Une seule note pour tout le groupe</p>
+                    <table>
+                        <tr>
+                            <td>Oral / Présentation</td>
+                            <td>2pts</td>
+                        </tr>
+                        <tr>
+                            <td>Concept</td>
+                            <td>2pts</td>
+                        </tr>
+                        <tr>
+                            <td>Features</td>
+                            <td>4pts</td>
+                        </tr>
+                        <tr>
+                            <td>Technicité</td>
+                            <td>4pts</td>
+                        </tr>
+                        <tr>
+                            <td>Code</td>
+                            <td>4pts</td>
+                        </tr>
+                        <tr>
+                            <td>Design</td>
+                            <td>4pts</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Conseils</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment">Prenez le temps de trouver un concept de musée qui soit bon, mais aussi malin</li>
+                        <li class="fragment">Vous n'êtes pas obligés de créer les modèles vous-même</li>
+                        <li class="fragment">Adaptez les features à ce que vous savez faire</li>
+                        <li class="fragment">Etudiez les derniers cours WebGL</li>
+                        <li class="fragment">Faites attention aux performances</li>
+                        <li class="fragment">Le site peut contenir du HTML</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment">Prennez le temps de trouver le bon concept</li>
+                        <li class="fragment">Posez des questions</li>
+                        <li class="fragment">Faites bon usage Github</li>
+                        <li class="fragment">Utilisez d'éventuelles technos complémentaires<br />(réseaux sociaux, second-screen, etc.)</li>
+                        <li class="fragment">Entraidez-vous</li>
+                        <li class="fragment">Visez plus haut que ce que vous pensez savoir faire, mais allez y petit à petit (MVP)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment">Demandez conseil aux autres promotions</li>
+                        <li class="fragment">Faites tester votre site</li>
+                        <li class="fragment">N'attendez pas le dernier moment pour mettre en ligne</li>
+                        <li class="fragment">Soyez capable de justifier tous vos choix</li>
+                        <li class="fragment">Travaillez votre présentation et anticipez les éventuels problèmes techniques</li>
+                        <li class="fragment">Fournissez dès le début les liens du site, du repo et de l'éventuelle présentation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment">Dormez (un peu)</li>
+                        <li class="fragment">Faites-vous plaisir</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Il vous reste 96h</p>
+                    <h2>Questions ?</h2>
+                </section>
+
+                <section>
+                    <h2>Groupes</h2>
+                    <p>(avec horaires de passage lundi après-midi et mercredi après-midi)</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1iLClAfdfXfDb5_RDuGmNPpzY-fqgu-PtRIx4Cf4s2FE/edit?usp=sharing" target="_blank">shorturl.at/bvAF4</a>
+                    <!-- <a href="src/img/groupes.png" target="_blank"><img class="no-style" src="src/img/groupes.png" alt="" width="600"></a> -->
+                </section>
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+
+        <!-- Code steps start -->
+        <script src="../src/code-steps/prism.js" data-manual></script>
+        <!-- Code steps end -->
+    </body>
+</html>

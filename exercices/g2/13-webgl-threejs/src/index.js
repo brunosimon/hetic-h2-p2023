@@ -2,6 +2,9 @@ import './style/main.styl'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import grassColorSource from './images/house/grass/color.jpg'
+import grassNormalSource from './images/house/grass/normal.jpg'
+import bricksColorSource from './images/house/bricks/color.jpg'
+import bricksNormalSource from './images/house/bricks/normal.png'
 import doorColorSource from './images/house/door/color.jpg'
 import doorAmbientOcclusionSource from './images/house/door/ambientOcclusion.jpg'
 import doorHeightSource from './images/house/door/height.png'
@@ -26,15 +29,15 @@ const doorRoughnessTexture = textureLoader.load(doorRoughnessSource)
 const matcapTexture = textureLoader.load(matcapSource)
 
 const grassColorTexture = textureLoader.load(grassColorSource)
-grassColorTexture.repeat.x = 2
-grassColorTexture.repeat.y = 2
+grassColorTexture.repeat.x = 4
+grassColorTexture.repeat.y = 4
 grassColorTexture.wrapS = THREE.RepeatWrapping
 grassColorTexture.wrapT = THREE.RepeatWrapping
-// grassColorTexture.rotation = Math.PI * 0.25
-// grassColorTexture.center.x = 0.5
-// grassColorTexture.center.y = 0.5
-grassColorTexture.magFilter = THREE.NearestFilter
-grassColorTexture.minFilter = THREE.NearestFilter
+const grassNormalTexture = textureLoader.load(grassNormalSource)
+grassNormalTexture.wrapS = THREE.RepeatWrapping
+grassNormalTexture.wrapT = THREE.RepeatWrapping
+const bricksColorTexture = textureLoader.load(bricksColorSource)
+const bricksNormalTexture = textureLoader.load(bricksNormalSource)
 
 /**
  * Sizes
@@ -71,20 +74,38 @@ scene.add(camera)
 /**
  * Lights
  */
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
+const ambientLight = new THREE.AmbientLight(0x0096ff, 0.25)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.3)
-directionalLight.position.x = 7
-scene.add(directionalLight)
+const moonLight = new THREE.DirectionalLight(0x0096ff, 1)
+moonLight.position.set(1, 1, 1)
+scene.add(moonLight)
 
-const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
-scene.add(hemisphereLight)
+const doorLight = new THREE.PointLight(0xffd800, 2, 5)
+doorLight.position.y = 2.2
+doorLight.position.x = - 2.7
+scene.add(doorLight)
+
+const ghostLightA = new THREE.PointLight(0xea00ff, 3, 5)
+ghostLightA.position.z = 5
+ghostLightA.position.y = 1
+scene.add(ghostLightA)
+
+const ghostLightB = new THREE.PointLight(0x00d8ff, 3, 5)
+ghostLightB.position.x = 5
+ghostLightB.position.y = 1
+scene.add(ghostLightB)
+
+const ghostLightC = new THREE.PointLight(0xd8ff00, 3, 5)
+ghostLightC.position.z = - 5
+ghostLightC.position.y = 1
+scene.add(ghostLightC)
 
 /**
  * Objects
  */
 const objectsGroup = new THREE.Group()
+objectsGroup.visible = false
 scene.add(objectsGroup)
 
 // Material
@@ -151,26 +172,32 @@ objectsGroup.add(floor)
  * House
  */
 const houseGroup = new THREE.Group()
-houseGroup.visible = false
+// houseGroup.visible = false
 scene.add(houseGroup)
 
 const grass = new THREE.Mesh(
     new THREE.PlaneGeometry(15, 15, 1, 1),
-    new THREE.MeshBasicMaterial({ map: grassColorTexture })
+    new THREE.MeshStandardMaterial({
+        map: grassColorTexture,
+        normalMap: grassNormalTexture
+    })
 )
 grass.rotation.x = - Math.PI * 0.5
 houseGroup.add(grass)
 
 const walls = new THREE.Mesh(
     new THREE.BoxGeometry(5, 2.5, 5, 1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0xffcc99 })
+    new THREE.MeshStandardMaterial({
+        map: bricksColorTexture,
+        normalMap: bricksNormalTexture
+    })
 )
 walls.position.y = 1.25
 houseGroup.add(walls)
 
 const roof = new THREE.Mesh(
     new THREE.ConeGeometry(4.1, 1, 4),
-    new THREE.MeshBasicMaterial({ color: 0x885522 })
+    new THREE.MeshStandardMaterial({ color: 0x885522 })
 )
 roof.position.y += 2.5 + 1 * 0.5
 roof.rotation.y += Math.PI * 0.25
@@ -178,7 +205,7 @@ houseGroup.add(roof)
 
 const door = new THREE.Mesh(
     new THREE.BoxGeometry(0.2, 2, 1),
-    new THREE.MeshBasicMaterial({ color: 0xff8866 })
+    new THREE.MeshStandardMaterial({ color: 0xff8866 })
 )
 door.position.x = - 2.5
 door.position.y = 1
@@ -186,7 +213,7 @@ houseGroup.add(door)
 
 const bush1 = new THREE.Mesh(
     new THREE.SphereGeometry(0.5, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0x228833 })
+    new THREE.MeshStandardMaterial({ color: 0x228833 })
 )
 bush1.position.x = - 2.8
 bush1.position.z = 1
@@ -195,7 +222,7 @@ houseGroup.add(bush1)
 
 const bush2 = new THREE.Mesh(
     new THREE.SphereGeometry(0.4, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0x228833 })
+    new THREE.MeshStandardMaterial({ color: 0x228833 })
 )
 bush2.position.x = - 2.8
 bush2.position.z = - 0.8
@@ -237,6 +264,22 @@ window.addEventListener('resize', () =>
 const loop = () =>
 {
     window.requestAnimationFrame(loop)
+
+    // Update house
+    const ghostAAngle = Date.now() * 0.0003
+    ghostLightA.position.x = Math.cos(ghostAAngle) * 5
+    ghostLightA.position.z = Math.sin(ghostAAngle) * 5
+    ghostLightA.position.y = Math.sin(Date.now() * 0.001) + 0.5
+
+    const ghostBAngle = Date.now() * 0.0003 + Math.PI * 2 / 3
+    ghostLightB.position.x = Math.cos(ghostBAngle) * 5
+    ghostLightB.position.z = Math.sin(ghostBAngle) * 5
+    ghostLightB.position.y = Math.sin(Date.now() * 0.0012) + 0.5
+
+    const ghostCAngle = Date.now() * 0.0003 - Math.PI * 2 / 3
+    ghostLightC.position.x = Math.cos(ghostCAngle) * 5
+    ghostLightC.position.z = Math.sin(ghostCAngle) * 5
+    ghostLightC.position.y = Math.sin(Date.now() * 0.0015) + 0.5
 
     // Update objects
     sphere.rotation.y += 0.002
