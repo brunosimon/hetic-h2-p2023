@@ -1,0 +1,17 @@
+.message
+{
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+.message.success
+{
+    background: greenyellow;
+    border: 1px solid green;
+}
+
+.message.error
+{
+    background: pink;
+    border: 1px solid red;
+}
