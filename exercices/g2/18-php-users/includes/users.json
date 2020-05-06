@@ -1,0 +1,68 @@
+[
+    {
+        "first_name": "Lucia",
+        "last_name": "Atkins",
+        "date_of_birth": 730553019,
+        "gender": "f",
+        "married": true,
+        "height": 170,
+        "weight": 68,
+        "typeId": 0,
+        "image": "https://api.adorable.io/avatars/160/1.png"
+    },
+    {
+        "first_name": "Kush",
+        "last_name": "Bassett",
+        "date_of_birth": 934457019,
+        "gender": "m",
+        "married": true,
+        "height": 159,
+        "weight": 65,
+        "typeId": 0,
+        "image": "https://api.adorable.io/avatars/160/2.png"
+    },
+    {
+        "first_name": "Arandeep",
+        "last_name": "Drummond",
+        "date_of_birth": 894412800,
+        "gender": "m",
+        "married": false,
+        "height": 203,
+        "weight": 87,
+        "typeId": 1,
+        "image": "https://api.adorable.io/avatars/160/3.png"
+    },
+    {
+        "first_name": "Emma-Louise",
+        "last_name": "Blackwell",
+        "date_of_birth": 1161993600,
+        "gender": "f",
+        "married": true,
+        "height": 175,
+        "weight": 92,
+        "typeId": 1,
+        "image": "https://api.adorable.io/avatars/160/4.png"
+    },
+    {
+        "first_name": "Faheem",
+        "last_name": "Matthews",
+        "date_of_birth": 1325808000,
+        "gender": "m",
+        "married": true,
+        "height": 163,
+        "weight": 56,
+        "typeId": 0,
+        "image": "https://api.adorable.io/avatars/160/5.png"
+    },
+    {
+        "first_name": "Victoria",
+        "last_name": "Gregory",
+        "date_of_birth": 1103846400,
+        "gender": "f",
+        "married": false,
+        "height": 180,
+        "weight": 82,
+        "typeId": 2,
+        "image": "https://api.adorable.io/avatars/160/6.png"
+    }
+]
