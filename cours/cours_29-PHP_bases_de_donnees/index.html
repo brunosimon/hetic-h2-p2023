@@ -194,7 +194,7 @@
                 </section>
 
                 <section>
-                    <p>Pour rajouter un compte, dans PhpMyAdmin, allez dans l'onglet <span class="hl">Utilisateurs</span> puis cliquez sur <span class="hl">Ajouter un utilisateur</span></p>
+                    <p>Pour ajouter un compte, dans PhpMyAdmin, allez dans l'onglet <span class="hl">Utilisateurs</span> puis cliquez sur <span class="hl">Ajouter un utilisateur</span></p>
                     <p>
                         <img src="src/img/phpmyadmin-utilisateurs.png" alt="">
                     </p>
@@ -256,7 +256,7 @@
                 </section>
 
                 <section>
-                    <p>Cliquez sur le petit icône SQL dans le menu de gauche pour ouvrir une popup</p>
+                    <p>Cliquez sur l'onglet SQL</p>
                     <p>
                         <img width="170" src="src/img/phpmyadmin-sql-button.png" alt="">
                     </p>
@@ -287,7 +287,7 @@ VALUES
                 </section>
 
                 <section>
-                    <p>Ajouter plusieurs lignes</p>
+                    <p>Ajouter plusieurs lignes à la table <span class="hl">users</span></p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 INSERT INTO
@@ -300,7 +300,7 @@ VALUES
                 </section>
 
                 <section>
-                    <p>Modifier une colonne</p>
+                    <p>Modifier la colonne <span class="hl">login</span> de la table <span class="hl">users</span> quand <span class="hl">id</span> vaut <span class="hl">1</span></p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 UPDATE
@@ -313,7 +313,7 @@ WHERE
                     </div>
                 </section>
                 <section>
-                    <p>Modifier plusieurs colonnes</p>
+                    <p>Modifier les colonnes <span class="hl">login</span> et <span class="hl">age</span> de la table <span class="hl">users</span> quand <span class="hl">id</span> vaut <span class="hl">1</span></p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 UPDATE
@@ -325,7 +325,7 @@ WHERE
     id = 1
                         </code></pre>
                     </div>
-                    <p>Modifier plusieurs lignes</p>
+                    <p>Modifier la colonne <span class="hl">login</span> de la table <span class="hl">users</span> quand <span class="hl">id</span> vaut <span class="hl">1</span> ou <span class="hl">2</span></p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 UPDATE
@@ -339,19 +339,19 @@ WHERE
                 </section>
 
                 <section>
-                    <p>Récupérer toutes les lignes</p>
-                    <div class="code-steps" data-type="sql" data-trim>
-                        <pre contenteditable><code>
-SELECT * FROM users
-                        </code></pre>
-                    </div>
-                    <p>Récupérer certaines colonnes de toutes les lignes</p>
+                    <p>Récupérer les colonnes <span class="hl">id</span> et <span class="hl">login</span> de toute la table <span class="hl">users</span></p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 SELECT id, login FROM users
                         </code></pre>
                     </div>
-                    <p>Récupérer certaines lignes</p>
+                    <p>Récupérer toutes les colonnes de toute la table <span class="hl">users</span></p>
+                    <div class="code-steps" data-type="sql" data-trim>
+                        <pre contenteditable><code>
+SELECT * FROM users
+                        </code></pre>
+                    </div>
+                    <p>Récupérer toutes les colonnes de la table <span class="hl">users</span> quand <span class="hl">id</span> est inférieur à 3</p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 SELECT * FROM users WHERE id < 3
@@ -360,13 +360,13 @@ SELECT * FROM users WHERE id < 3
                 </section>
 
                 <section>
-                    <p>Supprimer une ligne</p>
+                    <p>Supprimer la ligne de la table <span class="hl">users</span> quand <span class="hl">id</span> vaut <span class="hl">1</span></p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 DELETE FROM users WHERE id = 1
                         </code></pre>
                     </div>
-                    <p>Supprimer toutes les lignes ⚠️</p>
+                    <p>Supprimer toutes les lignes de la table <span class="hl">users</span> ⚠️</p>
                     <div class="code-steps" data-type="sql" data-trim>
                         <pre contenteditable><code>
 DELETE FROM users
@@ -408,8 +408,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=hetic_p2023_first;port=8889', 'root'
                         </small>
                     </p>
                     <ul>
-                        <li><span class="u">hetic_p2023_first</span> : Nom de la table</li>
                         <li><span class="u">localhost</span> : Serveur (en général localhost, parfois une IP)</li>
+                        <li><span class="u">hetic_p2023_first</span> : Nom de la table</li>
                         <li><span class="u">8889</span> : Port</li>
                         <li><span class="u">root</span> : Login</li>
                         <li><span class="u">root</span> : Mot de passe (root ou rien)</li>
@@ -464,7 +464,7 @@ echo 'Connected';
                 <section>
                     <p>⚠️</p>
                     <p>Par défaut, PDO n'affiche pas les erreurs SQL</p>
-                    <p>Rajoutez la ligne suivante après avoir instancié PDO pour afficher les erreurs</p>
+                    <p>Ajoutez la ligne suivante après avoir instancié PDO pour afficher les erreurs</p>
                     
                     <div class="code-steps" data-type="php" data-trim>
                         <pre contenteditable><code>
@@ -484,18 +484,18 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 </section>
 
                 <section>
-                    <p>La méthode <a href="http://www.php.net/manual/fr/pdo.query.php" target="_blank">query()</a> permet de préparer une requête</p>
+                    <p>La méthode <a href="http://www.php.net/manual/fr/pdo.query.php" target="_blank">query()</a> permet d'exécuter une requête SQL et de renvoyer les résultats</p>
                     
                     <div class="code-steps" data-type="php" data-trim>
                         <pre contenteditable><code>
 $query = $pdo-&gt;query(&#039;SELECT * FROM users&#039;);
                         </code></pre>
                     </div>
-                    <p>La requête est executée, mais <span class="hl">$query</span> ne contient pas directement les résultats</p>
+                    <p>☝️ <span class="hl">$query</span> ne contient pas directement les résultats</p>
                 </section>
 
                 <section>
-                    <p><span class="hl">$query</span> est un objet contenant deux méthodes qui nous intéresse : </p>
+                    <p><span class="hl">$query</span> est un objet contenant deux méthodes qui nous intéressent : </p>
                     <ul>
                         <li><a href="http://www.php.net/manual/fr/pdostatement.fetchall.php" target="_blank">fetchAll()</a> : renvoie un tableau de toutes les lignes</li>
                         <li><a href="http://www.php.net/manual/fr/pdostatement.fetch.php" target="_blank">fetch()</a> : renvoie chaque ligne une par une</li>
